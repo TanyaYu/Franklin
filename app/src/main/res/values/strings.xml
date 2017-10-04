@@ -1,3 +1,58 @@
 <resources>
     <string name="app_name">Franklin</string>
+    <string name="content_authority" translatable="false">com.example.android.franklin</string>
+
+
+    <string name="tem_name">Temperance</string>
+    <string name="tem_short">T</string>
+    <string name="tem_desc">Eat not dulness; drink not elevation.</string>
+
+    <string name="sil_name">Silence</string>
+    <string name="sil_short">S</string>
+    <string name="sil_desc">Speak not but what may benefit others or yourself; avoid trifling conversation.</string>
+
+    <string name="o_name">Order</string>
+    <string name="o_short">O</string>
+    <string name="o_desc">Let all your things have their places; let each part of your business have its time.</string>
+
+    <string name="r_name">Resolution</string>
+    <string name="r_short">R</string>
+    <string name="r_desc">Resolve to perform what you ought; perform without fail what you resolve.</string>
+
+    <string name="f_name">Frugality</string>
+    <string name="f_short">F</string>
+    <string name="f_desc">Make no expense but to do good to others or yourself; i.e., waste nothing</string>
+
+    <string name="i_name">Industry</string>
+    <string name="i_short">I</string>
+    <string name="i_desc">Lose no time; be always employed in something useful; cut off all unnecessary actions.</string>
+
+    <string name="sin_name">Sincerity</string>
+    <string name="sin_short">S</string>
+    <string name="sin_desc">Use no hurtful deceit; think innocently and justly; and, if you speak, speak accordingly.</string>
+
+    <string name="j_name">Justice</string>
+    <string name="j_short">J</string>
+    <string name="j_desc">Wrong none by doing injuries, or omitting the benefits that are your duty.</string>
+
+    <string name="m_name">Moderation</string>
+    <string name="m_short">M</string>
+    <string name="m_desc">Avoid extremes; forbear resenting injuries so much as you think they deserve.</string>
+
+    <string name="cl_name">Cleanliness</string>
+    <string name="cl_short">C</string>
+    <string name="cl_desc">Tolerate no uncleanliness in body, cloaths, or habitation.</string>
+
+    <string name="tra_name">Tranquility</string>
+    <string name="tra_short">T</string>
+    <string name="tra_desc">Be not disturbed at trifles, or at accidents common or unavoidable.</string>
+
+    <string name="ch_name">Chastity</string>
+    <string name="ch_short">C</string>
+    <string name="ch_desc">Rarely use venery but for health or offspring, never to dullness, weakness, or the injury of your own or another’s peace or reputation.</string>
+
+    <string name="h_name">Humility</string>
+    <string name="h_short">H</string>
+    <string name="h_desc">Imitate Jesus and Socrates.</string>
+
 </resources>

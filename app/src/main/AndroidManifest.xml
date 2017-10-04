@@ -17,4 +17,9 @@
         </activity>
     </application>
 
+    <provider
+        android:name=".data.VirtuesProvider"
+        android:authorities="@string/content_authority"
+        android:exported="false"/>
+
 </manifest>
