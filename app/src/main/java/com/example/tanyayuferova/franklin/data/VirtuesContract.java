@@ -9,7 +9,7 @@ import android.provider.BaseColumns;
 
 public class VirtuesContract {
 
-    public static final String CONTENT_AUTHORITY = "com.example.android.franklin";
+    public static final String CONTENT_AUTHORITY = "com.example.tanyayuferova.franklin";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static final String PATH_POINTS = "points";
     public static final String PATH_VIRTUES = "virtues";
