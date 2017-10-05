@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
@@ -28,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final int ID_VIRTUES_LOADER = 1;
     private final String TAG = MainActivity.class.getSimpleName();
-    private int mPosition = RecyclerView.NO_POSITION;
 
     private Date startDate;
 
@@ -107,9 +109,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        virtuesAdapter.swapCursor(data);
-        if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
-        recyclerView.smoothScrollToPosition(mPosition);
+        virtuesAdapter.swapCursor(data);;
     }
 
     @Override
@@ -120,5 +120,24 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onClick(long virtueId, int daysOff) {
         getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, addDays(startDate, daysOff)), null);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.virtues_main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reset_data_action:
+                getContentResolver().delete(VirtuesContract.CONTENT_POINTS_URI, null, null);
+                Toast.makeText(this, "All points are deleted.", Toast.LENGTH_LONG).show();
+                //FIXME KOSTYL
+                getSupportLoaderManager().restartLoader(ID_VIRTUES_LOADER, null, this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

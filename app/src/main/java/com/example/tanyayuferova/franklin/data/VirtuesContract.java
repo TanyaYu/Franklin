@@ -19,6 +19,9 @@ public class VirtuesContract {
     public static final Uri CONTENT_VIRTUES_URI = BASE_CONTENT_URI.buildUpon()
             .appendPath(PATH_VIRTUES)
             .build();
+    public static final Uri CONTENT_POINTS_URI = BASE_CONTENT_URI.buildUpon()
+            .appendPath(PATH_POINTS)
+            .build();
     public static Uri buildPointsUriWithDate(long virtueId, Date date) {
         String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(date);
         return CONTENT_VIRTUES_URI.buildUpon()

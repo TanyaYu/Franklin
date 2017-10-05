@@ -63,4 +63,5 @@
     <string name="day6">Sat</string>
     <string name="day7">Sun</string>
 
+    <string name="reset_data_title">Reset (for testing only)</string>
 </resources>

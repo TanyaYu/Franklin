@@ -26,6 +26,7 @@ import static com.example.tanyayuferova.franklin.data.VirtuesContract.PATH_POINT
 public class VirtuesProvider extends ContentProvider {
 
     public static final int CODE_VIRTUES = 100;
+    public static final int CODE_POINTS = 200;
     public static final int CODE_POINTS_WITH_DATE = 201;
 
     private static final UriMatcher uriMatcher = buildUriMatcher();
@@ -35,6 +36,7 @@ public class VirtuesProvider extends ContentProvider {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = VirtuesContract.CONTENT_AUTHORITY;
         matcher.addURI(authority, VirtuesContract.PATH_VIRTUES, CODE_VIRTUES);
+        matcher.addURI(authority, VirtuesContract.PATH_POINTS, CODE_POINTS);
         matcher.addURI(authority, VirtuesContract.PATH_VIRTUES + "/#/" + VirtuesContract.PATH_POINTS + "/#",
                 CODE_POINTS_WITH_DATE);
         return matcher;
@@ -133,30 +135,24 @@ public class VirtuesProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        throw new RuntimeException("Delete function is not implemented");
-//        int result;
-//        switch (uriMatcher.match(uri)) {
-//            case CODE_POINTS_WITH_DATE: {
-//                String virtueId = uri.getPathSegments().get(1);
-//                String normalizedUtcDateString = uri.getLastPathSegment();
-//                String[] selectionArguments = new String[]{virtueId, normalizedUtcDateString};
-//                selection = VirtuesContract.PointEntry.COLUMN_VIRTUE_ID + " = ? and " +
-//                        VirtuesContract.PointEntry.COLUMN_DATE + " = ? ";
-//
-//                result = dbHelper.getWritableDatabase().delete(
-//                        VirtuesContract.PointEntry.TABLE_NAME,
-//                        selection,
-//                        selectionArguments);
-//                break;
-//            }
-//
-//            default:
-//                throw new UnsupportedOperationException("Unknown uri: " + uri);
-//        }
-//
-//        if(result > 0)
-//            getContext().getContentResolver().notifyChange(uri, null);
-//        return result;
+        int result;
+        switch (uriMatcher.match(uri)) {
+            case CODE_POINTS: {
+                //Delete all from Points table
+                result = dbHelper.getWritableDatabase().delete(
+                        VirtuesContract.PointEntry.TABLE_NAME,
+                        selection,
+                        selectionArgs);
+                break;
+            }
+
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        if(result > 0)
+            getContext().getContentResolver().notifyChange(uri, null);
+        return result;
     }
 
     @Override
