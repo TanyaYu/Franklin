@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
 
 import java.text.SimpleDateFormat;
@@ -19,7 +20,8 @@ import java.util.Date;
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
 
 public class MainActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>,
+        VirtuesAdapter.VirtuesAdapterOnClickHandler {
 
     private RecyclerView recyclerView;
     private VirtuesAdapter virtuesAdapter;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements
         startDate = Calendar.getInstance().getTime();
 
         MAIN_PROJECTION = new String[] {
+                VirtueEntry._ID,
                 VirtueEntry.COLUMN_SHORT_NAME,
                 createSelectString(DAY_1, 0),
                 createSelectString(DAY_2, 1),
@@ -62,16 +65,20 @@ public class MainActivity extends AppCompatActivity implements
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        virtuesAdapter = new VirtuesAdapter(this);
+        virtuesAdapter = new VirtuesAdapter(this, this);
         recyclerView.setAdapter(virtuesAdapter);
         getSupportLoaderManager().initLoader(ID_VIRTUES_LOADER, null, this);
     }
 
-    String createSelectString(String label, int daysOff) {
+    Date addDays(Date date, int days) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startDate);
-        calendar.add(Calendar.DAY_OF_MONTH, daysOff);
-        String formattedDateString = new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_MONTH, days);
+        return calendar.getTime();
+    }
+
+    String createSelectString(String label, int daysOff) {
+        String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(addDays(startDate, daysOff));
         return " (select count(*) from " + PointEntry.TABLE_NAME +
                 " where " + VirtueEntry.TABLE_NAME + "." + VirtueEntry._ID +
                 " = " + PointEntry.TABLE_NAME + "." + PointEntry.COLUMN_VIRTUE_ID +
@@ -108,5 +115,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         virtuesAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onClick(long virtueId, int daysOff) {
+        getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, addDays(startDate, daysOff)), null);
     }
 }

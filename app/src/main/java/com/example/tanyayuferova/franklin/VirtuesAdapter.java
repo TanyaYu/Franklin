@@ -17,9 +17,15 @@ import com.example.tanyayuferova.franklin.data.VirtuesContract;
 public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesAdapterViewHolder> {
     private final Context mContext;
     private Cursor mCursor;
+    final private VirtuesAdapterOnClickHandler mClickHandler;
 
-    public VirtuesAdapter(Context mContext) {
+    public VirtuesAdapter(Context mContext, VirtuesAdapterOnClickHandler clickHandler) {
         this.mContext = mContext;
+        mClickHandler = clickHandler;
+    }
+
+    public interface VirtuesAdapterOnClickHandler {
+        void onClick(long virtueId, int daysOff);
     }
 
     @Override
@@ -52,7 +58,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         notifyDataSetChanged();
     }
 
-    class VirtuesAdapterViewHolder extends RecyclerView.ViewHolder {
+    class VirtuesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
         final TextView virtueName;
         final TextView day1TV;
         final TextView day2TV;
@@ -72,6 +78,30 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             day5TV = (TextView) view.findViewById(R.id.tv_day_5);
             day6TV = (TextView) view.findViewById(R.id.tv_day_6);
             day7TV = (TextView) view.findViewById(R.id.tv_day_7);
+
+            day1TV.setOnClickListener(this);
+            day2TV.setOnClickListener(this);
+            day3TV.setOnClickListener(this);
+            day4TV.setOnClickListener(this);
+            day5TV.setOnClickListener(this);
+            day6TV.setOnClickListener(this);
+            day7TV.setOnClickListener(this);
+
+            day1TV.setTag(0);
+            day2TV.setTag(1);
+            day3TV.setTag(2);
+            day4TV.setTag(3);
+            day5TV.setTag(4);
+            day6TV.setTag(5);
+            day7TV.setTag(6);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            mCursor.moveToPosition(adapterPosition);
+            mClickHandler.onClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
+                    (int) v.getTag());
         }
     }
 }

@@ -10,6 +10,11 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.BASE_CONTENT_URI;
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.PATH_POINTS;
@@ -89,8 +94,9 @@ public class VirtuesProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             case CODE_POINTS_WITH_DATE: {
                 String virtueId = uri.getPathSegments().get(1);
-                String normalizedUtcDateString = uri.getLastPathSegment();
-                values.put(VirtuesContract.PointEntry.COLUMN_DATE, normalizedUtcDateString);
+                String dateString = uri.getLastPathSegment();
+                values = new ContentValues();
+                values.put(VirtuesContract.PointEntry.COLUMN_DATE, dateString);
                 values.put(VirtuesContract.PointEntry.COLUMN_VIRTUE_ID, virtueId);
 
                 long newId = dbHelper.getWritableDatabase().insert(PointEntry.TABLE_NAME,

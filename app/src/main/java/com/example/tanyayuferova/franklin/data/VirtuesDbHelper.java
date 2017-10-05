@@ -16,7 +16,7 @@ import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
 public class VirtuesDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "virtues.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
     private final Context mContext;
 
     public VirtuesDbHelper(Context context) {
@@ -54,7 +54,7 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_POINTS_TABLE =
                 "CREATE TABLE " + PointEntry.TABLE_NAME + " (" +
                         PointEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        PointEntry.COLUMN_DATE + " INTEGER NOT NULL, " +
+                        PointEntry.COLUMN_DATE + " DATE NOT NULL, " +
                         PointEntry.COLUMN_VIRTUE_ID + " INTEGER NOT NULL, " +
                         " FOREIGN KEY (" + PointEntry.COLUMN_VIRTUE_ID + ") REFERENCES " +
                         VirtueEntry.TABLE_NAME + " (" + VirtueEntry._ID + ")); ";

@@ -3,6 +3,9 @@ package com.example.tanyayuferova.franklin.data;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Tanya Yuferova on 10/4/2017.
  */
@@ -16,11 +19,12 @@ public class VirtuesContract {
     public static final Uri CONTENT_VIRTUES_URI = BASE_CONTENT_URI.buildUpon()
             .appendPath(PATH_VIRTUES)
             .build();
-    public static Uri buildPointsUriWithDate(long virtueId, long date) {
+    public static Uri buildPointsUriWithDate(long virtueId, Date date) {
+        String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(date);
         return CONTENT_VIRTUES_URI.buildUpon()
                 .appendPath(Long.toString(virtueId))
                 .appendPath(PATH_POINTS)
-                .appendPath(Long.toString(date))
+                .appendPath(formattedDateString)
                 .build();
     }
 
