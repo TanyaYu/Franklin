@@ -55,13 +55,14 @@
     <string name="h_short">H</string>
     <string name="h_desc">Imitate Jesus and Socrates.</string>
 
-    <string name="day1">Mon</string>
-    <string name="day2">Tue</string>
-    <string name="day3">Wed</string>
-    <string name="day4">Thu</string>
-    <string name="day5">Fri</string>
-    <string name="day6">Sat</string>
-    <string name="day7">Sun</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+    <string name="sun">SUN</string>
 
     <string name="reset_data_title">Reset (for testing only)</string>
+    <string name="dot">•</string>
 </resources>

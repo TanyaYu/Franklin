@@ -43,7 +43,19 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         mCursor.moveToPosition(position);
         holder.virtueName.setText(mCursor.getString(mCursor.getColumnIndex(VirtuesContract.VirtueEntry.COLUMN_SHORT_NAME)));
         for (int i = 0; i < MainActivity.DAYS_COUNT; i++) {
-            holder.daysTV[i].setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_CODE + i)));
+            int dotsCount = mCursor.getInt(mCursor.getColumnIndex(MainActivity.DAY_CODE + i));
+            String text = "";
+            String dot = mContext.getResources().getString(R.string.dot);
+            if(dotsCount == 1) {
+                text = dot;
+            } else if(dotsCount == 2) {
+                text = dot + dot;
+            } else if(dotsCount == 3) {
+                text = dot + dot + dot;
+            } else if(dotsCount > 3){
+                text = String.valueOf(dotsCount);
+            }
+            holder.daysTV[i].setText(text);
         }
     }
 
