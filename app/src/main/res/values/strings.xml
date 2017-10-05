@@ -65,4 +65,6 @@
 
     <string name="reset_data_title">Reset (for testing only)</string>
     <string name="dot">•</string>
+
+    <string name="pref_virtue_id_key" translatable="false">virtue_id</string>
 </resources>

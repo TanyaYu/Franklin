@@ -11,6 +11,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <Spinner
+            android:id="@+id/sp_virtues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_virtue_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:id="@+id/daysOfWeekLayout"
             android:layout_width="match_parent"

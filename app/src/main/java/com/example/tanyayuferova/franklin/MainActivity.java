@@ -1,8 +1,9 @@
 package com.example.tanyayuferova.franklin;
 
-import android.content.res.Resources;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -13,18 +14,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
+import com.example.tanyayuferova.franklin.entity.Virtue;
 import com.example.tanyayuferova.franklin.utils.DateUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
@@ -36,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements
     private RecyclerView recyclerView;
     private VirtuesAdapter virtuesAdapter;
     private LinearLayout daysOfWeekLayout;
+    private Spinner virtuesSpinner;
+    private TextView virtueDescription;
+    private ArrayAdapter<Virtue> virtueSppimerAdapter;
 
     private static final int ID_VIRTUES_LOADER = 1;
     private final String TAG = MainActivity.class.getSimpleName();
@@ -49,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements
     private Date startDate;
     public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 2];;
     public static String DAY_CODE = "day";
+
+    private List<Virtue> spinnerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         daysOfWeekLayout = (LinearLayout) findViewById(R.id.daysOfWeekLayout);
+        virtuesSpinner = (Spinner) findViewById(R.id.sp_virtues);
+        virtueDescription = (TextView) findViewById(R.id.tv_virtue_description);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -74,6 +88,52 @@ public class MainActivity extends AppCompatActivity implements
         getSupportLoaderManager().initLoader(ID_VIRTUES_LOADER, null, this);
 
         initDaysOfWeekLayout();
+        initSpinnerData();
+        virtueSppimerAdapter = new ArrayAdapter<Virtue>(this, R.layout.support_simple_spinner_dropdown_item, spinnerData);
+        virtuesSpinner.setAdapter(virtueSppimerAdapter);
+        virtuesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Virtue selected = virtueSppimerAdapter.getItem(position);
+                virtueDescription.setText(selected.getDescription());
+                //Save current period virtue id
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt(getString(R.string.pref_virtue_id_key), selected.getId());
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                virtueDescription.setText("");
+            }
+        });
+        setupSharedPreferences();
+    }
+
+    protected void initSpinnerData() {
+        spinnerData = new ArrayList<>();
+        Cursor cursor = getContentResolver().query(CONTENT_VIRTUES_URI, null, null, null, null);
+        if(cursor != null){
+            int idInd = cursor.getColumnIndex(VirtueEntry._ID);
+            int nameInd = cursor.getColumnIndex(VirtueEntry.COLUMN_NAME);
+            int shortInd = cursor.getColumnIndex(VirtueEntry.COLUMN_SHORT_NAME);
+            int descInd = cursor.getColumnIndex(VirtueEntry.COLUMN_DESCRIPTION);
+            while (cursor.moveToNext()) {
+                spinnerData.add(new Virtue(cursor.getInt(idInd), cursor.getString(nameInd),
+                        cursor.getString(shortInd), cursor.getString(descInd)));
+            }
+            cursor.close();
+        }
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(sharedPreferences.contains(getString(R.string.pref_virtue_id_key))) {
+            int id = sharedPreferences.getInt(getString(R.string.pref_virtue_id_key),
+                    getResources().getInteger(R.integer.pref_virtue_id_default));
+            virtuesSpinner.setSelection(virtueSppimerAdapter.getPosition(new Virtue(id)));
+        }
     }
 
     protected void initDaysOfWeekLayout() {

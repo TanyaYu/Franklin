@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="pref_virtue_id_default" translatable="false">1</integer>
+</resources>
