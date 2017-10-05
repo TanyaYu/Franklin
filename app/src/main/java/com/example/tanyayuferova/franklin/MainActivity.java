@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
+import com.example.tanyayuferova.franklin.utils.DateUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
@@ -31,36 +31,29 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final int ID_VIRTUES_LOADER = 1;
     private final String TAG = MainActivity.class.getSimpleName();
-
+    /**
+     * How many days to display
+     */
+    public static int DAYS_COUNT = 7;
+    /**
+     * The first date in the column
+     */
     private Date startDate;
-
-    public static String[] MAIN_PROJECTION;
-    public static final String DAY_1 = "day1";
-    public static final String DAY_2 = "day2";
-    public static final String DAY_3 = "day3";
-    public static final String DAY_4 = "day4";
-    public static final String DAY_5 = "day5";
-    public static final String DAY_6 = "day6";
-    public static final String DAY_7 = "day7";
+    public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 2];;
+    public static String DAY_CODE = "day";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startDate = Calendar.getInstance().getTime();
+        startDate = DateUtils.getFirstDayOfWeek();
 
-        MAIN_PROJECTION = new String[] {
-                VirtueEntry._ID,
-                VirtueEntry.COLUMN_SHORT_NAME,
-                createSelectString(DAY_1, 0),
-                createSelectString(DAY_2, 1),
-                createSelectString(DAY_3, 2),
-                createSelectString(DAY_4, 3),
-                createSelectString(DAY_5, 4),
-                createSelectString(DAY_6, 5),
-                createSelectString(DAY_7, 6),
-        };
+        for (int i = 0; i < DAYS_COUNT; i++) {
+            MAIN_PROJECTION[i] = createSelectString(DAY_CODE + i, i);
+        }
+        MAIN_PROJECTION[DAYS_COUNT] = VirtueEntry._ID;
+        MAIN_PROJECTION[DAYS_COUNT + 1] = VirtueEntry.COLUMN_SHORT_NAME;
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
@@ -72,15 +65,16 @@ public class MainActivity extends AppCompatActivity implements
         getSupportLoaderManager().initLoader(ID_VIRTUES_LOADER, null, this);
     }
 
-    Date addDays(Date date, int days) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.DAY_OF_MONTH, days);
-        return calendar.getTime();
-    }
-
-    String createSelectString(String label, int daysOff) {
-        String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(addDays(startDate, daysOff));
+    /**
+     * Creates subquery for main points selection. This is query only for one column. It will contain
+     * the amounts of points at start date + daysShift for all virtues
+     *
+     * @param label     alias for column
+     * @param daysShift days shift for start date
+     * @return subquery string
+     */
+    protected String createSelectString(String label, int daysShift) {
+        String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(DateUtils.addDaysToDate(startDate, daysShift));
         return " (select count(*) from " + PointEntry.TABLE_NAME +
                 " where " + VirtueEntry.TABLE_NAME + "." + VirtueEntry._ID +
                 " = " + PointEntry.TABLE_NAME + "." + PointEntry.COLUMN_VIRTUE_ID +
@@ -109,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        virtuesAdapter.swapCursor(data);;
+        virtuesAdapter.swapCursor(data);
+        ;
     }
 
     @Override
@@ -118,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onClick(long virtueId, int daysOff) {
-        getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, addDays(startDate, daysOff)), null);
+    public void onClick(long virtueId, int daysShift) {
+        getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null);
     }
 
     @Override

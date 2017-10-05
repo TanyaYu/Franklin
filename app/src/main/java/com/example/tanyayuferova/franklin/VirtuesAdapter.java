@@ -2,13 +2,17 @@ package com.example.tanyayuferova.franklin;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
+
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * Created by Tanya Yuferova on 10/4/2017.
@@ -25,7 +29,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     }
 
     public interface VirtuesAdapterOnClickHandler {
-        void onClick(long virtueId, int daysOff);
+        void onClick(long virtueId, int daysShift);
     }
 
     @Override
@@ -38,13 +42,9 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     public void onBindViewHolder(VirtuesAdapterViewHolder holder, int position) {
         mCursor.moveToPosition(position);
         holder.virtueName.setText(mCursor.getString(mCursor.getColumnIndex(VirtuesContract.VirtueEntry.COLUMN_SHORT_NAME)));
-        holder.day1TV.setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_1)));
-        holder.day2TV.setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_2)));
-        holder.day3TV.setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_3)));
-        holder.day4TV.setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_4)));
-        holder.day5TV.setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_5)));
-        holder.day6TV.setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_6)));
-        holder.day7TV.setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_7)));
+        for (int i = 0; i < MainActivity.DAYS_COUNT; i++) {
+            holder.daysTV[i].setText(mCursor.getString(mCursor.getColumnIndex(MainActivity.DAY_CODE + i)));
+        }
     }
 
     @Override
@@ -58,42 +58,24 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         notifyDataSetChanged();
     }
 
-    class VirtuesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    class VirtuesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView virtueName;
-        final TextView day1TV;
-        final TextView day2TV;
-        final TextView day3TV;
-        final TextView day4TV;
-        final TextView day5TV;
-        final TextView day6TV;
-        final TextView day7TV;
+        final TextView[] daysTV = new TextView[MainActivity.DAYS_COUNT];
 
         VirtuesAdapterViewHolder(View view) {
             super(view);
             virtueName = (TextView) view.findViewById(R.id.tv_virtue_name);
-            day1TV = (TextView) view.findViewById(R.id.tv_day_1);
-            day2TV = (TextView) view.findViewById(R.id.tv_day_2);
-            day3TV = (TextView) view.findViewById(R.id.tv_day_3);
-            day4TV = (TextView) view.findViewById(R.id.tv_day_4);
-            day5TV = (TextView) view.findViewById(R.id.tv_day_5);
-            day6TV = (TextView) view.findViewById(R.id.tv_day_6);
-            day7TV = (TextView) view.findViewById(R.id.tv_day_7);
+            for (int i = 0; i < MainActivity.DAYS_COUNT; i++) {
+                daysTV[i] = createDayTextView(view, i);
+            }
+        }
 
-            day1TV.setOnClickListener(this);
-            day2TV.setOnClickListener(this);
-            day3TV.setOnClickListener(this);
-            day4TV.setOnClickListener(this);
-            day5TV.setOnClickListener(this);
-            day6TV.setOnClickListener(this);
-            day7TV.setOnClickListener(this);
-
-            day1TV.setTag(0);
-            day2TV.setTag(1);
-            day3TV.setTag(2);
-            day4TV.setTag(3);
-            day5TV.setTag(4);
-            day6TV.setTag(5);
-            day7TV.setTag(6);
+        private TextView createDayTextView(View parent, int daysShiftTag) {
+            TextView tv = new TextView(new ContextThemeWrapper(parent.getContext(), R.style.DayValueTextView));
+            ((ViewGroup) parent).addView(tv, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
+            tv.setOnClickListener(this);
+            tv.setTag(daysShiftTag);
+            return tv;
         }
 
         @Override
