@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements
 
         initDaysOfWeekLayout();
         initSpinnerData();
-        virtueSppimerAdapter = new ArrayAdapter<Virtue>(this, R.layout.support_simple_spinner_dropdown_item, spinnerData);
+        virtueSppimerAdapter = new ArrayAdapter<Virtue>(this, R.layout.virtue_spinner_dropdown_item, spinnerData);
         virtuesSpinner.setAdapter(virtueSppimerAdapter);
         virtuesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -217,7 +217,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(long virtueId, int daysShift) {
-        getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null);
+        if(DateUtils.isToday(DateUtils.addDaysToDate(startDate, daysShift)))
+            getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null);
     }
 
     @Override

@@ -13,11 +13,17 @@
 
         <Spinner
             android:id="@+id/sp_virtues"
+            android:padding="4dp"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tv_virtue_description"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorTextContrast"
+            android:textSize="15sp"
+            android:padding="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -25,6 +31,9 @@
             android:id="@+id/daysOfWeekLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="4dp"
             android:orientation="horizontal">
 
             <TextView style="@style/DayOfWeekTextView" />
@@ -32,6 +41,8 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
