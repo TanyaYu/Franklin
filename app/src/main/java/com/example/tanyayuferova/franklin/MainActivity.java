@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements
     private Spinner virtuesSpinner;
     private TextView virtueDescription;
     private ArrayAdapter<Virtue> virtueSppimerAdapter;
-
     private static final int ID_VIRTUES_LOADER = 1;
     private final String TAG = MainActivity.class.getSimpleName();
     /**
