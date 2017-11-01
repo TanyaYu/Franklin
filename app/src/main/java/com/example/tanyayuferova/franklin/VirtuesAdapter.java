@@ -22,6 +22,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     private final Context mContext;
     private Cursor mCursor;
     final private VirtuesAdapterOnClickHandler mClickHandler;
+    private int selectedPosition = -1;
 
     public VirtuesAdapter(Context mContext, VirtuesAdapterOnClickHandler clickHandler) {
         this.mContext = mContext;
@@ -57,6 +58,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             }
             holder.daysTV[i].setText(text);
         }
+        holder.itemView.setSelected(selectedPosition == position);
     }
 
     @Override
@@ -97,5 +99,33 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             mClickHandler.onClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
                     (int) v.getTag());
         }
+    }
+
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
+
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+    }
+
+    /**
+     * Finds virtue position with id in cursor and sets it as selected position
+     * @param selectedId virtue id
+     */
+    public void setSelectedId(int selectedId){
+        int position = -1;
+        if (mCursor != null) {
+            int idIndex = mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID);
+            if (mCursor.moveToFirst()) {
+                do {
+                    if (mCursor.getInt(idIndex) == selectedId) {
+                        position = mCursor.getPosition();
+                        break;
+                    }
+                } while (mCursor.moveToNext());
+            }
+        }
+        setSelectedPosition(position);
     }
 }

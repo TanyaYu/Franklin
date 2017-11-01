@@ -26,6 +26,7 @@ import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
 import com.example.tanyayuferova.franklin.entity.Virtue;
 import com.example.tanyayuferova.franklin.utils.DateUtils;
+import com.example.tanyayuferova.franklin.utils.PreferencesUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,7 +39,8 @@ import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VI
 
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>,
-        VirtuesAdapter.VirtuesAdapterOnClickHandler {
+        VirtuesAdapter.VirtuesAdapterOnClickHandler,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     private RecyclerView recyclerView;
     private VirtuesAdapter virtuesAdapter;
@@ -58,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements
     private Date startDate;
     public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 2];;
     public static String DAY_CODE = "day";
-
     private List<Virtue> spinnerData;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,20 +76,30 @@ public class MainActivity extends AppCompatActivity implements
         MAIN_PROJECTION[DAYS_COUNT] = VirtueEntry._ID;
         MAIN_PROJECTION[DAYS_COUNT + 1] = VirtueEntry.COLUMN_SHORT_NAME;
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         daysOfWeekLayout = (LinearLayout) findViewById(R.id.daysOfWeekLayout);
         virtuesSpinner = (Spinner) findViewById(R.id.sp_virtues);
         virtueDescription = (TextView) findViewById(R.id.tv_virtue_description);
 
+        initRecyclerView();
+        initDaysOfWeekLayout();
+        initSpinnerData();
+        initSpinner();
+        setupSharedPreferences();
+    }
+
+    protected void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         virtuesAdapter = new VirtuesAdapter(this, this);
         recyclerView.setAdapter(virtuesAdapter);
         getSupportLoaderManager().initLoader(ID_VIRTUES_LOADER, null, this);
+    }
 
-        initDaysOfWeekLayout();
-        initSpinnerData();
+    protected void initSpinner() {
         virtueSppimerAdapter = new ArrayAdapter<Virtue>(this, R.layout.virtue_spinner_dropdown_item, spinnerData);
         virtuesSpinner.setAdapter(virtueSppimerAdapter);
         virtuesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -96,10 +108,7 @@ public class MainActivity extends AppCompatActivity implements
                 Virtue selected = virtueSppimerAdapter.getItem(position);
                 virtueDescription.setText(selected.getDescription());
                 //Save current period virtue id
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt(getString(R.string.pref_virtue_id_key), selected.getId());
-                editor.commit();
+                PreferencesUtils.setSelectedVirtueId(selected.getId(), sharedPreferences, MainActivity.this);
             }
 
             @Override
@@ -107,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements
                 virtueDescription.setText("");
             }
         });
-        setupSharedPreferences();
     }
 
     protected void initSpinnerData() {
@@ -127,12 +135,12 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void setupSharedPreferences() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if(sharedPreferences.contains(getString(R.string.pref_virtue_id_key))) {
             int id = sharedPreferences.getInt(getString(R.string.pref_virtue_id_key),
                     getResources().getInteger(R.integer.pref_virtue_id_default));
             virtuesSpinner.setSelection(virtueSppimerAdapter.getPosition(new Virtue(id)));
         }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     protected void initDaysOfWeekLayout() {
@@ -206,12 +214,13 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         virtuesAdapter.swapCursor(data);
-        ;
+        virtuesAdapter.setSelectedId(PreferencesUtils.getSelectedVirtueId(sharedPreferences, this));
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         virtuesAdapter.swapCursor(null);
+        virtuesAdapter.setSelectedPosition(-1);
     }
 
     @Override
@@ -237,5 +246,19 @@ public class MainActivity extends AppCompatActivity implements
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if(s.equals(getString(R.string.pref_virtue_id_key))) {
+            virtuesAdapter.setSelectedId(PreferencesUtils.getSelectedVirtueId(sharedPreferences, this));
+            virtuesAdapter.notifyDataSetChanged();
+        }
     }
 }
