@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements
     public static int MAIN_PROJECTION_NAME_INDEX = DAYS_COUNT + 2;
 
     public static String DAY_CODE = "day";
+    public static String START_DATE = "startDate";
     private List<Virtue> spinnerData;
     private SharedPreferences sharedPreferences;
     private Toast nameHintToast;
@@ -73,15 +74,13 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startDate = DateUtils.getFirstDayOfWeek();
-
-        for (int i = 0; i < DAYS_COUNT; i++) {
-            MAIN_PROJECTION[i] = createSelectString(DAY_CODE + i, i);
+        if(savedInstanceState == null) {
+            startDate = DateUtils.getFirstDayOfWeek();
+        } else {
+            startDate = new Date(savedInstanceState.getLong(START_DATE));
         }
-        MAIN_PROJECTION[MAIN_PROJECTION_ID_INDEX] = VirtueEntry._ID;
-        MAIN_PROJECTION[MAIN_PROJECTION_SHORT_NAME_INDEX] = VirtueEntry.COLUMN_SHORT_NAME;
-        MAIN_PROJECTION[MAIN_PROJECTION_NAME_INDEX] = VirtueEntry.COLUMN_NAME;
 
+        initMainProjection(startDate);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -96,6 +95,16 @@ public class MainActivity extends AppCompatActivity implements
         setupSharedPreferences();
     }
 
+    private void initMainProjection(Date date) {
+        MAIN_PROJECTION = new String[MAIN_PROJECTION.length];
+        for (int i = 0; i < DAYS_COUNT; i++) {
+            MAIN_PROJECTION[i] = createSelectString(DAY_CODE + i, date, i);
+        }
+        MAIN_PROJECTION[MAIN_PROJECTION_ID_INDEX] = VirtueEntry._ID;
+        MAIN_PROJECTION[MAIN_PROJECTION_SHORT_NAME_INDEX] = VirtueEntry.COLUMN_SHORT_NAME;
+        MAIN_PROJECTION[MAIN_PROJECTION_NAME_INDEX] = VirtueEntry.COLUMN_NAME;
+    }
+
     protected void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -103,6 +112,30 @@ public class MainActivity extends AppCompatActivity implements
         virtuesAdapter = new VirtuesAdapter(this, this);
         recyclerView.setAdapter(virtuesAdapter);
         getSupportLoaderManager().initLoader(ID_VIRTUES_LOADER, null, this);
+        recyclerView.setOnTouchListener(new OnSwipeTouchListener(this){
+            @Override
+            public void onSwipeLeft() {
+                /* Go ahead */
+                setNewStartDateAndRefreshData(DateUtils.addDaysToDate(startDate, 7));
+            }
+
+            @Override
+            public void onSwipeRight() {
+                /* Go back */
+                setNewStartDateAndRefreshData(DateUtils.addDaysToDate(startDate, -7));
+            }
+        });
+    }
+
+    /**
+     * Refresh table with new data where newStartDate is new startDate
+     * @param newStartDate
+     */
+    protected void setNewStartDateAndRefreshData(Date newStartDate) {
+        this.startDate = newStartDate;
+        initMainProjection(startDate);
+        getSupportLoaderManager().restartLoader(ID_VIRTUES_LOADER, null, this);
+        initDaysOfWeekLayout();
     }
 
     protected void initSpinner() {
@@ -152,35 +185,43 @@ public class MainActivity extends AppCompatActivity implements
 
     protected void initDaysOfWeekLayout() {
         for(int i = 0; i<DAYS_COUNT; i++) {
+            /* We need to create TextView for every day or update text and color of old TextView */
             //TODO ERROR ContextThemeWrapper
-            TextView tv = new TextView(new ContextThemeWrapper(this, R.style.DayOfWeekTextView));
-            daysOfWeekLayout.addView(tv, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
+            TextView tv = (TextView) daysOfWeekLayout.getChildAt(i+1);
+            if(tv == null) {
+                tv = new TextView(new ContextThemeWrapper(this, R.style.DayOfWeekTextView));
+                daysOfWeekLayout.addView(tv, i + 1, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
+            }
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(DateUtils.addDaysToDate(startDate, i));
-            if(DateUtils.isToday(calendar.getTime())){
-                tv.setTextColor(getResources().getColor(R.color.colorAccent));
-            }
-            String caption = new SimpleDateFormat("dd.MM").format(calendar.getTime()) + "\n";
-            switch (calendar.get(Calendar.DAY_OF_WEEK)){
-                case Calendar.MONDAY : caption += getResources().getString(R.string.mon);
-                    break;
-                case Calendar.TUESDAY : caption += getResources().getString(R.string.tue);
-                    break;
-                case Calendar.WEDNESDAY : caption += getResources().getString(R.string.wed);
-                    break;
-                case Calendar.THURSDAY : caption += getResources().getString(R.string.thu);
-                    break;
-                case Calendar.FRIDAY : caption += getResources().getString(R.string.fri);
-                    break;
-                case Calendar.SATURDAY : caption += getResources().getString(R.string.sat);
-                    break;
-                case Calendar.SUNDAY : caption += getResources().getString(R.string.sun);
-                    break;
-            }
-            tv.setText(caption);
+            /* Set color */
+            tv.setTextColor(getResources().getColor(DateUtils.isToday(calendar.getTime()) ?
+                    R.color.colorAccent : R.color.colorPrimaryText));
+            /* Set text */
+            tv.setText(getDayTextViewCaption(calendar));
         }
+    }
 
+    protected String getDayTextViewCaption (Calendar calendar) {
+        String caption = new SimpleDateFormat("dd.MM").format(calendar.getTime()) + "\n";
+        switch (calendar.get(Calendar.DAY_OF_WEEK)){
+            case Calendar.MONDAY : caption += getResources().getString(R.string.mon);
+                break;
+            case Calendar.TUESDAY : caption += getResources().getString(R.string.tue);
+                break;
+            case Calendar.WEDNESDAY : caption += getResources().getString(R.string.wed);
+                break;
+            case Calendar.THURSDAY : caption += getResources().getString(R.string.thu);
+                break;
+            case Calendar.FRIDAY : caption += getResources().getString(R.string.fri);
+                break;
+            case Calendar.SATURDAY : caption += getResources().getString(R.string.sat);
+                break;
+            case Calendar.SUNDAY : caption += getResources().getString(R.string.sun);
+                break;
+        }
+        return caption;
     }
 
     /**
@@ -191,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements
      * @param daysShift days shift for start date
      * @return subquery string
      */
-    protected String createSelectString(String label, int daysShift) {
+    protected String createSelectString(String label, Date startDate, int daysShift) {
         String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(DateUtils.addDaysToDate(startDate, daysShift));
         return " (select count(*) from " + PointEntry.TABLE_NAME +
                 " where " + VirtueEntry.TABLE_NAME + "." + VirtueEntry._ID +
@@ -278,5 +319,11 @@ public class MainActivity extends AppCompatActivity implements
         }
         nameHintToast = Toast.makeText(this, virtueName, Toast.LENGTH_LONG);
         nameHintToast.show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putLong(START_DATE, startDate.getTime());
+        super.onSaveInstanceState(outState);
     }
 }
