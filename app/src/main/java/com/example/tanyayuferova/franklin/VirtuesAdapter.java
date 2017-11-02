@@ -23,7 +23,6 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     private final Context mContext;
     private Cursor mCursor;
     final private VirtuesAdapterOnClickHandler mClickHandler;
-    private Toast nameHintToast;
     private int selectedPosition = -1;
 
     public VirtuesAdapter(Context mContext, VirtuesAdapterOnClickHandler clickHandler) {
@@ -32,7 +31,8 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     }
 
     public interface VirtuesAdapterOnClickHandler {
-        void onClick(long virtueId, int daysShift);
+        void onDayClick(long virtueId, int daysShift);
+        void onVirtueNameClick(String virtueName);
     }
 
     @Override
@@ -45,8 +45,6 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     public void onBindViewHolder(VirtuesAdapterViewHolder holder, int position) {
         mCursor.moveToPosition(position);
         String virtueShortName = mCursor.getString(MainActivity.MAIN_PROJECTION_SHORT_NAME_INDEX);
-        final String virtueName = mCursor.getString(MainActivity.MAIN_PROJECTION_NAME_INDEX);
-
         holder.virtueName.setText(virtueShortName);
 
         /* Sets dots for every day */
@@ -67,18 +65,6 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         }
         /* Highlight current week virtue */
         holder.itemView.setSelected(selectedPosition == position);
-
-        /* Show virtue name hint when click on it*/
-        holder.virtueName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(nameHintToast!= null){
-                    nameHintToast.cancel();
-                }
-                nameHintToast = Toast.makeText(mContext, virtueName, Toast.LENGTH_LONG);
-                nameHintToast.show();
-            }
-        });
     }
 
     @Override
@@ -98,7 +84,10 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
 
         VirtuesAdapterViewHolder(View view) {
             super(view);
+
             virtueName = (TextView) view.findViewById(R.id.tv_virtue_name);
+            virtueName.setOnClickListener(this);
+
             for (int i = 0; i < MainActivity.DAYS_COUNT; i++) {
                 daysTV[i] = createDayTextView(view, i);
             }
@@ -117,8 +106,15 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
-            mClickHandler.onClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
-                    (int) v.getTag());
+
+            /* Clicked on virtue name */
+            if(R.id.tv_virtue_name == v.getId()){
+                String virtueName = mCursor.getString(MainActivity.MAIN_PROJECTION_NAME_INDEX);
+                mClickHandler.onVirtueNameClick(virtueName);
+            } else { /* Clicked on day */
+                mClickHandler.onDayClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
+                        (int) v.getTag());
+            }
         }
     }
 

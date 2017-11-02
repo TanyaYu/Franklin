@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements
     public static String DAY_CODE = "day";
     private List<Virtue> spinnerData;
     private SharedPreferences sharedPreferences;
+    private Toast nameHintToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onClick(long virtueId, int daysShift) {
+    public void onDayClick(long virtueId, int daysShift) {
         if(DateUtils.isToday(DateUtils.addDaysToDate(startDate, daysShift)))
             getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null);
     }
@@ -267,5 +268,15 @@ public class MainActivity extends AppCompatActivity implements
             virtuesAdapter.setSelectedId(PreferencesUtils.getSelectedVirtueId(sharedPreferences, this));
             virtuesAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onVirtueNameClick(String virtueName) {
+        /* Show virtue name hint when click on it*/
+        if(nameHintToast!= null){
+            nameHintToast.cancel();
+        }
+        nameHintToast = Toast.makeText(this, virtueName, Toast.LENGTH_LONG);
+        nameHintToast.show();
     }
 }
