@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
 
@@ -22,6 +23,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     private final Context mContext;
     private Cursor mCursor;
     final private VirtuesAdapterOnClickHandler mClickHandler;
+    private Toast nameHintToast;
     private int selectedPosition = -1;
 
     public VirtuesAdapter(Context mContext, VirtuesAdapterOnClickHandler clickHandler) {
@@ -42,7 +44,12 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     @Override
     public void onBindViewHolder(VirtuesAdapterViewHolder holder, int position) {
         mCursor.moveToPosition(position);
-        holder.virtueName.setText(mCursor.getString(mCursor.getColumnIndex(VirtuesContract.VirtueEntry.COLUMN_SHORT_NAME)));
+        String virtueShortName = mCursor.getString(MainActivity.MAIN_PROJECTION_SHORT_NAME_INDEX);
+        final String virtueName = mCursor.getString(MainActivity.MAIN_PROJECTION_NAME_INDEX);
+
+        holder.virtueName.setText(virtueShortName);
+
+        /* Sets dots for every day */
         for (int i = 0; i < MainActivity.DAYS_COUNT; i++) {
             int dotsCount = mCursor.getInt(mCursor.getColumnIndex(MainActivity.DAY_CODE + i));
             String text = "";
@@ -58,7 +65,20 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             }
             holder.daysTV[i].setText(text);
         }
+        /* Highlight current week virtue */
         holder.itemView.setSelected(selectedPosition == position);
+
+        /* Show virtue name hint when click on it*/
+        holder.virtueName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(nameHintToast!= null){
+                    nameHintToast.cancel();
+                }
+                nameHintToast = Toast.makeText(mContext, virtueName, Toast.LENGTH_LONG);
+                nameHintToast.show();
+            }
+        });
     }
 
     @Override
@@ -85,6 +105,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         }
 
         private TextView createDayTextView(View parent, int daysShiftTag) {
+            //TODO ERROR ContextThemeWrapper
             TextView tv = new TextView(new ContextThemeWrapper(parent.getContext(), R.style.DayValueTextView));
             ((ViewGroup) parent).addView(tv, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
             tv.setOnClickListener(this);

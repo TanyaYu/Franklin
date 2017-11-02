@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity implements
      * The first date in the column
      */
     private Date startDate;
-    public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 2];;
+    public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 3];
+    public static int MAIN_PROJECTION_ID_INDEX = DAYS_COUNT;
+    public static int MAIN_PROJECTION_SHORT_NAME_INDEX = DAYS_COUNT + 1;
+    public static int MAIN_PROJECTION_NAME_INDEX = DAYS_COUNT + 2;
+
     public static String DAY_CODE = "day";
     private List<Virtue> spinnerData;
     private SharedPreferences sharedPreferences;
@@ -73,8 +77,9 @@ public class MainActivity extends AppCompatActivity implements
         for (int i = 0; i < DAYS_COUNT; i++) {
             MAIN_PROJECTION[i] = createSelectString(DAY_CODE + i, i);
         }
-        MAIN_PROJECTION[DAYS_COUNT] = VirtueEntry._ID;
-        MAIN_PROJECTION[DAYS_COUNT + 1] = VirtueEntry.COLUMN_SHORT_NAME;
+        MAIN_PROJECTION[MAIN_PROJECTION_ID_INDEX] = VirtueEntry._ID;
+        MAIN_PROJECTION[MAIN_PROJECTION_SHORT_NAME_INDEX] = VirtueEntry.COLUMN_SHORT_NAME;
+        MAIN_PROJECTION[MAIN_PROJECTION_NAME_INDEX] = VirtueEntry.COLUMN_NAME;
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
@@ -146,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements
 
     protected void initDaysOfWeekLayout() {
         for(int i = 0; i<DAYS_COUNT; i++) {
+            //TODO ERROR ContextThemeWrapper
             TextView tv = new TextView(new ContextThemeWrapper(this, R.style.DayOfWeekTextView));
             daysOfWeekLayout.addView(tv, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
 
