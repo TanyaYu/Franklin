@@ -161,21 +161,21 @@ public class MainActivity extends AppCompatActivity implements
             if(DateUtils.isToday(calendar.getTime())){
                 tv.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            String caption = null;
+            String caption = new SimpleDateFormat("dd.MM").format(calendar.getTime()) + "\n";
             switch (calendar.get(Calendar.DAY_OF_WEEK)){
-                case Calendar.MONDAY : caption = getResources().getString(R.string.mon);
+                case Calendar.MONDAY : caption += getResources().getString(R.string.mon);
                     break;
-                case Calendar.TUESDAY : caption = getResources().getString(R.string.tue);
+                case Calendar.TUESDAY : caption += getResources().getString(R.string.tue);
                     break;
-                case Calendar.WEDNESDAY : caption = getResources().getString(R.string.wed);
+                case Calendar.WEDNESDAY : caption += getResources().getString(R.string.wed);
                     break;
-                case Calendar.THURSDAY : caption = getResources().getString(R.string.thu);
+                case Calendar.THURSDAY : caption += getResources().getString(R.string.thu);
                     break;
-                case Calendar.FRIDAY : caption = getResources().getString(R.string.fri);
+                case Calendar.FRIDAY : caption += getResources().getString(R.string.fri);
                     break;
-                case Calendar.SATURDAY : caption = getResources().getString(R.string.sat);
+                case Calendar.SATURDAY : caption += getResources().getString(R.string.sat);
                     break;
-                case Calendar.SUNDAY : caption = getResources().getString(R.string.sun);
+                case Calendar.SUNDAY : caption += getResources().getString(R.string.sun);
                     break;
             }
             tv.setText(caption);

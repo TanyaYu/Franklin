@@ -8,6 +8,6 @@
 
     <TextView
         android:id="@+id/tv_virtue_name"
-        style="@style/DayValueTextView"/>
+        style="@style/VirtueNameTextView"/>
 
 </LinearLayout>
