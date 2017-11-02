@@ -26,4 +26,20 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
+    <style name="VirtueSpinnerItemBase">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAlignment">center</item>
+
+    </style>
+
+    <style name="VirtueSpinnerItem" parent="VirtueSpinnerItemBase">
+        <item name="android:textColor">@color/colorTextContrast</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="VirtueSpinnerDropDownItem" parent="VirtueSpinnerItemBase">
+    </style>
+
 </resources>

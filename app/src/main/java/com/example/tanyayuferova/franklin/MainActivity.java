@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout daysOfWeekLayout;
     private Spinner virtuesSpinner;
     private TextView virtueDescription;
-    private ArrayAdapter<Virtue> virtueSppimerAdapter;
+    private ArrayAdapter<Virtue> virtueSpinnerAdapter;
     private static final int ID_VIRTUES_LOADER = 1;
     private final String TAG = MainActivity.class.getSimpleName();
     /**
@@ -100,12 +100,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     protected void initSpinner() {
-        virtueSppimerAdapter = new ArrayAdapter<Virtue>(this, R.layout.virtue_spinner_dropdown_item, spinnerData);
-        virtuesSpinner.setAdapter(virtueSppimerAdapter);
+        virtueSpinnerAdapter = new ArrayAdapter<Virtue>(this, R.layout.virtue_spinner_item, spinnerData);
+        virtueSpinnerAdapter.setDropDownViewResource(R.layout.virtue_spinner_dropdown_item);
+        virtuesSpinner.setAdapter(virtueSpinnerAdapter);
         virtuesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Virtue selected = virtueSppimerAdapter.getItem(position);
+                Virtue selected = virtueSpinnerAdapter.getItem(position);
                 virtueDescription.setText(selected.getDescription());
                 //Save current period virtue id
                 PreferencesUtils.setSelectedVirtueId(selected.getId(), sharedPreferences, MainActivity.this);
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements
         if(sharedPreferences.contains(getString(R.string.pref_virtue_id_key))) {
             int id = sharedPreferences.getInt(getString(R.string.pref_virtue_id_key),
                     getResources().getInteger(R.integer.pref_virtue_id_default));
-            virtuesSpinner.setSelection(virtueSppimerAdapter.getPosition(new Virtue(id)));
+            virtuesSpinner.setSelection(virtueSpinnerAdapter.getPosition(new Virtue(id)));
         }
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
