@@ -8,7 +8,7 @@ Benjamin Franklin's Plan for Attaining Moral Perfection
 - Vladimir Kazarin
 
 # Licence
-
+```
    Copyright 2017 Tatiana Iuferova
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,3 +22,4 @@ Benjamin Franklin's Plan for Attaining Moral Perfection
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+```
