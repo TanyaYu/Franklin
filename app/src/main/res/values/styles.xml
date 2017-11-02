@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
     </style>
 
     <style name="DayValueTextView">
@@ -35,7 +36,7 @@
     </style>
 
     <style name="VirtueSpinnerItem" parent="VirtueSpinnerItemBase">
-        <item name="android:textColor">@color/colorTextContrast</item>
+        <item name="android:textColor">@color/colorTextPrimaryInverse</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
 

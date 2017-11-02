@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/tv_virtue_description"
             android:background="@color/colorPrimary"
-            android:textColor="@color/colorTextContrast"
+            android:textColor="@color/colorTextPrimaryInverse"
             android:textSize="15sp"
             android:padding="4dp"
             android:layout_width="match_parent"
