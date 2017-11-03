@@ -33,6 +33,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     public interface VirtuesAdapterOnClickHandler {
         void onDayClick(long virtueId, int daysShift);
         void onVirtueNameClick(String virtueName);
+        void onDayLongClick(long virtueId, int daysShift);
     }
 
     @Override
@@ -78,7 +79,8 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         notifyDataSetChanged();
     }
 
-    class VirtuesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class VirtuesAdapterViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener, View.OnLongClickListener {
         final TextView virtueName;
         final TextView[] daysTV = new TextView[MainActivity.DAYS_COUNT];
 
@@ -98,6 +100,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             TextView tv = new TextView(new ContextThemeWrapper(parent.getContext(), R.style.DayValueTextView));
             ((ViewGroup) parent).addView(tv, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
             tv.setOnClickListener(this);
+            tv.setOnLongClickListener(this);
             tv.setTag(daysShiftTag);
             return tv;
         }
@@ -115,6 +118,15 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
                 mClickHandler.onDayClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
                         (int) v.getTag());
             }
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            mCursor.moveToPosition(adapterPosition);
+            mClickHandler.onDayLongClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
+                        (int) v.getTag());
+            return true;
         }
     }
 

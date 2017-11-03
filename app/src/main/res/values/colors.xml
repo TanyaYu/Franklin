@@ -8,4 +8,5 @@
     <color name="colorSecondaryText">#757575</color>
 
     <color name="colorTextPrimaryInverse">#FFFFFF</color>
+    <color name="colorBackgroundLight">@android:color/background_light</color>
 </resources>

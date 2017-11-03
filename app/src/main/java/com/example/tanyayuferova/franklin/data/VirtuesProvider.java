@@ -146,6 +146,20 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            case CODE_POINTS_WITH_DATE: {
+                //Delete first point with current date and virtue id
+                String virtueId = uri.getPathSegments().get(1);
+                String dateString = uri.getLastPathSegment();
+                result = dbHelper.getWritableDatabase().delete(
+                        VirtuesContract.PointEntry.TABLE_NAME,
+                        PointEntry._ID + " in (select " + PointEntry._ID + " from " +
+                                PointEntry.TABLE_NAME + " where " +
+                                VirtuesContract.PointEntry.COLUMN_VIRTUE_ID + " = ? and " +
+                                VirtuesContract.PointEntry.COLUMN_DATE + " = ? limit 1)",
+                        new String[]{virtueId, dateString});
+                break;
+            }
+
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }

@@ -274,8 +274,12 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onDayClick(long virtueId, int daysShift) {
-        if(DateUtils.isToday(DateUtils.addDaysToDate(startDate, daysShift)))
-            getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null);
+        getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null);
+    }
+
+    @Override
+    public void onDayLongClick(long virtueId, int daysShift) {
+        getContentResolver().delete(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null, null);
     }
 
     @Override
