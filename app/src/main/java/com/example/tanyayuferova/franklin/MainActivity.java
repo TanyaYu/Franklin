@@ -1,9 +1,7 @@
 package com.example.tanyayuferova.franklin;
 
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -26,7 +24,7 @@ import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
 import com.example.tanyayuferova.franklin.entity.Virtue;
 import com.example.tanyayuferova.franklin.utils.DateUtils;
-import com.example.tanyayuferova.franklin.utils.PreferencesUtils;
+import com.example.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,8 +37,7 @@ import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VI
 
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>,
-        VirtuesAdapter.VirtuesAdapterOnClickHandler,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+        VirtuesAdapter.VirtuesAdapterOnClickHandler{
 
     private RecyclerView recyclerView;
     private VirtuesAdapter virtuesAdapter;
@@ -58,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements
      * The first date in the column
      */
     private Date startDate;
+    private int virtueOfWeekId;
     public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 3];
     public static int MAIN_PROJECTION_ID_INDEX = DAYS_COUNT;
     public static int MAIN_PROJECTION_SHORT_NAME_INDEX = DAYS_COUNT + 1;
@@ -65,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements
 
     public static String DAY_CODE = "day";
     public static String START_DATE = "startDate";
+    private static String VIRTUE_OF_WEEK_ID = "virtueOfWeekId";
     private List<Virtue> spinnerData;
-    private SharedPreferences sharedPreferences;
     private Toast nameHintToast;
 
     @Override
@@ -76,12 +74,13 @@ public class MainActivity extends AppCompatActivity implements
 
         if(savedInstanceState == null) {
             startDate = DateUtils.getFirstDayOfWeek();
+            virtueOfWeekId = VirtueOfWeekUtils.getVirtueIdOfWeek(this, startDate);
         } else {
             startDate = new Date(savedInstanceState.getLong(START_DATE));
+            virtueOfWeekId = savedInstanceState.getInt(VIRTUE_OF_WEEK_ID);
         }
 
         initMainProjection(startDate);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         daysOfWeekLayout = (LinearLayout) findViewById(R.id.daysOfWeekLayout);
@@ -92,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements
         initDaysOfWeekLayout();
         initSpinnerData();
         initSpinner();
-        setupSharedPreferences();
     }
 
     private void initMainProjection(Date date) {
@@ -133,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements
      */
     protected void setNewStartDateAndRefreshData(Date newStartDate) {
         this.startDate = newStartDate;
+        virtueOfWeekId = VirtueOfWeekUtils.getVirtueIdOfWeek(this, startDate);
+
         initMainProjection(startDate);
         getSupportLoaderManager().restartLoader(ID_VIRTUES_LOADER, null, this);
         initDaysOfWeekLayout();
@@ -148,7 +148,10 @@ public class MainActivity extends AppCompatActivity implements
                 Virtue selected = virtueSpinnerAdapter.getItem(position);
                 virtueDescription.setText(selected.getDescription());
                 //Save current period virtue id
-                PreferencesUtils.setSelectedVirtueId(selected.getId(), sharedPreferences, MainActivity.this);
+                virtueOfWeekId = selected.getId();
+                VirtueOfWeekUtils.setVirtueOfWeek(MainActivity.this, virtueOfWeekId, startDate);
+                virtuesAdapter.setSelectedId(virtueOfWeekId);
+                virtuesAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements
 
     protected void initSpinnerData() {
         spinnerData = new ArrayList<>();
-        Cursor cursor = getContentResolver().query(CONTENT_VIRTUES_URI, null, null, null, null);
+        Cursor cursor = getContentResolver().query(CONTENT_VIRTUES_URI, null, null, null, VirtueEntry._ID+ " ASC");
         if(cursor != null){
             int idInd = cursor.getColumnIndex(VirtueEntry._ID);
             int nameInd = cursor.getColumnIndex(VirtueEntry.COLUMN_NAME);
@@ -172,15 +175,6 @@ public class MainActivity extends AppCompatActivity implements
             }
             cursor.close();
         }
-    }
-
-    private void setupSharedPreferences() {
-        if(sharedPreferences.contains(getString(R.string.pref_virtue_id_key))) {
-            int id = sharedPreferences.getInt(getString(R.string.pref_virtue_id_key),
-                    getResources().getInteger(R.integer.pref_virtue_id_default));
-            virtuesSpinner.setSelection(virtueSpinnerAdapter.getPosition(new Virtue(id)));
-        }
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     protected void initDaysOfWeekLayout() {
@@ -263,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         virtuesAdapter.swapCursor(data);
-        virtuesAdapter.setSelectedId(PreferencesUtils.getSelectedVirtueId(sharedPreferences, this));
+        virtuesSpinner.setSelection(virtueSpinnerAdapter.getPosition(new Virtue(virtueOfWeekId)));
     }
 
     @Override
@@ -293,26 +287,11 @@ public class MainActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             case R.id.reset_data_action:
                 getContentResolver().delete(VirtuesContract.CONTENT_POINTS_URI, null, null);
-                Toast.makeText(this, "All points are deleted.", Toast.LENGTH_LONG).show();
-                //FIXME KOSTYL
-                getSupportLoaderManager().restartLoader(ID_VIRTUES_LOADER, null, this);
+                getContentResolver().delete(VirtuesContract.CONTENT_WEEKS_URI, null, null);
+                Toast.makeText(this, "All data is deleted.", Toast.LENGTH_LONG).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if(s.equals(getString(R.string.pref_virtue_id_key))) {
-            virtuesAdapter.setSelectedId(PreferencesUtils.getSelectedVirtueId(sharedPreferences, this));
-            virtuesAdapter.notifyDataSetChanged();
-        }
     }
 
     @Override
@@ -328,6 +307,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putLong(START_DATE, startDate.getTime());
+        outState.putInt(VIRTUE_OF_WEEK_ID, virtueOfWeekId);
         super.onSaveInstanceState(outState);
     }
 }

@@ -10,14 +10,11 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.BASE_CONTENT_URI;
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.PATH_POINTS;
+import static com.example.tanyayuferova.franklin.data.VirtuesContract.PATH_VIRTUES;
+import static com.example.tanyayuferova.franklin.data.VirtuesContract.PATH_WEEKS;
 
 /**
  * Created by Tanya Yuferova on 10/4/2017.
@@ -27,7 +24,9 @@ public class VirtuesProvider extends ContentProvider {
 
     public static final int CODE_VIRTUES = 100;
     public static final int CODE_POINTS = 200;
+    public static final int CODE_WEEKS = 300;
     public static final int CODE_POINTS_WITH_DATE = 201;
+    public static final int CODE_VIRTUES_WITH_WEEK = 101;
 
     private static final UriMatcher uriMatcher = buildUriMatcher();
     private VirtuesDbHelper dbHelper;
@@ -35,10 +34,12 @@ public class VirtuesProvider extends ContentProvider {
     public static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = VirtuesContract.CONTENT_AUTHORITY;
-        matcher.addURI(authority, VirtuesContract.PATH_VIRTUES, CODE_VIRTUES);
-        matcher.addURI(authority, VirtuesContract.PATH_POINTS, CODE_POINTS);
-        matcher.addURI(authority, VirtuesContract.PATH_VIRTUES + "/#/" + VirtuesContract.PATH_POINTS + "/#",
+        matcher.addURI(authority, PATH_VIRTUES, CODE_VIRTUES);
+        matcher.addURI(authority, PATH_POINTS, CODE_POINTS);
+        matcher.addURI(authority, PATH_WEEKS, CODE_WEEKS);
+        matcher.addURI(authority, PATH_VIRTUES + "/#/" + PATH_POINTS + "/#",
                 CODE_POINTS_WITH_DATE);
+        matcher.addURI(authority, PATH_VIRTUES + "/#/#", CODE_VIRTUES_WITH_WEEK);
         return matcher;
     }
 
@@ -58,10 +59,10 @@ public class VirtuesProvider extends ContentProvider {
                 String normalizedUtcDateString = uri.getLastPathSegment();
                 String[] selectionArguments = new String[]{virtueId, normalizedUtcDateString};
                 cursor = dbHelper.getReadableDatabase().query(
-                        VirtuesContract.PointEntry.TABLE_NAME,
+                        PointEntry.TABLE_NAME,
                         projection,
-                        VirtuesContract.PointEntry.COLUMN_VIRTUE_ID + " = ? and " +
-                                VirtuesContract.PointEntry.COLUMN_DATE + " = ? ",
+                        PointEntry.COLUMN_VIRTUE_ID + " = ? and " +
+                                PointEntry.COLUMN_DATE + " = ? ",
                         selectionArguments,
                         null,
                         null,
@@ -71,10 +72,36 @@ public class VirtuesProvider extends ContentProvider {
 
             case CODE_VIRTUES: {
                 cursor = dbHelper.getReadableDatabase().query(
-                        VirtuesContract.VirtueEntry.TABLE_NAME,
+                        VirtueEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            }
+
+            case CODE_WEEKS: {
+                cursor = dbHelper.getReadableDatabase().query(
+                        WeekEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            }
+
+            case CODE_VIRTUES_WITH_WEEK: {
+                String week = uri.getPathSegments().get(1);
+                String year = uri.getLastPathSegment();
+                cursor = dbHelper.getReadableDatabase().query(
+                        WeekEntry.TABLE_NAME,
+                        projection,
+                        WeekEntry.COLUMN_WEEK + " = ? and " + WeekEntry.COLUMN_YEAR + " = ? ",
+                        new String[]{week, year},
                         null,
                         null,
                         sortOrder);
@@ -98,8 +125,8 @@ public class VirtuesProvider extends ContentProvider {
                 String virtueId = uri.getPathSegments().get(1);
                 String dateString = uri.getLastPathSegment();
                 values = new ContentValues();
-                values.put(VirtuesContract.PointEntry.COLUMN_DATE, dateString);
-                values.put(VirtuesContract.PointEntry.COLUMN_VIRTUE_ID, virtueId);
+                values.put(PointEntry.COLUMN_DATE, dateString);
+                values.put(PointEntry.COLUMN_VIRTUE_ID, virtueId);
 
                 long newId = dbHelper.getWritableDatabase().insert(PointEntry.TABLE_NAME,
                         null, values);
@@ -125,6 +152,24 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            case CODE_VIRTUES_WITH_WEEK: {
+                String week = uri.getPathSegments().get(1);
+                String year = uri.getLastPathSegment();
+                values.put(WeekEntry.COLUMN_WEEK, week);
+                values.put(WeekEntry.COLUMN_YEAR, year);
+
+                long newId = dbHelper.getWritableDatabase().insert(WeekEntry.TABLE_NAME,
+                        null, values);
+                if (newId > 0) {
+                    result = uri.buildUpon()
+                            .appendPath(String.valueOf(newId))
+                            .build();
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -140,7 +185,16 @@ public class VirtuesProvider extends ContentProvider {
             case CODE_POINTS: {
                 //Delete all from Points table
                 result = dbHelper.getWritableDatabase().delete(
-                        VirtuesContract.PointEntry.TABLE_NAME,
+                        PointEntry.TABLE_NAME,
+                        selection,
+                        selectionArgs);
+                break;
+            }
+
+            case CODE_WEEKS: {
+                //Delete all from Week table
+                result = dbHelper.getWritableDatabase().delete(
+                        WeekEntry.TABLE_NAME,
                         selection,
                         selectionArgs);
                 break;
@@ -151,12 +205,24 @@ public class VirtuesProvider extends ContentProvider {
                 String virtueId = uri.getPathSegments().get(1);
                 String dateString = uri.getLastPathSegment();
                 result = dbHelper.getWritableDatabase().delete(
-                        VirtuesContract.PointEntry.TABLE_NAME,
+                        PointEntry.TABLE_NAME,
                         PointEntry._ID + " in (select " + PointEntry._ID + " from " +
                                 PointEntry.TABLE_NAME + " where " +
-                                VirtuesContract.PointEntry.COLUMN_VIRTUE_ID + " = ? and " +
-                                VirtuesContract.PointEntry.COLUMN_DATE + " = ? limit 1)",
+                                PointEntry.COLUMN_VIRTUE_ID + " = ? and " +
+                                PointEntry.COLUMN_DATE + " = ? limit 1)",
                         new String[]{virtueId, dateString});
+                break;
+            }
+
+            case CODE_VIRTUES_WITH_WEEK: {
+                //Delete all from Week table with given week number and year
+                String week = uri.getPathSegments().get(1);
+                String year = uri.getLastPathSegment();
+                result = dbHelper.getWritableDatabase().delete(
+                        WeekEntry.TABLE_NAME,
+                        WeekEntry.COLUMN_WEEK + " = ? and " +
+                                WeekEntry.COLUMN_YEAR + " = ? " ,
+                        new String[]{week, year});
                 break;
             }
 
