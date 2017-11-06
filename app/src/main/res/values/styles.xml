@@ -12,6 +12,7 @@
         <item name="android:textColorPrimary">@color/colorPrimaryText</item>
         <item name="android:textColorPrimaryInverse">@color/colorTextPrimaryInverse</item>
         <item name="android:textColorSecondary">@color/colorSecondaryText</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
     <style name="DayTextView">
@@ -51,4 +52,12 @@
     <style name="VirtueSpinnerDropDownItem" parent="VirtueSpinnerItemBase">
     </style>
 
+    <style name="AppPreference">
+        <item name="android:layout">@layout/preference_material</item>
+    </style>
+
+    <style name="AppPreference.DialogPreference" parent="PreferenceThemeOverlay">
+        <item name="positiveButtonText">@android:string/ok</item>
+        <item name="negativeButtonText">@android:string/cancel</item>
+    </style>
 </resources>

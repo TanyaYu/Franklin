@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.example.tanyayuferova.franklin"
         minSdkVersion 17
-        targetSdkVersion 24
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,5 +26,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:preference-v7:26.+'
+    compile 'com.android.support:preference-v14:26.+'
+    compile 'com.firebase:firebase-jobdispatcher:0.8.4'
     testCompile 'junit:junit:4.12'
 }

@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Franklin</string>
     <string name="content_authority" translatable="false">com.example.tanyayuferova.franklin</string>
+    <string name="dot">•</string>
 
-
+    <!-- #start Virtues data -->
     <string name="tem_name">Temperance</string>
     <string name="tem_short">T</string>
     <string name="tem_desc">Eat not dulness; drink not elevation.</string>
@@ -55,6 +56,9 @@
     <string name="h_short">H</string>
     <string name="h_desc">Imitate Jesus and Socrates.</string>
 
+    <!-- #end Virtues data -->
+
+    <!-- #strat Days of the week -->
     <string name="mon">MON</string>
     <string name="tue">TUE</string>
     <string name="wed">WED</string>
@@ -62,9 +66,27 @@
     <string name="fri">FRI</string>
     <string name="sat">SAT</string>
     <string name="sun">SUN</string>
+    <!-- #end Days of the week -->
 
+    <!-- #start Menu -->
     <string name="reset_data_title">Reset (for testing only)</string>
-    <string name="dot">•</string>
+    <string name="action_settings">Settings</string>
+    <!-- #end Menu -->
 
-    <string name="pref_virtue_id_key" translatable="false">virtue_id</string>
+    <!-- #start Notifications -->
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">Time to enter today\'s data</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_key" translatable="false">preference_notifications</string>
+    <string name="pref_notifications_enable_false">Disable</string>
+    <string name="pref_notifications_enable_true">Enable</string>
+    <string name="pref_notifications_label">Daily notifications</string>
+
+    <string name="pref_time_key" translatable="false">preference_time</string>
+    <string name="pref_time_label">Daily notifications time</string>
+    <string name="preferences_time_title">Notification time</string>
+    <!-- #end Preferences -->
+
 </resources>

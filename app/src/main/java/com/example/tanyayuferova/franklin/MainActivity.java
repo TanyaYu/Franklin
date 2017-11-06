@@ -1,5 +1,6 @@
 package com.example.tanyayuferova.franklin;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.app.LoaderManager;
@@ -23,7 +24,9 @@ import android.widget.Toast;
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.data.VirtuesContract.*;
 import com.example.tanyayuferova.franklin.entity.Virtue;
+import com.example.tanyayuferova.franklin.jobs.EveryDayReminderUtils;
 import com.example.tanyayuferova.franklin.utils.DateUtils;
+import com.example.tanyayuferova.franklin.utils.PreferencesUtils;
 import com.example.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
 
 import java.text.SimpleDateFormat;
@@ -91,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements
         initDaysOfWeekLayout();
         initSpinnerData();
         initSpinner();
+
+        if(PreferencesUtils.getNotificationEnabled(this))
+            EveryDayReminderUtils.scheduleEveryDayReminder(this, false);
     }
 
     private void initMainProjection(Date date) {
@@ -285,6 +291,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
+                startActivity(startSettingsActivity);
+                return true;
             case R.id.reset_data_action:
                 getContentResolver().delete(VirtuesContract.CONTENT_POINTS_URI, null, null);
                 getContentResolver().delete(VirtuesContract.CONTENT_WEEKS_URI, null, null);
