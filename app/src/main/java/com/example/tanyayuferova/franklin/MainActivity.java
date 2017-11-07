@@ -8,7 +8,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.ContextThemeWrapper;
+import android.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -192,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void initDaysOfWeekLayout() {
         for(int i = 0; i<DAYS_COUNT; i++) {
             /* We need to create TextView for every day or update text and color of old TextView */
-            //TODO ERROR ContextThemeWrapper
             TextView tv = (TextView) daysOfWeekLayout.getChildAt(i+1);
             if(tv == null) {
                 tv = new TextView(new ContextThemeWrapper(this, R.style.DayOfWeekTextView));

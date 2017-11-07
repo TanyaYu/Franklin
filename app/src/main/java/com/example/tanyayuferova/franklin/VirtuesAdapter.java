@@ -2,14 +2,13 @@ package com.example.tanyayuferova.franklin;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v7.view.ContextThemeWrapper;
+import android.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
 import com.example.tanyayuferova.franklin.entity.Virtue;
@@ -97,7 +96,6 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         }
 
         private TextView createDayTextView(View parent, int daysShiftTag) {
-            //TODO ERROR ContextThemeWrapper
             TextView tv = new TextView(new ContextThemeWrapper(parent.getContext(), R.style.DayValueTextView));
             ((ViewGroup) parent).addView(tv, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
             tv.setOnClickListener(this);
