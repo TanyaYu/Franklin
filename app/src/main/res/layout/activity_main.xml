@@ -11,12 +11,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/sp_virtues"
+        <TextView
+            android:id="@+id/tv_virtue_title"
             android:padding="4dp"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            style="@style/VirtueTitle"/>
 
         <TextView
             android:id="@+id/tv_virtue_description"

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
+import com.example.tanyayuferova.franklin.entity.Virtue;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -19,6 +20,30 @@ public class VirtueOfWeekUtils {
 
     /* Milliseconds in one week */
     private static final long MILLIS_IN_WEEK = TimeUnit.DAYS.toMillis(7);
+
+    /**
+     * Finds virtue for provided date
+     * @param context
+     * @param date
+     * @return
+     */
+    public static Virtue getVirtueOfWeek(Context context, Date date) {
+        int id = getVirtueIdOfWeek(context, date);
+        Cursor c = context.getContentResolver().query(VirtuesContract.CONTENT_VIRTUES_URI,
+                new String[]{VirtuesContract.VirtueEntry._ID,
+                        VirtuesContract.VirtueEntry.COLUMN_NAME,
+                        VirtuesContract.VirtueEntry.COLUMN_SHORT_NAME,
+                        VirtuesContract.VirtueEntry.COLUMN_DESCRIPTION},
+                VirtuesContract.VirtueEntry._ID + " = ? ",
+                new String[]{ String.valueOf(id)},
+                null);
+        if(c.moveToFirst()){
+            return new Virtue(c.getInt(0), c.getString(1), c.getString(2),
+                    c.getString(3));
+        } else {
+            throw new UnsupportedOperationException("Cannot find given virtue id");
+        }
+    }
 
     /**
      * Finds virtue id for provided date

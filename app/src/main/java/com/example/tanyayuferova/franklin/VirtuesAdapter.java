@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tanyayuferova.franklin.data.VirtuesContract;
+import com.example.tanyayuferova.franklin.entity.Virtue;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -32,7 +33,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
 
     public interface VirtuesAdapterOnClickHandler {
         void onDayClick(long virtueId, int daysShift);
-        void onVirtueNameClick(String virtueName);
+        void onVirtueNameClick(Virtue virtue);
         void onDayLongClick(long virtueId, int daysShift);
     }
 
@@ -110,13 +111,16 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
 
+            Virtue virtue = new Virtue(mCursor.getInt(MainActivity.MAIN_PROJECTION_ID_INDEX),
+                    mCursor.getString(MainActivity.MAIN_PROJECTION_NAME_INDEX),
+                    mCursor.getString(MainActivity.MAIN_PROJECTION_SHORT_NAME_INDEX),
+                    mCursor.getString(MainActivity.MAIN_PROJECTION_DESCRIPTION_INDEX));
+
             /* Clicked on virtue name */
             if(R.id.tv_virtue_name == v.getId()){
-                String virtueName = mCursor.getString(MainActivity.MAIN_PROJECTION_NAME_INDEX);
-                mClickHandler.onVirtueNameClick(virtueName);
+                mClickHandler.onVirtueNameClick(virtue);
             } else { /* Clicked on day */
-                mClickHandler.onDayClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
-                        (int) v.getTag());
+                mClickHandler.onDayClick(virtue.getId(), (int) v.getTag());
             }
         }
 

@@ -2,7 +2,7 @@ package com.example.tanyayuferova.franklin;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -13,11 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +26,8 @@ import com.example.tanyayuferova.franklin.utils.PreferencesUtils;
 import com.example.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.example.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
@@ -45,11 +39,11 @@ public class MainActivity extends AppCompatActivity implements
     private RecyclerView recyclerView;
     private VirtuesAdapter virtuesAdapter;
     private LinearLayout daysOfWeekLayout;
-    private Spinner virtuesSpinner;
+    private TextView virtueTitle;
     private TextView virtueDescription;
-    private ArrayAdapter<Virtue> virtueSpinnerAdapter;
     private static final int ID_VIRTUES_LOADER = 1;
     private final String TAG = MainActivity.class.getSimpleName();
+    private static AsyncTask<Void, Void, Virtue> findVirtueTask;
     /**
      * How many days to display
      */
@@ -58,42 +52,41 @@ public class MainActivity extends AppCompatActivity implements
      * The first date in the column
      */
     private Date startDate;
-    private int virtueOfWeekId;
-    public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 3];
+    private Virtue virtueOfWeek;
+    public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 4];
     public static int MAIN_PROJECTION_ID_INDEX = DAYS_COUNT;
     public static int MAIN_PROJECTION_SHORT_NAME_INDEX = DAYS_COUNT + 1;
     public static int MAIN_PROJECTION_NAME_INDEX = DAYS_COUNT + 2;
+    public static int MAIN_PROJECTION_DESCRIPTION_INDEX = DAYS_COUNT + 3;
 
     public static String DAY_CODE = "day";
     public static String START_DATE = "startDate";
-    private static String VIRTUE_OF_WEEK_ID = "virtueOfWeekId";
-    private List<Virtue> spinnerData;
-    private Toast nameHintToast;
+    private static String VIRTUE_OF_WEEK = "virtueOfWeek";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        daysOfWeekLayout = (LinearLayout) findViewById(R.id.daysOfWeekLayout);
+        virtueTitle = (TextView) findViewById(R.id.tv_virtue_title);
+        virtueDescription = (TextView) findViewById(R.id.tv_virtue_description);
+
         if(savedInstanceState == null) {
             startDate = DateUtils.getFirstDayOfWeek();
-            virtueOfWeekId = VirtueOfWeekUtils.getVirtueIdOfWeek(this, startDate);
+            findVirtueOfWeek(startDate);
         } else {
             startDate = new Date(savedInstanceState.getLong(START_DATE));
-            virtueOfWeekId = savedInstanceState.getInt(VIRTUE_OF_WEEK_ID);
+            virtueOfWeek = savedInstanceState.getParcelable(VIRTUE_OF_WEEK);
+            setSelectedVirtue(virtueOfWeek);
         }
 
         initMainProjection(startDate);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        daysOfWeekLayout = (LinearLayout) findViewById(R.id.daysOfWeekLayout);
-        virtuesSpinner = (Spinner) findViewById(R.id.sp_virtues);
-        virtueDescription = (TextView) findViewById(R.id.tv_virtue_description);
-
         initRecyclerView();
         initDaysOfWeekLayout();
-        initSpinnerData();
-        initSpinner();
+        initSwipeListener();
 
         if(PreferencesUtils.getNotificationEnabled(this))
             EveryDayReminderUtils.scheduleEveryDayReminder(this, false);
@@ -107,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements
         MAIN_PROJECTION[MAIN_PROJECTION_ID_INDEX] = VirtueEntry._ID;
         MAIN_PROJECTION[MAIN_PROJECTION_SHORT_NAME_INDEX] = VirtueEntry.COLUMN_SHORT_NAME;
         MAIN_PROJECTION[MAIN_PROJECTION_NAME_INDEX] = VirtueEntry.COLUMN_NAME;
+        MAIN_PROJECTION[MAIN_PROJECTION_DESCRIPTION_INDEX] = VirtueEntry.COLUMN_DESCRIPTION;
     }
 
     protected void initRecyclerView() {
@@ -116,7 +110,10 @@ public class MainActivity extends AppCompatActivity implements
         virtuesAdapter = new VirtuesAdapter(this, this);
         recyclerView.setAdapter(virtuesAdapter);
         getSupportLoaderManager().initLoader(ID_VIRTUES_LOADER, null, this);
-        recyclerView.setOnTouchListener(new OnSwipeTouchListener(this){
+    }
+
+    private void initSwipeListener() {
+        OnSwipeTouchListener listener = new OnSwipeTouchListener(this){
             @Override
             public void onSwipeLeft() {
                 /* Go ahead */
@@ -128,7 +125,9 @@ public class MainActivity extends AppCompatActivity implements
                 /* Go back */
                 setNewStartDateAndRefreshData(DateUtils.addDaysToDate(startDate, -7));
             }
-        });
+        };
+        recyclerView.setOnTouchListener(listener);
+        daysOfWeekLayout.setOnTouchListener(listener);
     }
 
     /**
@@ -137,50 +136,57 @@ public class MainActivity extends AppCompatActivity implements
      */
     protected void setNewStartDateAndRefreshData(Date newStartDate) {
         this.startDate = newStartDate;
-        virtueOfWeekId = VirtueOfWeekUtils.getVirtueIdOfWeek(this, startDate);
+        findVirtueOfWeek(startDate);
 
         initMainProjection(startDate);
         getSupportLoaderManager().restartLoader(ID_VIRTUES_LOADER, null, this);
         initDaysOfWeekLayout();
     }
 
-    protected void initSpinner() {
-        virtueSpinnerAdapter = new ArrayAdapter<Virtue>(this, R.layout.virtue_spinner_item, spinnerData);
-        virtueSpinnerAdapter.setDropDownViewResource(R.layout.virtue_spinner_dropdown_item);
-        virtuesSpinner.setAdapter(virtueSpinnerAdapter);
-        virtuesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    /**
+     * Finds and sets virtue for provided date
+     * @param date
+     */
+    protected void findVirtueOfWeek(final Date date) {
+        findVirtueTask = new AsyncTask<Void, Void, Virtue>() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Virtue selected = virtueSpinnerAdapter.getItem(position);
-                virtueDescription.setText(selected.getDescription());
-                //Save current period virtue id
-                virtueOfWeekId = selected.getId();
-                VirtueOfWeekUtils.setVirtueOfWeek(MainActivity.this, virtueOfWeekId, startDate);
-                virtuesAdapter.setSelectedId(virtueOfWeekId);
-                virtuesAdapter.notifyDataSetChanged();
+            protected Virtue doInBackground(Void... voids) {
+                return VirtueOfWeekUtils.getVirtueOfWeek(MainActivity.this, date);
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                virtueDescription.setText("");
+            protected void onPostExecute(Virtue result) {
+                setSelectedVirtue(result);
+                saveSelectedVirtue(result);
             }
-        });
+        };
+        findVirtueTask.execute();
     }
 
-    protected void initSpinnerData() {
-        spinnerData = new ArrayList<>();
-        Cursor cursor = getContentResolver().query(CONTENT_VIRTUES_URI, null, null, null, VirtueEntry._ID+ " ASC");
-        if(cursor != null){
-            int idInd = cursor.getColumnIndex(VirtueEntry._ID);
-            int nameInd = cursor.getColumnIndex(VirtueEntry.COLUMN_NAME);
-            int shortInd = cursor.getColumnIndex(VirtueEntry.COLUMN_SHORT_NAME);
-            int descInd = cursor.getColumnIndex(VirtueEntry.COLUMN_DESCRIPTION);
-            while (cursor.moveToNext()) {
-                spinnerData.add(new Virtue(cursor.getInt(idInd), cursor.getString(nameInd),
-                        cursor.getString(shortInd), cursor.getString(descInd)));
-            }
-            cursor.close();
-        }
+    /**
+     * Displays virtue in title and sets as local variable
+     * @param virtue
+     */
+    protected void setSelectedVirtue(Virtue virtue) {
+        virtueOfWeek = virtue;
+        virtueTitle.setText(virtue.getName());
+        virtueDescription.setText(virtue.getDescription());
+    }
+
+    /**
+     * Highlight virtue in table
+     * @param virtue
+     */
+    protected void selectVirtueInTable(Virtue virtue) {
+        virtuesAdapter.setSelectedId(virtue.getId());
+        virtuesAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * Saves virtue in data provider
+     * @param virtue
+     */
+    protected void saveSelectedVirtue(Virtue virtue) {
+        VirtueOfWeekUtils.setVirtueOfWeek(MainActivity.this, virtue.getId(), startDate);
     }
 
     protected void initDaysOfWeekLayout() {
@@ -245,11 +251,10 @@ public class MainActivity extends AppCompatActivity implements
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case ID_VIRTUES_LOADER:
-                Uri uri = CONTENT_VIRTUES_URI;
                 String sortOrder = VirtueEntry._ID + " ASC";
 
                 return new CursorLoader(this,
-                        uri,
+                        CONTENT_VIRTUES_URI,
                         MAIN_PROJECTION,
                         null,
                         null,
@@ -263,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         virtuesAdapter.swapCursor(data);
-        virtuesSpinner.setSelection(virtueSpinnerAdapter.getPosition(new Virtue(virtueOfWeekId)));
+        selectVirtueInTable(virtueOfWeek);
     }
 
     @Override
@@ -305,19 +310,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onVirtueNameClick(String virtueName) {
-        /* Show virtue name hint when click on it*/
-        if(nameHintToast!= null){
-            nameHintToast.cancel();
-        }
-        nameHintToast = Toast.makeText(this, virtueName, Toast.LENGTH_LONG);
-        nameHintToast.show();
+    public void onVirtueNameClick(Virtue virtue) {
+        setSelectedVirtue(virtue);
+        selectVirtueInTable(virtue);
+        saveSelectedVirtue(virtue);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putLong(START_DATE, startDate.getTime());
-        outState.putInt(VIRTUE_OF_WEEK_ID, virtueOfWeekId);
+        outState.putParcelable(VIRTUE_OF_WEEK, virtueOfWeek);
         super.onSaveInstanceState(outState);
     }
 }
