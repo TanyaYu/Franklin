@@ -1,48 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.tanyayuferova.franklin.MainActivity">
 
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_virtue_title"
-            android:padding="4dp"
-            style="@style/VirtueTitle"/>
-
-        <TextView
-            android:id="@+id/tv_virtue_description"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorTextPrimaryInverse"
-            android:textSize="15sp"
-            android:padding="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/daysOfWeekLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="4dp"
-            android:paddingLeft="4dp"
-            android:paddingTop="4dp"
-            android:orientation="horizontal">
-
-            <TextView style="@style/DayOfWeekTextView" />
-        </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:paddingRight="4dp"
-            android:paddingLeft="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-</ScrollView>
+        android:layout_height="match_parent" />
+</FrameLayout>

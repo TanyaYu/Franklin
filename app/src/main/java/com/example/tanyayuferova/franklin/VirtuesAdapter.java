@@ -45,12 +45,12 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     @Override
     public void onBindViewHolder(VirtuesAdapterViewHolder holder, int position) {
         mCursor.moveToPosition(position);
-        String virtueShortName = mCursor.getString(MainActivity.MAIN_PROJECTION_SHORT_NAME_INDEX);
+        String virtueShortName = mCursor.getString(WeekTableFragment.MAIN_PROJECTION_SHORT_NAME_INDEX);
         holder.virtueName.setText(virtueShortName);
 
         /* Sets dots for every day */
-        for (int i = 0; i < MainActivity.DAYS_COUNT; i++) {
-            int dotsCount = mCursor.getInt(mCursor.getColumnIndex(MainActivity.DAY_CODE + i));
+        for (int i = 0; i < WeekTableFragment.DAYS_COUNT; i++) {
+            int dotsCount = mCursor.getInt(mCursor.getColumnIndex(WeekTableFragment.DAY_CODE + i));
             String text = "";
             String dot = mContext.getResources().getString(R.string.dot);
             if(dotsCount == 1) {
@@ -82,7 +82,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     class VirtuesAdapterViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
         final TextView virtueName;
-        final TextView[] daysTV = new TextView[MainActivity.DAYS_COUNT];
+        final TextView[] daysTV = new TextView[WeekTableFragment.DAYS_COUNT];
 
         VirtuesAdapterViewHolder(View view) {
             super(view);
@@ -90,7 +90,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             virtueName = (TextView) view.findViewById(R.id.tv_virtue_name);
             virtueName.setOnClickListener(this);
 
-            for (int i = 0; i < MainActivity.DAYS_COUNT; i++) {
+            for (int i = 0; i < WeekTableFragment.DAYS_COUNT; i++) {
                 daysTV[i] = createDayTextView(view, i);
             }
         }
@@ -109,10 +109,10 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
 
-            Virtue virtue = new Virtue(mCursor.getInt(MainActivity.MAIN_PROJECTION_ID_INDEX),
-                    mCursor.getString(MainActivity.MAIN_PROJECTION_NAME_INDEX),
-                    mCursor.getString(MainActivity.MAIN_PROJECTION_SHORT_NAME_INDEX),
-                    mCursor.getString(MainActivity.MAIN_PROJECTION_DESCRIPTION_INDEX));
+            Virtue virtue = new Virtue(mCursor.getInt(WeekTableFragment.MAIN_PROJECTION_ID_INDEX),
+                    mCursor.getString(WeekTableFragment.MAIN_PROJECTION_NAME_INDEX),
+                    mCursor.getString(WeekTableFragment.MAIN_PROJECTION_SHORT_NAME_INDEX),
+                    mCursor.getString(WeekTableFragment.MAIN_PROJECTION_DESCRIPTION_INDEX));
 
             /* Clicked on virtue name */
             if(R.id.tv_virtue_name == v.getId()){

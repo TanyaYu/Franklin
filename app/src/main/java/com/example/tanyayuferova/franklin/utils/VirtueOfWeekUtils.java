@@ -37,9 +37,11 @@ public class VirtueOfWeekUtils {
                 VirtuesContract.VirtueEntry._ID + " = ? ",
                 new String[]{ String.valueOf(id)},
                 null);
-        if(c.moveToFirst()){
-            return new Virtue(c.getInt(0), c.getString(1), c.getString(2),
+        if(c!= null && c.moveToFirst()){
+            Virtue result = new Virtue(c.getInt(0), c.getString(1), c.getString(2),
                     c.getString(3));
+            c.close();
+            return result;
         } else {
             throw new UnsupportedOperationException("Cannot find given virtue id");
         }
@@ -69,8 +71,10 @@ public class VirtueOfWeekUtils {
         Uri uri = VirtuesContract.buildVirtueUriWithWeek(week, year);
         Cursor cursor = context.getContentResolver().query(uri, new String[] {VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID},
                 null, null, null);
-        if(cursor.moveToFirst()){
-            return cursor.getInt(0);
+        if(cursor != null && cursor.moveToFirst()){
+            int result = cursor.getInt(0);
+            cursor.close();;
+            return result;
         }
         /* If enable to find, try to find next id */
         int next = getNextVirtueId(context, week, year);
@@ -101,11 +105,13 @@ public class VirtueOfWeekUtils {
                         VirtuesContract.WeekEntry.COLUMN_YEAR + " < ?",
                 new String[] {String.valueOf(year), String.valueOf(week), String.valueOf(year)},
                 VirtuesContract.WeekEntry.COLUMN_YEAR + " DESC, " + VirtuesContract.WeekEntry.COLUMN_WEEK + " DESC");
-        if(cursor.moveToFirst()) {
+        if(cursor!= null && cursor.moveToFirst()) {
             /* The last id in history and its week number and year */
             int lastId = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID));
             int lastWeek = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_WEEK));
             int lastYear = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_YEAR));
+
+            cursor.close();
 
             Calendar last = Calendar.getInstance();
             last.set(Calendar.YEAR, lastYear);
@@ -144,11 +150,13 @@ public class VirtueOfWeekUtils {
                         VirtuesContract.WeekEntry.COLUMN_YEAR + " > ?",
                 new String[] {String.valueOf(year), String.valueOf(week), String.valueOf(year)},
                 VirtuesContract.WeekEntry.COLUMN_YEAR + " ASC, " + VirtuesContract.WeekEntry.COLUMN_WEEK + " ASC");
-        if(cursor.moveToFirst()) {
+        if(cursor!= null && cursor.moveToFirst()) {
             /* The first id in history and its week number and year */
             int lastId = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID));
             int lastWeek = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_WEEK));
             int lastYear = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_YEAR));
+
+            cursor.close();
 
             Calendar last = Calendar.getInstance();
             last.set(Calendar.YEAR, lastYear);
@@ -180,8 +188,10 @@ public class VirtueOfWeekUtils {
         Cursor cursor = context.getContentResolver().query(
                 VirtuesContract.CONTENT_VIRTUES_URI, new String[]{VirtuesContract.VirtueEntry._ID},
                 null, null, VirtuesContract.VirtueEntry._ID + " ASC");
-        if(cursor.moveToFirst()){
-            return cursor.getInt(0);
+        if(cursor != null && cursor.moveToFirst()){
+            int result = cursor.getInt(0);
+            cursor.close();
+            return result;
         }
         return 0;
     }
@@ -222,8 +232,12 @@ public class VirtueOfWeekUtils {
     private static int countVirtues(Context context) {
         Cursor cursor = context.getContentResolver().query(VirtuesContract.CONTENT_VIRTUES_URI,
                 new String[] {"count (*)"}, null, null, null);
-        if(cursor.moveToFirst())
-            return cursor.getInt(0);
+        if(cursor != null && cursor.moveToFirst()) {
+            int result = cursor.getInt(0);
+            cursor.close();
+            return result;
+        }
+
         return 0;
     }
 }
