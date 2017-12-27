@@ -84,9 +84,13 @@ public class WeekTableFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentWeekTableBinding.inflate(inflater, container, false);
 
-        ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbar);
-        setHasOptionsMenu(true);
-        binding.toolbar.inflateMenu(R.menu.virtues_main_menu);
+        binding.btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startSettingsActivity = new Intent(getContext(), SettingsActivity.class);
+                startActivity(startSettingsActivity);
+            }
+        });
 
         startDate = new Date(getArguments().getLong(ARGUMENT_START_DATE));
         initMainProjection(startDate);
@@ -250,21 +254,5 @@ public class WeekTableFragment extends Fragment implements
         binding.setVirtue(virtue);
         selectVirtueInTable(virtue);
         saveSelectedVirtue(virtue);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.virtues_main_menu, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent startSettingsActivity = new Intent(getContext(), SettingsActivity.class);
-                startActivity(startSettingsActivity);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

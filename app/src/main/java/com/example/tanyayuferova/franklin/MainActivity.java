@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.tanyayuferova.franklin.jobs.EveryDayReminderUtils;
 import com.example.tanyayuferova.franklin.utils.DateUtils;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new WeekTablePagerAdapter(getSupportFragmentManager()));
+        viewPager.setPageTransformer(false, new ParallaxPageTransformer());
         viewPager.setCurrentItem(START_PAGE_INDEX);
 
          if(PreferencesUtils.getNotificationEnabled(this))
@@ -54,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return PAGES_COUNT;
+        }
+    }
+
+    public class ParallaxPageTransformer implements ViewPager.PageTransformer {
+
+        public void transformPage(View view, float position) {
+            float alpha = 1.0F - Math.abs(position);
+
+            view.findViewById(R.id.tv_virtue_description).setAlpha(alpha);
+            view.findViewById(R.id.tv_virtue_title).setAlpha(alpha);
         }
     }
 }
