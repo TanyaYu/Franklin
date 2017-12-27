@@ -1,5 +1,6 @@
 package com.example.tanyayuferova.franklin;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,9 +9,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -78,6 +83,10 @@ public class WeekTableFragment extends Fragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentWeekTableBinding.inflate(inflater, container, false);
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbar);
+        setHasOptionsMenu(true);
+        binding.toolbar.inflateMenu(R.menu.virtues_main_menu);
 
         startDate = new Date(getArguments().getLong(ARGUMENT_START_DATE));
         initMainProjection(startDate);
@@ -241,5 +250,21 @@ public class WeekTableFragment extends Fragment implements
         binding.setVirtue(virtue);
         selectVirtueInTable(virtue);
         saveSelectedVirtue(virtue);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.virtues_main_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent startSettingsActivity = new Intent(getContext(), SettingsActivity.class);
+                startActivity(startSettingsActivity);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

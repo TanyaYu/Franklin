@@ -38,27 +38,6 @@ public class MainActivity extends AppCompatActivity {
          //   EveryDayReminderUtils.scheduleEveryDayReminder(this, false);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.virtues_main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
-                startActivity(startSettingsActivity);
-                return true;
-            case R.id.reset_data_action:
-                getContentResolver().delete(VirtuesContract.CONTENT_POINTS_URI, null, null);
-                getContentResolver().delete(VirtuesContract.CONTENT_WEEKS_URI, null, null);
-                Toast.makeText(this, "All data is deleted.", Toast.LENGTH_LONG).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     protected Date getStartDateForPage(int pageIndex) {
         Date date = DateUtils.getFirstDayOfWeek();
