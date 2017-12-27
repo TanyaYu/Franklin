@@ -42,7 +42,7 @@ public class WeekTableFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
         VirtuesAdapter.VirtuesAdapterOnClickHandler {
 
-    private FragmentWeekTableBinding binding;
+    protected FragmentWeekTableBinding binding;
     private VirtuesAdapter virtuesAdapter;
 
     private static AsyncTask<Void, Void, Virtue> findVirtueTask;

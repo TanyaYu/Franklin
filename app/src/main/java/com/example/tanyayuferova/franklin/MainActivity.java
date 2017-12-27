@@ -16,11 +16,11 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
+    protected ViewPager viewPager;
 
-    private static int PAGES_COUNT = 100;
+    public static int PAGES_COUNT = 100;
     // Start page in the middle
-    private static int START_PAGE_INDEX = PAGES_COUNT /2;
+    public static int START_PAGE_INDEX = PAGES_COUNT /2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

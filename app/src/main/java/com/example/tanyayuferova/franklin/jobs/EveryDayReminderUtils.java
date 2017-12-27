@@ -73,6 +73,7 @@ public class EveryDayReminderUtils {
         Driver driver = new GooglePlayDriver(context);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
         dispatcher.cancel(EVERY_DAY_REMINDER_JOB_TAG);
+        dispatcher.cancel(START_REMINDER_JOB_TAG);
     }
 
     /**
