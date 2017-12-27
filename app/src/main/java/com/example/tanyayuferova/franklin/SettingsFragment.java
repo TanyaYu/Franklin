@@ -61,11 +61,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             /* We need to reschedule notifications after properties changed */
             boolean isNotificationsEnabled = PreferencesUtils.getNotificationEnabled(getContext());
             if(key.equals(getString(R.string.pref_time_key)) && isNotificationsEnabled){
-                EveryDayReminderUtils.scheduleEveryDayReminder(getContext(), true);
+                EveryDayReminderUtils.scheduleStartReminderJob(getContext());
             }
             else if(key.equals(getString(R.string.pref_notifications_key))) {
                 if(isNotificationsEnabled)
-                    EveryDayReminderUtils.scheduleEveryDayReminder(getContext(), true);
+                    EveryDayReminderUtils.scheduleStartReminderJob(getContext());
                 else EveryDayReminderUtils.cancelEveryDayReminder(getContext());
             }
         }

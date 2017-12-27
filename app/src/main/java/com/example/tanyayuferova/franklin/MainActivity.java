@@ -1,18 +1,15 @@
 package com.example.tanyayuferova.franklin;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.tanyayuferova.franklin.data.VirtuesContract;
+import com.example.tanyayuferova.franklin.jobs.EveryDayReminderUtils;
 import com.example.tanyayuferova.franklin.utils.DateUtils;
+import com.example.tanyayuferova.franklin.utils.PreferencesUtils;
 
 import java.util.Date;
 
@@ -33,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new WeekTablePagerAdapter(getSupportFragmentManager()));
         viewPager.setCurrentItem(START_PAGE_INDEX);
 
-       // TODO 2 tasks for schedule and sending notification
-        // if(PreferencesUtils.getNotificationEnabled(this))
-         //   EveryDayReminderUtils.scheduleEveryDayReminder(this, false);
+         if(PreferencesUtils.getNotificationEnabled(this))
+            EveryDayReminderUtils.scheduleStartReminderJob(this);
 
     }
 

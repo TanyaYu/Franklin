@@ -75,7 +75,7 @@
 
     <!-- #start Notifications -->
     <string name="reminder_notification_title">@string/app_name</string>
-    <string name="reminder_notification_body">Time to enter today\'s data</string>
+    <string name="reminder_notification_body">What great did you do today? Don\'t forget to keep track of your progress.</string>
     <!-- #end Notifications -->
 
     <!-- #start Preferences -->

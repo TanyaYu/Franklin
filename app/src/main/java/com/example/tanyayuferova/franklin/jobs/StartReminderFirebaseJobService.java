@@ -8,10 +8,10 @@ import com.firebase.jobdispatcher.JobService;
 import com.firebase.jobdispatcher.RetryStrategy;
 
 /**
- * Created by Tanya Yuferova on 11/3/2017.
+ * Created by Tanya Yuferova on 12/26/2017.
  */
 
-public class EveryDayReminderFirebaseJobService extends JobService {
+public class StartReminderFirebaseJobService extends JobService {
     private static AsyncTask mBackgroundTask;
 
     @Override
@@ -20,7 +20,7 @@ public class EveryDayReminderFirebaseJobService extends JobService {
 
             @Override
             protected Object doInBackground(Object[] params) {
-                EveryDayReminderTasks.executeTask(EveryDayReminderFirebaseJobService.this, EveryDayReminderTasks.ACTION_EVERY_DAY_REMINDER);
+                EveryDayReminderTasks.executeTask(StartReminderFirebaseJobService.this, EveryDayReminderTasks.ACTION_EVERY_DAY_REMINDER);
                 return null;
             }
 
@@ -28,6 +28,9 @@ public class EveryDayReminderFirebaseJobService extends JobService {
             protected void onPostExecute(Object o) {
                 /* Inform that the job is finished */
                 jobFinished(job, false);
+
+                /* Start recurring job */
+                EveryDayReminderUtils.scheduleEveryDayReminderJob(StartReminderFirebaseJobService.this);
             }
         };
 
@@ -48,5 +51,4 @@ public class EveryDayReminderFirebaseJobService extends JobService {
         if (mBackgroundTask != null) mBackgroundTask.cancel(true);
         return true;
     }
-
 }

@@ -30,9 +30,9 @@ public class NotificationUtils {
      */
     public static void remindUserToEnterData(Context context) {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
-                .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(largeIcon(context, R.mipmap.ic_launcher))
+                .setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+                .setSmallIcon(R.drawable.ic_top_hat_with_moustache)
+                .setLargeIcon(largeIcon(context, R.drawable.ic_top_hat_with_moustache))
                 .setContentTitle(context.getString(R.string.reminder_notification_title))
                 .setContentText(context.getString(R.string.reminder_notification_body))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(

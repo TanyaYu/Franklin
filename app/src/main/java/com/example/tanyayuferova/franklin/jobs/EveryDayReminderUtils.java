@@ -20,41 +20,53 @@ import java.util.concurrent.TimeUnit;
 
 public class EveryDayReminderUtils {
 
-    private static final int SYNC_FLEXTIME_SECONDS = (int) (TimeUnit.MINUTES.toSeconds(3));
-    private static final String EVERY_DAY_REMINDER_JOB_TAG = "reminder_tag";
-
-    /* If job has been already initialised */
-    private static boolean initialised = false;
+    private static final int SYNC_FLEXTIME_SECONDS = 30;
+    private static final String EVERY_DAY_REMINDER_JOB_TAG = "reminder_job_tag";
+    private static final String START_REMINDER_JOB_TAG = "start_job_tag";
 
     /**
-     * Creates and schedule every day reminder job
+     * Creates and schedule start job for every day reminder
      * @param context
-     * @param forceInitialise Initialise despite it had been initialised earlier
      */
-    synchronized public static void scheduleEveryDayReminder(@NonNull final Context context, boolean forceInitialise) {
-        if(initialised && !forceInitialise)
-            return;
-
+    synchronized public static void scheduleStartReminderJob(@NonNull final Context context) {
         Driver driver = new GooglePlayDriver(context);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
 
         int startSeconds = getEveryDayReminderStartSeconds(context);
         Job constraintReminderJob = dispatcher.newJobBuilder()
                 .setService(EveryDayReminderFirebaseJobService.class)
+                .setTag(START_REMINDER_JOB_TAG)
+                .setTrigger(Trigger.executionWindow(startSeconds, startSeconds + SYNC_FLEXTIME_SECONDS))
+                .setReplaceCurrent(true)
+                .build();
+
+        dispatcher.schedule(constraintReminderJob);
+    }
+    /**
+     * Creates and schedule every day reminder job
+     * @param context
+     */
+    synchronized public static void scheduleEveryDayReminderJob(@NonNull final Context context) {
+
+        Driver driver = new GooglePlayDriver(context);
+        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
+
+        int startSeconds = (int) TimeUnit.HOURS.toSeconds(24);
+        Job constraintReminderJob = dispatcher.newJobBuilder()
+                .setService(EveryDayReminderFirebaseJobService.class)
                 .setTag(EVERY_DAY_REMINDER_JOB_TAG)
                 .setLifetime(Lifetime.FOREVER)
-                .setRecurring(false)
+                .setRecurring(true)
                 .setTrigger(Trigger.executionWindow(startSeconds, startSeconds + SYNC_FLEXTIME_SECONDS))
                 .setReplaceCurrent(true)
                 .build();
 
         dispatcher.schedule(constraintReminderJob);
 
-        initialised = true;
     }
 
     /**
-     * Cancels evere day reminder jobs
+     * Cancels every day reminder jobs
      * @param context
      */
     synchronized public static void cancelEveryDayReminder(@NonNull final Context context) {
