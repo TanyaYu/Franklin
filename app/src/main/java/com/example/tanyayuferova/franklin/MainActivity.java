@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.tanyayuferova.franklin.entity.Virtue;
 import com.example.tanyayuferova.franklin.jobs.EveryDayReminderUtils;
 import com.example.tanyayuferova.franklin.utils.DateUtils;
 import com.example.tanyayuferova.franklin.utils.PreferencesUtils;
+import com.example.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
 
 import java.util.Date;
 
@@ -50,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return WeekTableFragment.newInstance(getStartDateForPage(position));
+            Date startDate = getStartDateForPage(position);
+            Virtue virtueOfWeek = VirtueOfWeekUtils.getVirtueOfWeek(MainActivity. this, startDate);
+            VirtueOfWeekUtils.setVirtueOfWeek(MainActivity. this, virtueOfWeek.getId(), startDate);
+            return WeekTableFragment.newInstance(startDate, virtueOfWeek);
         }
 
         @Override

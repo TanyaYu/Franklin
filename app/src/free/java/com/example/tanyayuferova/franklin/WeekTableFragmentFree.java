@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.tanyayuferova.franklin.entity.Virtue;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.NativeExpressAdView;
@@ -24,11 +25,12 @@ public class WeekTableFragmentFree extends WeekTableFragment {
     public WeekTableFragmentFree() {
     }
 
-    public static WeekTableFragmentFree newInstance(Date startDate) {
+    public static WeekTableFragmentFree newInstance(Date startDate, Virtue virtue) {
         WeekTableFragmentFree fragment = new WeekTableFragmentFree();
         fragment.setArguments(new Bundle());
         fragment.getArguments().putInt(ARGUMENT_LOADER_ID, ++countLoaders);
         fragment.getArguments().putLong(ARGUMENT_START_DATE, startDate.getTime());
+        fragment.getArguments().putParcelable(ARGUMENT_VIRTUE_OF_WEEK, virtue);
         return fragment;
     }
 

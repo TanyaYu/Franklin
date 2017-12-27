@@ -9,13 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -67,15 +63,17 @@ public class WeekTableFragment extends Fragment implements
 
     public static final String ARGUMENT_LOADER_ID = "arg.loader_id";
     public static final String ARGUMENT_START_DATE = "arg.start_date";
+    public static final String ARGUMENT_VIRTUE_OF_WEEK = "arg.virtue_of_week";
 
     public WeekTableFragment() {
     }
 
-    public static WeekTableFragment newInstance(Date startDate) {
+    public static WeekTableFragment newInstance(Date startDate, Virtue virtue) {
         WeekTableFragment fragment = new WeekTableFragment();
         fragment.setArguments(new Bundle());
         fragment.getArguments().putInt(ARGUMENT_LOADER_ID, ++countLoaders);
         fragment.getArguments().putLong(ARGUMENT_START_DATE, startDate.getTime());
+        fragment.getArguments().putParcelable(ARGUMENT_VIRTUE_OF_WEEK, virtue);
         return fragment;
     }
 
@@ -93,8 +91,9 @@ public class WeekTableFragment extends Fragment implements
         });
 
         startDate = new Date(getArguments().getLong(ARGUMENT_START_DATE));
+        binding.setVirtue((Virtue) getArguments().getParcelable(ARGUMENT_VIRTUE_OF_WEEK));
+
         initMainProjection(startDate);
-        findVirtueOfWeek(startDate);
 
         initRecyclerView();
         initDaysOfWeekLayout();
@@ -222,37 +221,10 @@ public class WeekTableFragment extends Fragment implements
         virtuesAdapter.notifyDataSetChanged();
     }
 
-    /**
-     * Finds and sets virtue for provided date
-     * @param date
-     */
-    protected void findVirtueOfWeek(final Date date) {
-        findVirtueTask = new AsyncTask<Void, Void, Virtue>() {
-            @Override
-            protected Virtue doInBackground(Void... voids) {
-                return VirtueOfWeekUtils.getVirtueOfWeek(getContext(), date);
-            }
-            @Override
-            protected void onPostExecute(Virtue result) {
-                binding.setVirtue(result);
-                saveSelectedVirtue(result);
-            }
-        };
-        findVirtueTask.execute();
-    }
-
-    /**
-     * Saves virtue in data provider
-     * @param virtue
-     */
-    protected void saveSelectedVirtue(Virtue virtue) {
-        VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtue.getId(), startDate);
-    }
-
     @Override
     public void onVirtueNameClick(Virtue virtue) {
         binding.setVirtue(virtue);
         selectVirtueInTable(virtue);
-        saveSelectedVirtue(virtue);
+        VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtue.getId(), startDate);
     }
 }

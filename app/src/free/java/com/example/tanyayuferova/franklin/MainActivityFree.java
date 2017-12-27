@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.example.tanyayuferova.franklin.entity.Virtue;
+import com.example.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
+
+import java.util.Date;
+
 /**
  * Created by Tanya Yuferova on 12/26/2017.
  */
@@ -24,7 +29,10 @@ public class MainActivityFree extends MainActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return WeekTableFragmentFree.newInstance(getStartDateForPage(position));
+            Date startDate = getStartDateForPage(position);
+            Virtue virtueOfWeek = VirtueOfWeekUtils.getVirtueOfWeek(MainActivityFree.this, startDate);
+            VirtueOfWeekUtils.setVirtueOfWeek(MainActivityFree.this, virtueOfWeek.getId(), startDate);
+            return WeekTableFragmentFree.newInstance(startDate, virtueOfWeek);
         }
     }
 }
