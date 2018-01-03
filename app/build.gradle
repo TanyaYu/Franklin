@@ -1,26 +1,40 @@
 apply plugin: 'com.android.application'
 
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(rootProject.file('keystore.properties')))
+
 android {
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.example.tanyayuferova.franklin"
+        applicationId "com.tanyayuferova.franklin"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
-
     dataBinding.enabled = true
-
     flavorDimensions 'default'
     productFlavors {
         free {
@@ -28,6 +42,7 @@ android {
         }
         paid {
             applicationIdSuffix '.paid'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -37,14 +52,13 @@ ext {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
     implementation "com.android.support:preference-v7:$supportLibVersion"
     implementation "com.android.support:preference-v14:$supportLibVersion"
-    implementation "com.firebase:firebase-jobdispatcher:0.8.4"
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.4'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation "com.android.support:design:$supportLibVersion"
-
     freeImplementation 'com.google.android.gms:play-services-ads:11.8.0'
 }

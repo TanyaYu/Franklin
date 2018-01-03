@@ -9,7 +9,7 @@
         android:summaryOn="@string/pref_notifications_enable_true"
         android:title="@string/pref_notifications_label" />
 
-    <com.example.tanyayuferova.franklin.preferences.TimePreference
+    <com.tanyayuferova.franklin.preferences.TimePreference
         style="@style/AppPreference.DialogPreference"
         android:defaultValue="@integer/pref_notification_time"
         android:key="@string/pref_time_key"

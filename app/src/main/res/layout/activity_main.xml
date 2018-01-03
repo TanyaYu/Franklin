@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tanyayuferova.franklin.MainActivity">
+    tools:context="com.tanyayuferova.franklin.MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
