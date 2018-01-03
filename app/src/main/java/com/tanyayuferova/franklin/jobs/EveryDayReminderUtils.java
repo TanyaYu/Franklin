@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class EveryDayReminderUtils {
 
-    private static final int SYNC_FLEXTIME_SECONDS = 30;
+    private static final int SYNC_FLEXTIME_SECONDS = 15;
     private static final String EVERY_DAY_REMINDER_JOB_TAG = "reminder_job_tag";
     private static final String START_REMINDER_JOB_TAG = "start_job_tag";
 
@@ -34,13 +34,15 @@ public class EveryDayReminderUtils {
 
         int startSeconds = getEveryDayReminderStartSeconds(context);
         Job constraintReminderJob = dispatcher.newJobBuilder()
-                .setService(EveryDayReminderFirebaseJobService.class)
+                .setService(StartReminderFirebaseJobService.class)
                 .setTag(START_REMINDER_JOB_TAG)
                 .setTrigger(Trigger.executionWindow(startSeconds, startSeconds + SYNC_FLEXTIME_SECONDS))
                 .setReplaceCurrent(true)
                 .build();
 
         dispatcher.schedule(constraintReminderJob);
+
+        dispatcher.cancel(EVERY_DAY_REMINDER_JOB_TAG);
     }
     /**
      * Creates and schedule every day reminder job

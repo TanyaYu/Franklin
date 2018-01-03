@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
          if(PreferencesUtils.getNotificationEnabled(this))
             EveryDayReminderUtils.scheduleStartReminderJob(this);
+         else {
+             EveryDayReminderUtils.cancelEveryDayReminder(this);
+         }
 
     }
 
