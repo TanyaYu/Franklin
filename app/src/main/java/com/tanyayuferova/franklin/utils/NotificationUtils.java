@@ -31,8 +31,8 @@ public class NotificationUtils {
     public static void remindUserToEnterData(Context context) {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
-                .setSmallIcon(R.drawable.ic_top_hat_with_moustache)
-                .setLargeIcon(largeIcon(context, R.drawable.ic_top_hat_with_moustache))
+                .setSmallIcon(R.drawable.ic_notification_icon)
+                .setLargeIcon(largeIcon(context, R.drawable.ic_notification_icon))
                 .setContentTitle(context.getString(R.string.reminder_notification_title))
                 .setContentText(context.getString(R.string.reminder_notification_body))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(
