@@ -1,4 +1,4 @@
-package com.tanyayuferova.franklin.jobs;
+package com.tanyayuferova.franklin.services;
 
 import android.os.AsyncTask;
 
@@ -6,21 +6,22 @@ import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 import com.firebase.jobdispatcher.RetryStrategy;
+import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 
 /**
  * Created by Tanya Yuferova on 11/3/2017.
  */
 
 public class EveryDayReminderFirebaseJobService extends JobService {
-    private static AsyncTask mBackgroundTask;
+    private static AsyncTask asyncTask;
 
     @Override
     public boolean onStartJob(final JobParameters job) {
-        mBackgroundTask = new AsyncTask() {
+        asyncTask = new AsyncTask() {
 
             @Override
             protected Object doInBackground(Object[] params) {
-                EveryDayReminderTasks.executeTask(EveryDayReminderFirebaseJobService.this, EveryDayReminderTasks.ACTION_EVERY_DAY_REMINDER);
+                EveryDayReminderUtils.executeEveryDayReminder(EveryDayReminderFirebaseJobService.this);
                 return null;
             }
 
@@ -31,7 +32,7 @@ public class EveryDayReminderFirebaseJobService extends JobService {
             }
         };
 
-        mBackgroundTask.execute();
+        asyncTask.execute();
         return true;
     }
 
@@ -45,7 +46,7 @@ public class EveryDayReminderFirebaseJobService extends JobService {
      */
     @Override
     public boolean onStopJob(JobParameters jobParameters) {
-        if (mBackgroundTask != null) mBackgroundTask.cancel(true);
+        if (asyncTask != null) asyncTask.cancel(true);
         return true;
     }
 

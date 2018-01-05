@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">План морального совершенствования</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">Воздержание</string>
+    <string name="tem_short">В</string>
+    <string name="tem_desc">Есть не до пресыщения, пить не до опьянения.</string>
+
+    <string name="sil_name">Молчание</string>
+    <string name="sil_short">М</string>
+    <string name="sil_desc">Говорить только то, что может принести пользу мне или другому; избегать пустых разговоров.</string>
+
+    <string name="o_name">Порядок</string>
+    <string name="o_short">П</string>
+    <string name="o_desc">Держать все свои вещи на местах; для каждого занятия есть свое время.</string>
+
+    <string name="r_name">Решительность</string>
+    <string name="r_short">Р</string>
+    <string name="r_desc">Решаться выполнять то, что должны сделать; неукоснительно выполнять то, что решено.</string>
+
+    <string name="f_name">Бережливость</string>
+    <string name="f_short">Б</string>
+    <string name="f_desc">Тратить деньги только на то, что приносит благо мне или другим, то есть ничего не расточать.</string>
+
+    <string name="i_name">Трудолюбие</string>
+    <string name="i_short">Т</string>
+    <string name="i_desc">Не терять времени попусту; быть всегда занятым чем-либо полезным, отказываться от всех ненужных действий.</string>
+
+    <string name="sin_name">Искренность</string>
+    <string name="sin_short">И</string>
+    <string name="sin_desc">Не причинять вредного обмана, иметь чистые и справедливые мысли; в разговоре также придерживаться этого правила.</string>
+
+    <string name="j_name">Справедливость</string>
+    <string name="j_short">С</string>
+    <string name="j_desc">Не причинять никому вреда, не совершать несправедливостей и не опускать добрых дел, которые входят в число твоих обязанностей.</string>
+
+    <string name="m_name">Умеренность</string>
+    <string name="m_short">У</string>
+    <string name="m_desc">Избегать крайностей; сдерживать, насколько ты считаешь это уместным, чувство обиды от несправедливостей.</string>
+
+    <string name="cl_name">Чистота</string>
+    <string name="cl_short">Ч</string>
+    <string name="cl_desc">Не допускать телесной нечистоты; соблюдать опрятность в одежде и жилище.</string>
+
+    <string name="tra_name">Спокойствие</string>
+    <string name="tra_short">С</string>
+    <string name="tra_desc">Не волноваться по пустякам и по поводу обычных или неизбежных случаев.</string>
+
+    <string name="ch_name">Целомудрие</string>
+    <string name="ch_short">Ц</string>
+    <string name="ch_desc">Предаваться любовным утехам не часто, только ради здоровья или произведения потомства, никогда не делать этого до отупения, истощения, а также в ущерб своей или чужой репутации.</string>
+
+    <string name="h_name">Смирение</string>
+    <string name="h_short">С</string>
+    <string name="h_desc">Подражать Иисусу и Сократу.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #strat Days of the week -->
+    <string name="mon">ПН</string>
+    <string name="tue">ВТ</string>
+    <string name="wed">СР</string>
+    <string name="thu">ЧТ</string>
+    <string name="fri">ПТ</string>
+    <string name="sat">СБ</string>
+    <string name="sun">ВС</string>
+    <!-- #end Days of the week -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">Настройки</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">Что хорошего вы сделали сегодня? Не забудьте зафиксировать ваш сегодняшний прогресс.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">Выключены</string>
+    <string name="pref_notifications_enable_true">Включены</string>
+    <string name="pref_notifications_label">Ежедневные напоминания</string>
+
+    <string name="pref_time_label">Время ежедневных напоминаний</string>
+    <string name="preferences_time_title">Время напоминаний</string>
+    <!-- #end Preferences -->
+
+</resources>

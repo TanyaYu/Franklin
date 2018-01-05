@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Plano de Melhoria Pessoal</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">Temperança</string>
+    <string name="tem_short">T</string>
+    <string name="tem_desc">Não comer com estupidez e beber com excesso.</string>
+
+    <string name="sil_name">Silêncio</string>
+    <string name="sil_short">S</string>
+    <string name="sil_desc">Falar tão somente o que pode beneficiar os outros ou a si mesmo. Evite conversa banal.</string>
+
+    <string name="o_name">Ordem</string>
+    <string name="o_short">O</string>
+    <string name="o_desc">Deixe todas as coisas (assuntos) terem seu lugar. Que cada parte dos seus assuntos tenha seu tempo.</string>
+
+    <string name="r_name">Resolução</string>
+    <string name="r_short">R</string>
+    <string name="r_desc">Resolver realizar o que se deve; executar sem falhas que você se pode resolver.</string>
+
+    <string name="f_name">Frugalidade</string>
+    <string name="f_short">F</string>
+    <string name="f_desc">Não fazer gastos, mas fazer o bem a outros e a si ou: não gaste nada.</string>
+
+    <string name="i_name">Indústria</string>
+    <string name="i_short">I</string>
+    <string name="i_desc">Não perca tempo. Trabalhar sempre em algo útil. Corte todas as desnecessidades.</string>
+
+    <string name="sin_name">Sinceridade</string>
+    <string name="sin_short">S</string>
+    <string name="sin_desc">Não seja ofensivo; pense inocentemente e com justiça e, se falar, fale concordando.</string>
+
+    <string name="j_name">Justiça</string>
+    <string name="j_short">J</string>
+    <string name="j_desc">É errado causar dor por nada, ou omitir algum benefício que seja seu dever divulgar.</string>
+
+    <string name="m_name">Moderação</string>
+    <string name="m_short">M</string>
+    <string name="m_desc">Evite extremismos; causar lesões pode ressentir tanto quanto você acha que eles merecem.</string>
+
+    <string name="cl_name">Limpeza</string>
+    <string name="cl_short">L</string>
+    <string name="cl_desc">Não tolerar nenhuma impureza no corpo, no vestuário ou na moradia.</string>
+
+    <string name="tra_name">Tranquilidade</string>
+    <string name="tra_short">T</string>
+    <string name="tra_desc">Não ser perturbado por bobagens, ou em situações (acidentes) comuns ou inevitáveis.</string>
+
+    <string name="ch_name">Castidade</string>
+    <string name="ch_short">C</string>
+    <string name="ch_desc">Raramente se dê ao luxo, e nunca por estupidez, fraqueza, ou prejuízo próprio ou de outro.</string>
+
+    <string name="h_name">Humildade</string>
+    <string name="h_short">H</string>
+    <string name="h_desc">Imite Jesus e Sócrates.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #strat Days of the week -->
+    <string name="mon">SE</string>
+    <string name="tue">TE</string>
+    <string name="wed">QU</string>
+    <string name="thu">QU</string>
+    <string name="fri">SE</string>
+    <string name="sat">SÁ</string>
+    <string name="sun">DO</string>
+    <!-- #end Days of the week -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">Configurações</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">Que grande você fez hoje? Não se esqueça de acompanhar o seu progresso.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">Inativo</string>
+    <string name="pref_notifications_enable_true">Ativo</string>
+    <string name="pref_notifications_label">Notificações diárias</string>
+
+    <string name="pref_time_label">Tempo de notificação diária</string>
+    <string name="preferences_time_title">Tempo de notificação</string>
+    <!-- #end Preferences -->
+</resources>

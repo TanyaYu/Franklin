@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">स्व-सुधार योजना</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">संयम</string>
+    <string name="tem_short">सं</string>
+    <string name="tem_desc">इतना ही खाओ कि आलस्य ना आए इतना ना पियो कि नशा हो जाए.</string>
+
+    <string name="sil_name">मौन</string>
+    <string name="sil_short">मौ</string>
+    <string name="sil_desc">वही बोलो जिससे तुम्हारा या दूसरों का लाभ हो. क्षुद्र बातचीत से बिलकुल बचो.</string>
+
+    <string name="o_name">व्यवस्था</string>
+    <string name="o_short">व्य</string>
+    <string name="o_desc">तुम्हारी सभी चीजों की अपनी जगह होनी चाहिए तुम्हारे हर काम का अपना समय होना चाहिए.</string>
+
+    <string name="r_name">संकल्प</string>
+    <string name="r_short">सं</string>
+    <string name="r_desc">तुम्हारे लिए जो आवश्यक है उसे करने का संकल्प लो, जिसे करने का संकल्प तुमने लिया है उसे बिना असफल हुए तुम करो.</string>
+
+    <string name="f_name">मितव्ययिता</string>
+    <string name="f_short">मि</string>
+    <string name="f_desc">अपने या दूसरों के भले के लिए ही खर्च करो, अर्थात पैसे कभी भी बर्बाद मत करो.</string>
+
+    <string name="i_name">श्रम</string>
+    <string name="i_short">श्र</string>
+    <string name="i_desc">समय नष्ट मत करो, हमेशा किसी न किसी सार्थक काम में लगे रहो, सभी अनावश्यक कार्यों में कटौती करो.</string>
+
+    <string name="sin_name">निष्ठा</string>
+    <string name="sin_short">नि</string>
+    <string name="sin_desc">किसी हानिकारक छल का प्रयोग मत करो. निश्छल और न्यायपूर्ण तरीके से सोचो, और यदि बोलो तो, तदनुसार बोलो.</string>
+
+    <string name="j_name">न्याय</string>
+    <string name="j_short">न्य</string>
+    <string name="j_desc">घायल करके किसी को गलत मत बनाओ, या लाभ देने से मत चूको जो तुम्हारा कर्तव्य है.</string>
+
+    <string name="m_name">निग्रह</string>
+    <string name="m_short">नि</string>
+    <string name="m_desc">अतिवाद से बचो, क्रोध में चोट करने से बचो, उस वक़्त भी जब तुम्हे लगता है कि सामनेवाला इसका हकदार हैं.</string>
+
+    <string name="cl_name">स्वच्छता</string>
+    <string name="cl_short">स्व</string>
+    <string name="cl_desc">शरीर, वस्त्र, या घर में गंदगी बर्दाश्त न करो.</string>
+
+    <string name="tra_name">शांति</string>
+    <string name="tra_short">शां</string>
+    <string name="tra_desc">तुच्छ बातों पर या आम अथवा अपरिहार्य दुर्घटनाओं से परेशान न हो. अपनी अंदरूनी शांति बनाये रखो.</string>
+
+    <string name="ch_name">शुचिता</string>
+    <string name="ch_short">शु</string>
+    <string name="ch_desc">स्वास्थ्य या संतानोत्पति के लिए ही संभोग का विरले प्रयोग करो और नीरसता, कमजोरी या अपने या किसी और की शांति या प्रतिष्ठा के प्रतिकूल इसका प्रयोग कभी भी मत करो.</string>
+
+    <string name="h_name">विनम्रता</string>
+    <string name="h_short">वि</string>
+    <string name="h_desc">प्रभु ईसामसीह और सुकरात का अनुगमन करो. जीवन में विनम्रता बहुत जरुरी होता है.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #strat Days of the week -->
+    <string name="mon">सोम</string>
+    <string name="tue">मंग</string>
+    <string name="wed">बुध</string>
+    <string name="thu">गुरु</string>
+    <string name="fri">शुक्र</string>
+    <string name="sat">शनि</string>
+    <string name="sun">इत</string>
+    <!-- #end Days of the week -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">सेटिंग्स</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">आपने आज क्या महान किया है? अपनी प्रगति का ट्रैक रखने के लिए मत भूलना.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">निष्क्रिय</string>
+    <string name="pref_notifications_enable_true">सक्रिय</string>
+    <string name="pref_notifications_label">दैनिक सूचनाएं</string>
+
+    <string name="pref_time_label">दैनिक सूचनाएं समय</string>
+    <string name="preferences_time_title">अधिसूचना का समय</string>
+    <!-- #end Preferences -->
+</resources>

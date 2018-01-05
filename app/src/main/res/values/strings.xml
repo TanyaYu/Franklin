@@ -22,7 +22,7 @@
 
     <string name="f_name">Frugality</string>
     <string name="f_short">F</string>
-    <string name="f_desc">Make no expense but to do good to others or yourself; i.e., waste nothing</string>
+    <string name="f_desc">Make no expense but to do good to others or yourself; i.e., waste nothing.</string>
 
     <string name="i_name">Industry</string>
     <string name="i_short">I</string>
@@ -75,19 +75,17 @@
 
     <!-- #start Notifications -->
     <string name="reminder_notification_title">@string/app_name</string>
-    <string name="reminder_notification_body">What great did you do today? Don\'t forget to keep track of your progress.</string>
+    <string name="reminder_notification_body">What great have you done today? Don\'t forget to keep track of your progress.</string>
     <!-- #end Notifications -->
 
     <!-- #start Preferences -->
     <string name="pref_notifications_key" translatable="false">preference_notifications</string>
-    <string name="pref_notifications_enable_false">Disable</string>
-    <string name="pref_notifications_enable_true">Enable</string>
+    <string name="pref_notifications_enable_false">Off</string>
+    <string name="pref_notifications_enable_true">On</string>
     <string name="pref_notifications_label">Daily notifications</string>
 
     <string name="pref_time_key" translatable="false">preference_time</string>
     <string name="pref_time_label">Daily notifications time</string>
     <string name="preferences_time_title">Notification time</string>
     <!-- #end Preferences -->
-
-    <string name="ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

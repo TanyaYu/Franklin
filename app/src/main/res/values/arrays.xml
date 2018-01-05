@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="virtues_ids">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+    </integer-array>
+
+    <string-array name="virtues_short_names">
+        <item>@string/tem_short</item>
+        <item>@string/sil_short</item>
+        <item>@string/o_short</item>
+        <item>@string/r_short</item>
+        <item>@string/f_short</item>
+        <item>@string/i_short</item>
+        <item>@string/sin_short</item>
+        <item>@string/j_short</item>
+        <item>@string/m_short</item>
+        <item>@string/cl_short</item>
+        <item>@string/tra_short</item>
+        <item>@string/ch_short</item>
+        <item>@string/h_short</item>
+    </string-array>
+
+    <string-array name="virtues_names">
+        <item>@string/tem_name</item>
+        <item>@string/sil_name</item>
+        <item>@string/o_name</item>
+        <item>@string/r_name</item>
+        <item>@string/f_name</item>
+        <item>@string/i_name</item>
+        <item>@string/sin_name</item>
+        <item>@string/j_name</item>
+        <item>@string/m_name</item>
+        <item>@string/cl_name</item>
+        <item>@string/tra_name</item>
+        <item>@string/ch_name</item>
+        <item>@string/h_name</item>
+    </string-array>
+
+    <string-array name="virtues_descriptions">
+        <item>@string/tem_desc</item>
+        <item>@string/sil_desc</item>
+        <item>@string/o_desc</item>
+        <item>@string/r_desc</item>
+        <item>@string/f_desc</item>
+        <item>@string/i_desc</item>
+        <item>@string/sin_desc</item>
+        <item>@string/j_desc</item>
+        <item>@string/m_desc</item>
+        <item>@string/cl_desc</item>
+        <item>@string/tra_desc</item>
+        <item>@string/ch_desc</item>
+        <item>@string/h_desc</item>
+    </string-array>
+</resources>

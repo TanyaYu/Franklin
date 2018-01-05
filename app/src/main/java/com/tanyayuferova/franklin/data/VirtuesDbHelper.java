@@ -16,12 +16,12 @@ import com.tanyayuferova.franklin.data.VirtuesContract.*;
 public class VirtuesDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "virtues.db";
-    private static final int DATABASE_VERSION = 6;
-    private final Context mContext;
+    private static final int DATABASE_VERSION = 7;
+    private final Context context;
 
     public VirtuesDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        mContext = context;
+        this.context = context;
     }
 
     @Override
@@ -34,10 +34,7 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + WeekEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + PointEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + VirtueEntry.TABLE_NAME);
-        onCreate(db);
+        updateDefaultVirtuesValues(db);
     }
 
     private void createVirtuesTable(SQLiteDatabase db) {
@@ -76,20 +73,25 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
     }
 
     private void insertDefaultVirtuesValues(SQLiteDatabase db) {
-        Resources resources = mContext.getResources();
-        insertDefaultVirtueValue(db, 1, resources.getString(R.string.tem_name), resources.getString(R.string.tem_short), resources.getString(R.string.tem_desc));
-        insertDefaultVirtueValue(db, 2, resources.getString(R.string.sil_name), resources.getString(R.string.sil_short), resources.getString(R.string.sil_desc));
-        insertDefaultVirtueValue(db, 3, resources.getString(R.string.o_name), resources.getString(R.string.o_short), resources.getString(R.string.o_desc));
-        insertDefaultVirtueValue(db, 4, resources.getString(R.string.r_name), resources.getString(R.string.r_short), resources.getString(R.string.r_desc));
-        insertDefaultVirtueValue(db, 5, resources.getString(R.string.f_name), resources.getString(R.string.f_short), resources.getString(R.string.f_desc));
-        insertDefaultVirtueValue(db, 6, resources.getString(R.string.i_name), resources.getString(R.string.i_short), resources.getString(R.string.i_desc));
-        insertDefaultVirtueValue(db, 7, resources.getString(R.string.sin_name), resources.getString(R.string.sin_short), resources.getString(R.string.sin_desc));
-        insertDefaultVirtueValue(db, 8, resources.getString(R.string.j_name), resources.getString(R.string.j_short), resources.getString(R.string.j_desc));
-        insertDefaultVirtueValue(db, 9, resources.getString(R.string.m_name), resources.getString(R.string.m_short), resources.getString(R.string.m_desc));
-        insertDefaultVirtueValue(db, 10, resources.getString(R.string.cl_name), resources.getString(R.string.cl_short), resources.getString(R.string.cl_desc));
-        insertDefaultVirtueValue(db, 11, resources.getString(R.string.tra_name), resources.getString(R.string.tra_short), resources.getString(R.string.tra_desc));
-        insertDefaultVirtueValue(db, 12, resources.getString(R.string.ch_name), resources.getString(R.string.ch_short), resources.getString(R.string.ch_desc));
-        insertDefaultVirtueValue(db, 13, resources.getString(R.string.h_name), resources.getString(R.string.h_short), resources.getString(R.string.h_desc));
+        Resources resources = context.getResources();
+        int[] ids = resources.getIntArray(R.array.virtues_ids);
+        String[] names = resources.getStringArray(R.array.virtues_names);
+        String[] shortNames = resources.getStringArray(R.array.virtues_short_names);
+        String[] descriptions = resources.getStringArray(R.array.virtues_descriptions);
+        for(int id = 0; id < ids.length; id++) {
+            insertDefaultVirtueValue(db, ids[id], names[id], shortNames[id], descriptions[id]);
+        }
+    }
+
+    public void updateDefaultVirtuesValues(SQLiteDatabase db) {
+        Resources resources = context.getResources();
+        int[] ids = resources.getIntArray(R.array.virtues_ids);
+        String[] names = resources.getStringArray(R.array.virtues_names);
+        String[] shortNames = resources.getStringArray(R.array.virtues_short_names);
+        String[] descriptions = resources.getStringArray(R.array.virtues_descriptions);
+        for(int id = 0; id < ids.length; id++) {
+            updateDefaultVirtueValue(db, ids[id], names[id], shortNames[id], descriptions[id]);
+        }
     }
 
     private long insertDefaultVirtueValue(SQLiteDatabase db, long id, String name, String shortName, String description) {
@@ -99,5 +101,13 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
         values.put(VirtueEntry.COLUMN_SHORT_NAME, shortName);
         values.put(VirtueEntry.COLUMN_DESCRIPTION, description);
         return db.insert(VirtueEntry.TABLE_NAME, null, values);
+    }
+
+    private long updateDefaultVirtueValue(SQLiteDatabase db, long id, String name, String shortName, String description) {
+        ContentValues values = new ContentValues();
+        values.put(VirtueEntry.COLUMN_NAME, name);
+        values.put(VirtueEntry.COLUMN_SHORT_NAME, shortName);
+        values.put(VirtueEntry.COLUMN_DESCRIPTION, description);
+        return db.update(VirtueEntry.TABLE_NAME, values, VirtueEntry._ID + " = ? ", new String[] {String.valueOf(id)});
     }
 }

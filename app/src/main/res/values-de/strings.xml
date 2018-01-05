@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Selbstverbesserungsplan</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">Mäßigkeit</string>
+    <string name="tem_short">M</string>
+    <string name="tem_desc">Iss nicht bis zum Stumpfsinn, trink nicht bis zur Berauschung.</string>
+
+    <string name="sil_name">Schweigen</string>
+    <string name="sil_short">S</string>
+    <string name="sil_desc">Sprich nur, was anderen oder dir selbst nützen kann; vermeide unbedeutende Unterhaltung.</string>
+
+    <string name="o_name">Ordnung</string>
+    <string name="o_short">O</string>
+    <string name="o_desc">Lass jedes Ding seine Stelle und jeden Teil deines Geschäfts seine Zeit haben.</string>
+
+    <string name="r_name">Entschlossenheit</string>
+    <string name="r_short">E</string>
+    <string name="r_desc">Nimm dir vor, durchzuführen, was du musst; vollführe unfehlbar, was du dir vornimmst.</string>
+
+    <string name="f_name">Sparsamkeit</string>
+    <string name="f_short">S</string>
+    <string name="f_desc">Mache keine Ausgabe, als um anderen oder dir selbst Gutes zu tun; das heißt: vergeude nichts.</string>
+
+    <string name="i_name">Fleiß</string>
+    <string name="i_short">F</string>
+    <string name="i_desc">Verliere keine Zeit; sei immer mit etwas Nützlichem beschäftigt; entsage aller unnützen Tätigkeit.</string>
+
+    <string name="sin_name">Aufrichtigkeit</string>
+    <string name="sin_short">A</string>
+    <string name="sin_desc">Bediene dich keiner schädlichen Täuschung; denke unschuldig und gerecht, und wenn du sprichst, so sprich danach.</string>
+
+    <string name="j_name">Gerechtigkeit</string>
+    <string name="j_short">G</string>
+    <string name="j_desc">Schade niemandem, indem du ihm unrecht tust oder die Wohltaten unterlässt, die deine Pflichten sind.</string>
+
+    <string name="m_name">Mäßigung</string>
+    <string name="m_short">M</string>
+    <string name="m_desc">Vermeide Extreme; hüte dich, Beleidigungen so übel aufzunehmen, wie sie es nach deinem Dafürhalten verdienen.</string>
+
+    <string name="cl_name">Reinlichkeit</string>
+    <string name="cl_short">R</string>
+    <string name="cl_desc">Dulde keine Unsauberkeit am Körper, an Kleidern oder in der Wohnung.</string>
+
+    <string name="tra_name">Gemütsruhe</string>
+    <string name="tra_short">G</string>
+    <string name="tra_desc">Beunruhige dich nicht über Kleinigkeiten oder über gewöhnliche oder unvermeidliche Unglücksfälle.</string>
+
+    <string name="ch_name">Keuschheit</string>
+    <string name="ch_short">K</string>
+    <string name="ch_desc">Übe geschlechtlichen Umgang selten, nur um der Gesundheit oder der Nachkommenschaft willen, niemals bis zur Stumpfheit, Schwäche oder zur Schädigung deines eigenen oder fremden Seelenfriedens oder guten Rufes.</string>
+
+    <string name="h_name">Demut</string>
+    <string name="h_short">D</string>
+    <string name="h_desc">Ahme Jesus und Sokrates nach.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #strat Days of the week -->
+    <string name="mon">MÅN</string>
+    <string name="tue">TIS</string>
+    <string name="wed">ONS</string>
+    <string name="thu">TOR</string>
+    <string name="fri">FRE</string>
+    <string name="sat">LÖR</string>
+    <string name="sun">SÖN</string>
+    <!-- #end Days of the week -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">Einstellungen</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">Was hast du heute großartig gemacht? Vergiss nicht, deinen Fortschritt zu verfolgen.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">Aus</string>
+    <string name="pref_notifications_enable_true">Ein</string>
+    <string name="pref_notifications_label">Tägliche Benachrichtigungen</string>
+
+    <string name="pref_time_label">Tägliche Benachrichtigungszeit</string>
+    <string name="preferences_time_title">Benachrichtigungszeit</string>
+    <!-- #end Preferences -->
+</resources>

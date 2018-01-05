@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Plan de auto mejora</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">Templanza</string>
+    <string name="tem_short">T</string>
+    <string name="tem_desc">No comas hasta el hastío, nunca bebas hasta la exaltación.</string>
+
+    <string name="sil_name">Silencio</string>
+    <string name="sil_short">S</string>
+    <string name="sil_desc">Sólo habla lo que pueda beneficiar a otros o a ti mismo, evita las conversaciones insignificantes.</string>
+
+    <string name="o_name">Orden</string>
+    <string name="o_short">O</string>
+    <string name="o_desc">Que todas tus cosas tengan su sitio, que todos tus asuntos tengan su momento.</string>
+
+    <string name="r_name">Determinación</string>
+    <string name="r_short">D</string>
+    <string name="r_desc">Resuélvete a realizar lo que deberías hacer, realiza sin fallas lo que resolviste.</string>
+
+    <string name="f_name">Frugalidad</string>
+    <string name="f_short">F</string>
+    <string name="f_desc">Sólo gasta en lo que traiga un bien para otros o para ti; Ej.: no desperdicies nada.</string>
+
+    <string name="i_name">Diligencia</string>
+    <string name="i_short">D</string>
+    <string name="i_desc">No pierdas tiempo, ocúpate siempre en algo útil, corta todas las acciones innecesarias.</string>
+
+    <string name="sin_name">Sinceridad</string>
+    <string name="sin_short">S</string>
+    <string name="sin_desc">No uses engaños que puedan lastimar, piensa inocente y justamente, y, si hablas, habla en concordancia.</string>
+
+    <string name="j_name">Justicia</string>
+    <string name="j_short">J</string>
+    <string name="j_desc">No lastimes a nadie con injurias u omitiendo entregar los beneficios que son tu deber.</string>
+
+    <string name="m_name">Moderación</string>
+    <string name="m_short">M</string>
+    <string name="m_desc">Evita los extremos; abstente de injurias por resentimiento tanto como creas que las merecen.</string>
+
+    <string name="cl_name">Limpieza</string>
+    <string name="cl_short">L</string>
+    <string name="cl_desc">No toleres la falta de limpieza en el cuerpo, vestido o habitación.</string>
+
+    <string name="tra_name">Tranquilidad</string>
+    <string name="tra_short">T</string>
+    <string name="tra_desc">No te molestes por nimiedades o por accidentes comunes o inevitables.</string>
+
+    <string name="ch_name">Castidad</string>
+    <string name="ch_short">C</string>
+    <string name="ch_desc">Frecuenta raramente el placer sexual, sólo hazlo por salud o descendencia, nunca por hastío, debilidad o para injuriar la paz o reputación propia o de otra persona.</string>
+
+    <string name="h_name">Humildad</string>
+    <string name="h_short">H</string>
+    <string name="h_desc">Imita a Jesús y a Sócrates.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #strat Days of the week -->
+    <string name="mon">LUN</string>
+    <string name="tue">MAR</string>
+    <string name="wed">MIÉ</string>
+    <string name="thu">JUE</string>
+    <string name="fri">VIE</string>
+    <string name="sat">SÁB</string>
+    <string name="sun">DOM</string>
+    <!-- #end Days of the week -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">Ajustes</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">¿Qué has hecho hoy? No olvide hacer un seguimiento de su progreso.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">Inactivo</string>
+    <string name="pref_notifications_enable_true">Activo</string>
+    <string name="pref_notifications_label">Notificaciones diarias</string>
+
+    <string name="pref_time_label">Hora de notificaciones diarias</string>
+    <string name="preferences_time_title">Tiempo de notificación</string>
+    <!-- #end Preferences -->
+</resources>

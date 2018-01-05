@@ -1,9 +1,10 @@
-package com.tanyayuferova.franklin.jobs;
+package com.tanyayuferova.franklin.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.tanyayuferova.franklin.utils.PreferencesUtils;
+import com.tanyayuferova.franklin.services.EveryDayReminderFirebaseJobService;
+import com.tanyayuferova.franklin.services.StartReminderFirebaseJobService;
 import com.firebase.jobdispatcher.Driver;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
@@ -94,5 +95,13 @@ public class EveryDayReminderUtils {
             reminderTime.add(Calendar.DAY_OF_MONTH, 1);
         }
         return (int) ((reminderTime.getTimeInMillis() - now.getTimeInMillis()) / TimeUnit.SECONDS.toMillis(1));
+    }
+
+    /**
+     * Executes every day reminder task
+     * @param context
+     */
+    public static void executeEveryDayReminder(Context context) {
+        NotificationUtils.remindUserToEnterData(context);
     }
 }

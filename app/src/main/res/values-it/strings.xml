@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Piano di miglioramento personale</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">Temperanza</string>
+    <string name="tem_short">T</string>
+    <string name="tem_desc">Non mangiare a sazietà e non bere fino a divenire euforico.</string>
+
+    <string name="sil_name">Silenzio</string>
+    <string name="sil_short">S</string>
+    <string name="sil_desc">Non parlare se non per recar beneficio a te stesso o ad altri. Evita i discorsi futili.</string>
+
+    <string name="o_name">Ordine</string>
+    <string name="o_short">O</string>
+    <string name="o_desc">Ogni tua cosa abbia il suo posto, a ciascuna delle tue attività dedica il giusto tempo.</string>
+
+    <string name="r_name">Determinazione</string>
+    <string name="r_short">D</string>
+    <string name="r_desc">Stabilisci di fare ciò che devi fare. Esegui senza esitazione quanto hai deciso.</string>
+
+    <string name="f_name">Parsimonia</string>
+    <string name="f_short">P</string>
+    <string name="f_desc">Non spendere se non per far del bene a te stesso o ad altri, vale a dire non sprecare niente.</string>
+
+    <string name="i_name">Operosità</string>
+    <string name="i_short">O</string>
+    <string name="i_desc">Non perdere tempo. Sii sempre impegnato in qualcosa di utile. Evita ogni azione superflua.</string>
+
+    <string name="sin_name">Sincerità</string>
+    <string name="sin_short">S</string>
+    <string name="sin_desc">Non ricorrere a sotterfugi che possono causare danno. I tuoi pensieri siano innocenti e giusti e tali rimangano quando decidi di esprimerli.</string>
+
+    <string name="j_name">Giustizia</string>
+    <string name="j_short">G</string>
+    <string name="j_desc">Non offendere nessuno, facendogli un torto o trascurando il dovere di fargli del bene.</string>
+
+    <string name="m_name">Moderazione</string>
+    <string name="m_short">M</string>
+    <string name="m_desc">Evita gli estremi. Trattieniti dal risentirti dei torti per come pensi che meriterebbero.</string>
+
+    <string name="cl_name">Pulizia</string>
+    <string name="cl_short">P</string>
+    <string name="cl_desc">Non tollerare alcuna sporcizia nel corpo, negli abiti o in casa.</string>
+
+    <string name="tra_name">Tranquillità</string>
+    <string name="tra_short">T</string>
+    <string name="tra_desc">Non agitarti per le inezie o per gli accidenti comuni e inevitabili.</string>
+
+    <string name="ch_name">Castità</string>
+    <string name="ch_short">C</string>
+    <string name="ch_desc">Di Venere usa raramente, solo per mantenere la salute o procreare, mai fino a saziarti, a infiacchirti o a pregiudicare la tua o l’altrui pace o reputazione.</string>
+
+    <string name="h_name">Umiltà</string>
+    <string name="h_short">U</string>
+    <string name="h_desc">Imita Gesù e Socrate.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #strat Days of the week -->
+    <string name="mon">LUN</string>
+    <string name="tue">MAR</string>
+    <string name="wed">MER</string>
+    <string name="thu">GIO</string>
+    <string name="fri">VEN</string>
+    <string name="sat">SAB</string>
+    <string name="sun">DOM</string>
+    <!-- #end Days of the week -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">Impostazioni</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">Che bello hai fatto oggi? Non dimenticare di tenere traccia dei tuoi progressi.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">Inattivo</string>
+    <string name="pref_notifications_enable_true">Attivo</string>
+    <string name="pref_notifications_label">Notifiche giornaliere</string>
+
+    <string name="pref_time_label">Ora delle notifiche giornaliere</string>
+    <string name="preferences_time_title">Tempo di notifica</string>
+    <!-- #end Preferences -->
+</resources>

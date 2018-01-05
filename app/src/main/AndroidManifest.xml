@@ -34,7 +34,7 @@
             android:exported="false" />
 
         <service
-            android:name=".jobs.EveryDayReminderFirebaseJobService"
+            android:name=".services.EveryDayReminderFirebaseJobService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
@@ -42,12 +42,28 @@
         </service>
 
         <service
-            android:name=".jobs.StartReminderFirebaseJobService"
+            android:name=".services.StartReminderFirebaseJobService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+
+        <service android:name=".services.LocaleChangeIntentService" />
+        <service android:name=".services.TimeChangeIntentService" />
+
+        <receiver android:name=".receivers.LocaleChangedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receivers.TimeChangedReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 </manifest>

@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.tanyayuferova.franklin.entity.Virtue;
-import com.tanyayuferova.franklin.jobs.EveryDayReminderUtils;
+import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 import com.tanyayuferova.franklin.utils.DateUtils;
 import com.tanyayuferova.franklin.utils.PreferencesUtils;
 import com.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static int PAGES_COUNT = 100;
     // Start page in the middle
-    public static int START_PAGE_INDEX = PAGES_COUNT /2;
+    public static int START_PAGE_INDEX = PAGES_COUNT / 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setPageTransformer(false, new ParallaxPageTransformer());
         viewPager.setCurrentItem(START_PAGE_INDEX);
 
-         if(PreferencesUtils.getNotificationEnabled(this))
+        if (PreferencesUtils.getNotificationEnabled(this))
             EveryDayReminderUtils.scheduleStartReminderJob(this);
-         else {
-             EveryDayReminderUtils.cancelEveryDayReminder(this);
-         }
-
+        else {
+            EveryDayReminderUtils.cancelEveryDayReminder(this);
+        }
     }
 
     protected Date getStartDateForPage(int pageIndex) {
@@ -56,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             Date startDate = getStartDateForPage(position);
-            Virtue virtueOfWeek = VirtueOfWeekUtils.getVirtueOfWeek(MainActivity. this, startDate);
-            VirtueOfWeekUtils.setVirtueOfWeek(MainActivity. this, virtueOfWeek.getId(), startDate);
+            //TODO needs refactoring
+            Virtue virtueOfWeek = VirtueOfWeekUtils.getVirtueOfWeek(MainActivity.this, startDate);
+            VirtueOfWeekUtils.setVirtueOfWeek(MainActivity.this, virtueOfWeek.getId(), startDate);
             return WeekTableFragment.newInstance(startDate, virtueOfWeek);
         }
 

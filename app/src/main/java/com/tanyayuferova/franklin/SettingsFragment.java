@@ -7,7 +7,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 
-import com.tanyayuferova.franklin.jobs.EveryDayReminderUtils;
+import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 import com.tanyayuferova.franklin.preferences.TimePreference;
 import com.tanyayuferova.franklin.preferences.TimePreferenceDialogFragmentCompat;
 import com.tanyayuferova.franklin.utils.PreferencesUtils;

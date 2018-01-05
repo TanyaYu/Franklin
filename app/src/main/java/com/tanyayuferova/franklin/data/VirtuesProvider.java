@@ -237,7 +237,23 @@ public class VirtuesProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        throw new RuntimeException("Update function is not implemented");
+        int result;
+        switch (uriMatcher.match(uri)) {
+            case CODE_VIRTUES: {
+                result = dbHelper.getWritableDatabase().update(
+                        VirtueEntry.TABLE_NAME,
+                        values,
+                        selection,
+                        selectionArgs);
+                break;
+            }
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        if(result > 0)
+            getContext().getContentResolver().notifyChange(uri, null);
+        return result;
     }
 
     @Nullable
