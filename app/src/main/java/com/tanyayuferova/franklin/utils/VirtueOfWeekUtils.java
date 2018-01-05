@@ -76,7 +76,9 @@ public class VirtueOfWeekUtils {
         Cursor cursor = context.getContentResolver().query(uri, new String[] {VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID},
                 null, null, null);
         if(cursor.moveToFirst()){
-            return cursor.getInt(0);
+            int result = cursor.getInt(0);
+            cursor.close();
+            return result;
         }
         /* If enable to find, try to find next id */
         int next = getNextVirtueId(context, week, year);
@@ -112,6 +114,7 @@ public class VirtueOfWeekUtils {
             int lastId = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID));
             int lastWeek = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_WEEK));
             int lastYear = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_YEAR));
+            cursor.close();
 
             Calendar last = Calendar.getInstance();
             last.set(Calendar.YEAR, lastYear);
@@ -155,6 +158,7 @@ public class VirtueOfWeekUtils {
             int lastId = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID));
             int lastWeek = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_WEEK));
             int lastYear = cursor.getInt(cursor.getColumnIndex(VirtuesContract.WeekEntry.COLUMN_YEAR));
+            cursor.close();
 
             Calendar last = Calendar.getInstance();
             last.set(Calendar.YEAR, lastYear);
@@ -187,7 +191,9 @@ public class VirtueOfWeekUtils {
                 VirtuesContract.CONTENT_VIRTUES_URI, new String[]{VirtuesContract.VirtueEntry._ID},
                 null, null, VirtuesContract.VirtueEntry._ID + " ASC");
         if(cursor.moveToFirst()){
-            return cursor.getInt(0);
+            int result = cursor.getInt(0);
+            cursor.close();
+            return result;
         }
         return 0;
     }
@@ -229,7 +235,9 @@ public class VirtueOfWeekUtils {
         Cursor cursor = context.getContentResolver().query(VirtuesContract.CONTENT_VIRTUES_URI,
                 new String[] {"count (*)"}, null, null, null);
         if(cursor.moveToFirst()) {
-            return cursor.getInt(0);
+            int result = cursor.getInt(0);
+            cursor.close();
+            return result;
         }
 
         return 0;

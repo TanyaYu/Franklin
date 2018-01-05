@@ -87,7 +87,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         VirtuesAdapterViewHolder(View view) {
             super(view);
 
-            virtueName = (TextView) view.findViewById(R.id.tv_virtue_name);
+            virtueName = view.findViewById(R.id.tv_virtue_name);
             virtueName.setOnClickListener(this);
 
             for (int i = 0; i < WeekTableFragment.DAYS_COUNT; i++) {

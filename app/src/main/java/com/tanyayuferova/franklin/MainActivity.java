@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected ViewPager viewPager;
 
-    public static int PAGES_COUNT = 100;
+    public static final int PAGES_COUNT = 100;
     // Start page in the middle
-    public static int START_PAGE_INDEX = PAGES_COUNT / 2;
+    public static final int START_PAGE_INDEX = PAGES_COUNT / 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

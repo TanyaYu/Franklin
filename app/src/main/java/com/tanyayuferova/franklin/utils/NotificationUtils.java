@@ -5,10 +5,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -41,9 +39,7 @@ public class NotificationUtils {
                 .setContentIntent(contentIntent(context))
                 .setAutoCancel(true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            notificationBuilder.setPriority(Notification.PRIORITY_HIGH);
-        }
+        notificationBuilder.setPriority(Notification.PRIORITY_HIGH);
 
         NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -66,8 +62,6 @@ public class NotificationUtils {
     }
 
     private static Bitmap largeIcon(Context context, int resource) {
-        Resources res = context.getResources();
-        Bitmap largeIcon = BitmapFactory.decodeResource(res, resource);
-        return largeIcon;
+        return BitmapFactory.decodeResource(context.getResources(), resource);
     }
 }

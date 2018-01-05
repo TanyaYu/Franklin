@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * Virtue entity
  * Created by Tanya Yuferova on 10/5/2017.
  */
 

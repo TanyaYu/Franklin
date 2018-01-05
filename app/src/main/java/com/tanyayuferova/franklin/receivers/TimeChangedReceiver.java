@@ -7,11 +7,9 @@ import android.content.Intent;
 import com.tanyayuferova.franklin.services.TimeChangeIntentService;
 
 /**
- * Created by Tanya Yuferova on 1/4/2018.
- */
-
-/**
  * Receives time and time zone device change
+ *
+ * Created by Tanya Yuferova on 1/4/2018.
  */
 public class TimeChangedReceiver extends BroadcastReceiver {
 

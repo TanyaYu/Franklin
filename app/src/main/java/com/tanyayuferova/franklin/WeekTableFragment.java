@@ -45,7 +45,7 @@ public class WeekTableFragment extends Fragment implements
     /**
      * How many days to display
      */
-    public static int DAYS_COUNT = 7;
+    public static final int DAYS_COUNT = 7;
     /**
      * The first date in the column
      */
@@ -54,10 +54,10 @@ public class WeekTableFragment extends Fragment implements
     protected static int countLoaders = 0;
 
     public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 4];
-    public static int MAIN_PROJECTION_ID_INDEX = DAYS_COUNT;
-    public static int MAIN_PROJECTION_SHORT_NAME_INDEX = DAYS_COUNT + 1;
-    public static int MAIN_PROJECTION_NAME_INDEX = DAYS_COUNT + 2;
-    public static int MAIN_PROJECTION_DESCRIPTION_INDEX = DAYS_COUNT + 3;
+    public static final int MAIN_PROJECTION_ID_INDEX = DAYS_COUNT;
+    public static final int MAIN_PROJECTION_SHORT_NAME_INDEX = DAYS_COUNT + 1;
+    public static final int MAIN_PROJECTION_NAME_INDEX = DAYS_COUNT + 2;
+    public static final int MAIN_PROJECTION_DESCRIPTION_INDEX = DAYS_COUNT + 3;
 
     public static String DAY_CODE = "day";
 

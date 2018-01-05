@@ -7,11 +7,9 @@ import android.content.Intent;
 import com.tanyayuferova.franklin.services.LocaleChangeIntentService;
 
 /**
- * Created by Tanya Yuferova on 1/4/2018.
- */
-
-/**
  * Receives device language change
+ *
+ * Created by Tanya Yuferova on 1/4/2018.
  */
 public class LocaleChangedReceiver extends BroadcastReceiver {
 

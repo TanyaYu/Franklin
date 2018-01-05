@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Perfection plan</string>
     <string name="content_authority" translatable="false">com.tanyayuferova.franklin</string>
-    <string name="dot">•</string>
+    <string name="dot" translatable="false">•</string>
 
     <!-- #start Virtues data -->
     <string name="tem_name">Temperance</string>
@@ -69,7 +69,6 @@
     <!-- #end Days of the week -->
 
     <!-- #start Menu -->
-    <string name="reset_data_title">Reset (for testing only)</string>
     <string name="action_settings">Settings</string>
     <!-- #end Menu -->
 
