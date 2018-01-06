@@ -21,12 +21,18 @@ import java.util.concurrent.TimeUnit;
 
 public class EveryDayReminderUtils {
 
-    private static final int SYNC_FLEXTIME_SECONDS = 15;
+    private static final int SYNC_FLEXTIME_SECONDS = 30;
     private static final String EVERY_DAY_REMINDER_JOB_TAG = "reminder_job_tag";
     private static final String START_REMINDER_JOB_TAG = "start_job_tag";
 
     /**
      * Creates and schedule start job for every day reminder
+     *
+     * The app should notify user daily at the same time. However, when we schedule a recurring job
+     * we can't set time delay to perform reminder at specific time. For that reason we use two jobs.
+     * The first one is START_REMINDER_JOB_TAG. It executes first notification and creates recurring job -
+     * EVERY_DAY_REMINDER_JOB_TAG, which is responsible for daily reminders.
+     *
      * @param context
      */
     synchronized public static void scheduleStartReminderJob(@NonNull final Context context) {
@@ -43,6 +49,7 @@ public class EveryDayReminderUtils {
 
         dispatcher.schedule(constraintReminderJob);
 
+        // Cancel old reminder job
         dispatcher.cancel(EVERY_DAY_REMINDER_JOB_TAG);
     }
     /**

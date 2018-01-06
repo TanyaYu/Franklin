@@ -16,10 +16,13 @@ import com.tanyayuferova.franklin.entity.Virtue;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
+ * Provides data and view holders for marks during whole week
+ *
  * Created by Tanya Yuferova on 10/4/2017.
  */
 
 public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesAdapterViewHolder> {
+
     private final Context mContext;
     private Cursor mCursor;
     final private VirtuesAdapterOnClickHandler mClickHandler;
@@ -31,8 +34,8 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     }
 
     public interface VirtuesAdapterOnClickHandler {
-        void onDayClick(long virtueId, int daysShift);
         void onVirtueNameClick(Virtue virtue);
+        void onDayClick(long virtueId, int daysShift);
         void onDayLongClick(long virtueId, int daysShift);
     }
 
@@ -48,7 +51,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         String virtueShortName = mCursor.getString(WeekTableFragment.MAIN_PROJECTION_SHORT_NAME_INDEX);
         holder.virtueName.setText(virtueShortName);
 
-        /* Sets dots for every day */
+        /* Sets marks for every day */
         for (int i = 0; i < WeekTableFragment.DAYS_COUNT; i++) {
             int dotsCount = mCursor.getInt(mCursor.getColumnIndex(WeekTableFragment.DAY_CODE + i));
             String text = "";

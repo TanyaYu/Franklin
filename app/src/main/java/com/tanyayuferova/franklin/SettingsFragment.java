@@ -93,11 +93,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
-        // Try if the preference is one of our custom Preferences
         DialogFragment dialogFragment = null;
         if (preference instanceof TimePreference) {
-            // Create a new instance of TimePreferenceDialogFragment with the key of the related
-            // Preference
             dialogFragment = TimePreferenceDialogFragmentCompat.newInstance(preference.getKey());
         }
 

@@ -9,6 +9,8 @@ import com.firebase.jobdispatcher.RetryStrategy;
 import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 
 /**
+ * Notifies user to make today marks
+ *
  * Created by Tanya Yuferova on 11/3/2017.
  */
 
@@ -27,7 +29,6 @@ public class EveryDayReminderFirebaseJobService extends JobService {
 
             @Override
             protected void onPostExecute(Object o) {
-                /* Inform that the job is finished */
                 jobFinished(job, false);
             }
         };

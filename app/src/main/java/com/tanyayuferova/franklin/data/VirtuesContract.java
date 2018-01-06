@@ -22,14 +22,16 @@ public class VirtuesContract {
             .appendPath(PATH_VIRTUES)
             .build();
 
-    public static final Uri CONTENT_POINTS_URI = BASE_CONTENT_URI.buildUpon()
-            .appendPath(PATH_POINTS)
-            .build();
-
     public static final Uri CONTENT_WEEKS_URI = BASE_CONTENT_URI.buildUpon()
             .appendPath(PATH_WEEKS)
             .build();
 
+    /**
+     * Builds Uri to select points for specific virtue at specific date
+     * @param virtueId
+     * @param date
+     * @return
+     */
     public static Uri buildPointsUriWithDate(long virtueId, Date date) {
         String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(date);
         return CONTENT_VIRTUES_URI.buildUpon()
@@ -39,6 +41,12 @@ public class VirtuesContract {
                 .build();
     }
 
+    /**
+     * Builds Uri to select virtue of the week
+     * @param week
+     * @param year
+     * @return
+     */
     public static Uri buildVirtueUriWithWeek(int week, int year) {
         return CONTENT_VIRTUES_URI.buildUpon()
                 .appendPath(String.valueOf(week))
@@ -46,6 +54,9 @@ public class VirtuesContract {
                 .build();
     }
 
+    /**
+     * Represents just Virtue with name and description
+     */
     public static final class VirtueEntry implements BaseColumns {
         public static final String TABLE_NAME = "virtue";
 
@@ -54,6 +65,9 @@ public class VirtuesContract {
         public static final String COLUMN_SHORT_NAME = "short_name";
     }
 
+    /**
+     * Represents a point made at specific date for specific virtue
+     */
     public static final class PointEntry implements BaseColumns {
         public static final String TABLE_NAME = "point";
 
@@ -61,6 +75,9 @@ public class VirtuesContract {
         public static final String COLUMN_VIRTUE_ID = "virtue_id";
     }
 
+    /**
+     * Represents virtue of the week - specific virtue at specific week
+     */
     public static final class WeekEntry implements BaseColumns {
         public static final String TABLE_NAME = "week";
 

@@ -23,10 +23,11 @@ public class NotificationUtils {
     private static final int REMINDER_PENDING_INTENT_ID = 456;
 
     /**
-     * Builds notification that says user to enter today's data
+     * Builds notification that says user to make today's marks
      * @param context
      */
     public static void remindUserToEnterData(Context context) {
+        // FIXME new NotificationCompat.Builder(context) is deprecated. Issue #12
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
                 .setSmallIcon(R.drawable.ic_notification_icon)
@@ -37,13 +38,11 @@ public class NotificationUtils {
                         context.getString(R.string.reminder_notification_body)))
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setContentIntent(contentIntent(context))
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setAutoCancel(true);
-
-        notificationBuilder.setPriority(Notification.PRIORITY_HIGH);
 
         NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
-
         notificationManager.notify(REMINDER_NOTIFICATION_ID, notificationBuilder.build());
     }
 

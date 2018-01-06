@@ -22,7 +22,7 @@ public class VirtueOfWeekUtils {
     private static final long MILLIS_IN_WEEK = TimeUnit.DAYS.toMillis(7);
 
     /**
-     * Finds virtue for provided date
+     * Finds virtue for specific date
      * @param context
      * @param date
      * @return
@@ -48,7 +48,7 @@ public class VirtueOfWeekUtils {
     }
 
     /**
-     * Finds virtue id for provided date
+     * Finds virtue id for specific date
      * @param context
      * @param date
      * @return
@@ -64,7 +64,7 @@ public class VirtueOfWeekUtils {
     }
 
     /**
-     * Finds virtue id for provided week number and year
+     * Finds virtue id for specific week number and year
      * @param context
      * @param week
      * @param year
@@ -94,7 +94,7 @@ public class VirtueOfWeekUtils {
     }
 
     /**
-     * Finds next virtue id for provided week and year using previous history of weeks
+     * Finds next virtue id for specific week and year using previous history of weeks
      * @param context
      * @param week
      * @param year
@@ -138,7 +138,7 @@ public class VirtueOfWeekUtils {
     }
 
     /**
-     * Finds previous virtue id for provided week and year using following history of weeks
+     * Finds previous virtue id for specific week and year using following history of weeks
      * @param context
      * @param week
      * @param year
@@ -199,7 +199,7 @@ public class VirtueOfWeekUtils {
     }
 
     /**
-     * Saves virtue id for provided date
+     * Saves virtue id for specific date
      * @param context
      * @param virtueId
      * @param date
@@ -211,7 +211,7 @@ public class VirtueOfWeekUtils {
     }
 
     /**
-     * Saves virtue id for provided week and year
+     * Saves virtue id for specific week and year
      * @param context
      * @param virtueId
      * @param week

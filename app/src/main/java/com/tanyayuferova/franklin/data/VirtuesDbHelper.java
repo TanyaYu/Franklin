@@ -34,6 +34,7 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // After adding translations for 10 languages, we need to update virtues name in DB.
         updateDefaultVirtuesValues(db);
     }
 
@@ -78,6 +79,7 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
         String[] names = resources.getStringArray(R.array.virtues_names);
         String[] shortNames = resources.getStringArray(R.array.virtues_short_names);
         String[] descriptions = resources.getStringArray(R.array.virtues_descriptions);
+
         for(int id = 0; id < ids.length; id++) {
             insertDefaultVirtueValue(db, ids[id], names[id], shortNames[id], descriptions[id]);
         }
@@ -89,6 +91,7 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
         String[] names = resources.getStringArray(R.array.virtues_names);
         String[] shortNames = resources.getStringArray(R.array.virtues_short_names);
         String[] descriptions = resources.getStringArray(R.array.virtues_descriptions);
+
         for(int id = 0; id < ids.length; id++) {
             updateDefaultVirtueValue(db, ids[id], names[id], shortNames[id], descriptions[id]);
         }

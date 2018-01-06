@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Returns first date for week at page with pageIndex
+     * @param pageIndex
+     * @return
+     */
     protected Date getStartDateForPage(int pageIndex) {
         Date date = DateUtils.getFirstDayOfWeek();
         return DateUtils.addDaysToDate(date, (pageIndex - START_PAGE_INDEX) * 7);

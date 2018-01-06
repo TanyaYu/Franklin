@@ -56,16 +56,6 @@
 
     <!-- #end Virtues data -->
 
-    <!-- #strat Days of the week -->
-    <string name="mon">SE</string>
-    <string name="tue">TE</string>
-    <string name="wed">QU</string>
-    <string name="thu">QU</string>
-    <string name="fri">SE</string>
-    <string name="sat">SÁ</string>
-    <string name="sun">DO</string>
-    <!-- #end Days of the week -->
-
     <!-- #start Menu -->
     <string name="action_settings">Configurações</string>
     <!-- #end Menu -->

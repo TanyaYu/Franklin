@@ -56,16 +56,6 @@
 
     <!-- #end Virtues data -->
 
-    <!-- #strat Days of the week -->
-    <string name="mon">月</string>
-    <string name="tue">火</string>
-    <string name="wed">水</string>
-    <string name="thu">木</string>
-    <string name="fri">金</string>
-    <string name="sat">土</string>
-    <string name="sun">日</string>
-    <!-- #end Days of the week -->
-
     <!-- #start Menu -->
     <string name="action_settings">設定</string>
     <!-- #end Menu -->

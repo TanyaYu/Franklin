@@ -56,16 +56,6 @@
 
     <!-- #end Virtues data -->
 
-    <!-- #strat Days of the week -->
-    <string name="mon">ПН</string>
-    <string name="tue">ВТ</string>
-    <string name="wed">СР</string>
-    <string name="thu">ЧТ</string>
-    <string name="fri">ПТ</string>
-    <string name="sat">СБ</string>
-    <string name="sun">ВС</string>
-    <!-- #end Days of the week -->
-
     <!-- #start Menu -->
     <string name="action_settings">Настройки</string>
     <!-- #end Menu -->

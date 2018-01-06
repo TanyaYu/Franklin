@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import com.tanyayuferova.franklin.data.VirtuesDbHelper;
 
 /**
+ * Updates virtues values in the data base according to current device localization
+ *
  * Created by Tanya Yuferova on 1/4/2018.
  */
 
@@ -18,7 +20,6 @@ public class LocaleChangeIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        //We need to update virtues values in the data base according to current device localization
         VirtuesDbHelper dbHelper = new VirtuesDbHelper(this);
         dbHelper.updateDefaultVirtuesValues(dbHelper.getWritableDatabase());
         dbHelper.close();

@@ -56,16 +56,6 @@
 
     <!-- #end Virtues data -->
 
-    <!-- #strat Days of the week -->
-    <string name="mon">सोम</string>
-    <string name="tue">मंग</string>
-    <string name="wed">बुध</string>
-    <string name="thu">गुरु</string>
-    <string name="fri">शुक्र</string>
-    <string name="sat">शनि</string>
-    <string name="sun">इत</string>
-    <!-- #end Days of the week -->
-
     <!-- #start Menu -->
     <string name="action_settings">सेटिंग्स</string>
     <!-- #end Menu -->

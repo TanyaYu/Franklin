@@ -26,6 +26,7 @@ import com.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
@@ -41,16 +42,12 @@ public class WeekTableFragment extends Fragment implements
     protected FragmentWeekTableBinding binding;
     private VirtuesAdapter virtuesAdapter;
 
-    private static AsyncTask<Void, Void, Virtue> findVirtueTask;
-    /**
-     * How many days to display
-     */
+    // How many days to display
     public static final int DAYS_COUNT = 7;
-    /**
-     * The first date in the column
-     */
+    // The first date in the column
     private Date startDate;
 
+    // To provide each fragment with unique loader id
     protected static int countLoaders = 0;
 
     public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 4];
@@ -94,7 +91,6 @@ public class WeekTableFragment extends Fragment implements
         binding.setVirtue((Virtue) getArguments().getParcelable(ARGUMENT_VIRTUE_OF_WEEK));
 
         initMainProjection(startDate);
-
         initRecyclerView();
         initDaysOfWeekLayout();
 
@@ -121,6 +117,9 @@ public class WeekTableFragment extends Fragment implements
         binding.recyclerview.setAdapter(virtuesAdapter);
     }
 
+    /**
+     * Generates layout representing week
+     */
     protected void initDaysOfWeekLayout() {
         for(int i = 0; i<DAYS_COUNT; i++) {
             /* We need to create TextView for every day or update text and color of old TextView */
@@ -132,33 +131,19 @@ public class WeekTableFragment extends Fragment implements
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(DateUtils.addDaysToDate(startDate, i));
-            /* Set color */
+            /* Highlight today date */
             tv.setTextColor(getResources().getColor(DateUtils.isToday(calendar.getTime()) ?
                     R.color.colorAccent : R.color.colorPrimaryText));
-            /* Set text */
+            /* Set description */
             tv.setText(getDayTextViewCaption(calendar));
         }
     }
 
     protected String getDayTextViewCaption (Calendar calendar) {
-        String caption = new SimpleDateFormat("dd.MM").format(calendar.getTime()) + "\n";
-        switch (calendar.get(Calendar.DAY_OF_WEEK)){
-            case Calendar.MONDAY : caption += getResources().getString(R.string.mon);
-                break;
-            case Calendar.TUESDAY : caption += getResources().getString(R.string.tue);
-                break;
-            case Calendar.WEDNESDAY : caption += getResources().getString(R.string.wed);
-                break;
-            case Calendar.THURSDAY : caption += getResources().getString(R.string.thu);
-                break;
-            case Calendar.FRIDAY : caption += getResources().getString(R.string.fri);
-                break;
-            case Calendar.SATURDAY : caption += getResources().getString(R.string.sat);
-                break;
-            case Calendar.SUNDAY : caption += getResources().getString(R.string.sun);
-                break;
-        }
-        return caption;
+        Locale current = getResources().getConfiguration().locale;
+        String caption = new SimpleDateFormat("dd.MM\nE", current)
+                .format(calendar.getTime());
+        return caption.toUpperCase(current);
     }
 
     /**
@@ -204,11 +189,13 @@ public class WeekTableFragment extends Fragment implements
 
     @Override
     public void onDayClick(long virtueId, int daysShift) {
+        //Add mark
         getContext().getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null);
     }
 
     @Override
     public void onDayLongClick(long virtueId, int daysShift) {
+        //Remove mark
         getContext().getContentResolver().delete(VirtuesContract.buildPointsUriWithDate(virtueId, DateUtils.addDaysToDate(startDate, daysShift)), null, null);
     }
 
@@ -223,6 +210,7 @@ public class WeekTableFragment extends Fragment implements
 
     @Override
     public void onVirtueNameClick(Virtue virtue) {
+        //Set new virtue of the week
         binding.setVirtue(virtue);
         selectVirtueInTable(virtue);
         VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtue.getId(), startDate);

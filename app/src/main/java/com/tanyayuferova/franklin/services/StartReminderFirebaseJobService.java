@@ -9,6 +9,8 @@ import com.firebase.jobdispatcher.RetryStrategy;
 import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 
 /**
+ * Notifies user to makes today marks and schedule recurring every day reminder
+ *
  * Created by Tanya Yuferova on 12/26/2017.
  */
 

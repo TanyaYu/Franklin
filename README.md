@@ -26,6 +26,7 @@ Franklin allotted himself one week to acquire each new virtue. And in order to s
 # The app functionality
 - Allows user to make and delete marks;
 - Allows user to track data of previous weeks;
+- Changes virtue every week;
 - Allows user to select virtue of the week;
 - Saves marks and virtues of the week in a local database;
 - Notifies user to make marks daily;

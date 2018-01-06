@@ -54,10 +54,11 @@ public class VirtuesProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor cursor;
         switch (uriMatcher.match(uri)) {
+            // Select points for specific virtue at specific date
             case CODE_POINTS_WITH_DATE: {
                 String virtueId = uri.getPathSegments().get(1);
-                String normalizedUtcDateString = uri.getLastPathSegment();
-                String[] selectionArguments = new String[]{virtueId, normalizedUtcDateString};
+                String dateString = uri.getLastPathSegment();
+                String[] selectionArguments = new String[]{virtueId, dateString};
                 cursor = dbHelper.getReadableDatabase().query(
                         PointEntry.TABLE_NAME,
                         projection,
@@ -70,6 +71,7 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            // Selects all virtues
             case CODE_VIRTUES: {
                 cursor = dbHelper.getReadableDatabase().query(
                         VirtueEntry.TABLE_NAME,
@@ -82,6 +84,7 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            // Selects all virtues of the weeks
             case CODE_WEEKS: {
                 cursor = dbHelper.getReadableDatabase().query(
                         WeekEntry.TABLE_NAME,
@@ -94,6 +97,7 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            // Selects virtue of specific week and year
             case CODE_VIRTUES_WITH_WEEK: {
                 String week = uri.getPathSegments().get(1);
                 String year = uri.getLastPathSegment();
@@ -121,6 +125,7 @@ public class VirtuesProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         Uri result;
         switch (uriMatcher.match(uri)) {
+            // Creates point for specific virtue at specific date
             case CODE_POINTS_WITH_DATE: {
                 String virtueId = uri.getPathSegments().get(1);
                 String dateString = uri.getLastPathSegment();
@@ -141,6 +146,7 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            // Creates virtue
             case CODE_VIRTUES: {
                 long newId = dbHelper.getWritableDatabase().insert(VirtueEntry.TABLE_NAME,
                         null, values);
@@ -152,6 +158,7 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            // Creates virtue of the specific week and year
             case CODE_VIRTUES_WITH_WEEK: {
                 String week = uri.getPathSegments().get(1);
                 String year = uri.getLastPathSegment();
@@ -182,8 +189,8 @@ public class VirtuesProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int result;
         switch (uriMatcher.match(uri)) {
+            //Deletes all from Points table
             case CODE_POINTS: {
-                //Delete all from Points table
                 result = dbHelper.getWritableDatabase().delete(
                         PointEntry.TABLE_NAME,
                         selection,
@@ -191,8 +198,8 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            //Deletes all from Week table
             case CODE_WEEKS: {
-                //Delete all from Week table
                 result = dbHelper.getWritableDatabase().delete(
                         WeekEntry.TABLE_NAME,
                         selection,
@@ -200,8 +207,8 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            //Deletes first point with current date and virtue id
             case CODE_POINTS_WITH_DATE: {
-                //Delete first point with current date and virtue id
                 String virtueId = uri.getPathSegments().get(1);
                 String dateString = uri.getLastPathSegment();
                 result = dbHelper.getWritableDatabase().delete(
@@ -214,8 +221,8 @@ public class VirtuesProvider extends ContentProvider {
                 break;
             }
 
+            //Deletes all from Week table with given week number and year
             case CODE_VIRTUES_WITH_WEEK: {
-                //Delete all from Week table with given week number and year
                 String week = uri.getPathSegments().get(1);
                 String year = uri.getLastPathSegment();
                 result = dbHelper.getWritableDatabase().delete(
@@ -239,6 +246,7 @@ public class VirtuesProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         int result;
         switch (uriMatcher.match(uri)) {
+            //Updates virtue
             case CODE_VIRTUES: {
                 result = dbHelper.getWritableDatabase().update(
                         VirtueEntry.TABLE_NAME,

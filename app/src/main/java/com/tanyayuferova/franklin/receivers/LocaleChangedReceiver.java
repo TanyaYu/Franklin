@@ -16,6 +16,7 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if(Intent.ACTION_LOCALE_CHANGED.equals(intent.getAction())) {
+            // We need to reschedule every day reminder according to current device time
             context.startService(new Intent(context, LocaleChangeIntentService.class));
         }
     }

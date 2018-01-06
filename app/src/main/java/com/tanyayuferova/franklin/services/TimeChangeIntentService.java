@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 
 /**
+ * Reschedules every day reminder according to current device time
+ *
  * Created by Tanya Yuferova on 1/4/2018.
  */
 
@@ -18,7 +20,6 @@ public class TimeChangeIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        // We need to reschedule every day reminder according to current device time
         EveryDayReminderUtils.scheduleStartReminderJob(this);
     }
 }
