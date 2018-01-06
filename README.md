@@ -1,7 +1,7 @@
 # Benjamin Franklin's Perfection Plan
 This android app provides a tool to successfully follow Benjamin Franklin's plan for attaining moral perfection.
 
-![Main screen](screenshots/en_main.png) ![Settings screen](screenshots/en_settings.png)
+![Main screen](screenshots/en_main.png =550x) ![Settings screen](screenshots/en_settings.png =550x)
 
 # Idea
 At the age of 21, Benjamin Franklin decided to achieve moral perfection. He decided that 13 virtues were either necessary or desirable, arranged them so that the first acquired could help in assimilating the second, and so on:
@@ -20,6 +20,7 @@ At the age of 21, Benjamin Franklin decided to achieve moral perfection. He deci
 13. Humility
 
 Franklin allotted himself one week to acquire each new virtue. And in order to see his progress, he made a record book and gave himself a black mark each time he failed to exhibit a virtue on which he was working. This app is served as a record book for your  marks.
+
 ![Example](screenshots/book_example.jpg)
 
 # The app functionality
