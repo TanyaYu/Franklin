@@ -1,7 +1,13 @@
 package com.tanyayuferova.franklin.entity;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.tanyayuferova.franklin.R;
+
+import java.util.Arrays;
 
 /**
  * Virtue entity
@@ -102,5 +108,27 @@ public class Virtue implements Parcelable {
         name = array[0];
         shortName = array[1];
         description = array[2];
+    }
+
+    /**
+     * Creates new Virtue object using id
+     * @param context is needed to find name and description values in resources
+     * @param id
+     * @return
+     */
+    public static Virtue newVirtueById(Context context, int id) {
+        Resources res  = context.getResources();
+
+        int[] ids = res.getIntArray(R.array.virtues_ids);
+        String[] names = res.getStringArray(R.array.virtues_names);
+        String[] shortNames = res.getStringArray(R.array.virtues_short_names);
+        String[] descriptions = res.getStringArray(R.array.virtues_descriptions);
+
+        //Finding index of element in int array. Probably needs refactoring.
+        for(int index = 0; index < ids.length; index++) {
+            if(ids[index] == id)
+                return new Virtue(id, names[index], shortNames[index], descriptions[index]);
+        }
+        throw new UnsupportedOperationException("Invalid id = " + id);
     }
 }

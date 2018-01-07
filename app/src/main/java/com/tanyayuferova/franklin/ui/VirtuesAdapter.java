@@ -1,4 +1,4 @@
-package com.tanyayuferova.franklin;
+package com.tanyayuferova.franklin.ui;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tanyayuferova.franklin.R;
 import com.tanyayuferova.franklin.data.VirtuesContract;
 import com.tanyayuferova.franklin.entity.Virtue;
 
@@ -23,13 +24,13 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesAdapterViewHolder> {
 
-    private final Context mContext;
+    private final Context context;
     private Cursor mCursor;
     final private VirtuesAdapterOnClickHandler mClickHandler;
     private int selectedPosition = -1;
 
-    public VirtuesAdapter(Context mContext, VirtuesAdapterOnClickHandler clickHandler) {
-        this.mContext = mContext;
+    public VirtuesAdapter(Context context, VirtuesAdapterOnClickHandler clickHandler) {
+        this.context = context;
         mClickHandler = clickHandler;
     }
 
@@ -41,21 +42,21 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
 
     @Override
     public VirtuesAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.virtues_list_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.virtues_list_item, parent, false);
         return new VirtuesAdapterViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(VirtuesAdapterViewHolder holder, int position) {
         mCursor.moveToPosition(position);
-        String virtueShortName = mCursor.getString(WeekTableFragment.MAIN_PROJECTION_SHORT_NAME_INDEX);
-        holder.virtueName.setText(virtueShortName);
+        Virtue virtue = Virtue.newVirtueById(context, mCursor.getInt(WeekTableFragment.MAIN_PROJECTION_ID_INDEX));
+        holder.virtueName.setText(virtue.getShortName());
 
         /* Sets marks for every day */
         for (int i = 0; i < WeekTableFragment.DAYS_COUNT; i++) {
             int dotsCount = mCursor.getInt(mCursor.getColumnIndex(WeekTableFragment.DAY_CODE + i));
             String text = "";
-            String dot = mContext.getResources().getString(R.string.dot);
+            String dot = context.getResources().getString(R.string.dot);
             if(dotsCount == 1) {
                 text = dot;
             } else if(dotsCount == 2) {
@@ -112,10 +113,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
 
-            Virtue virtue = new Virtue(mCursor.getInt(WeekTableFragment.MAIN_PROJECTION_ID_INDEX),
-                    mCursor.getString(WeekTableFragment.MAIN_PROJECTION_NAME_INDEX),
-                    mCursor.getString(WeekTableFragment.MAIN_PROJECTION_SHORT_NAME_INDEX),
-                    mCursor.getString(WeekTableFragment.MAIN_PROJECTION_DESCRIPTION_INDEX));
+            Virtue virtue = Virtue.newVirtueById(context, mCursor.getInt(WeekTableFragment.MAIN_PROJECTION_ID_INDEX));
 
             /* Clicked on virtue name */
             if(R.id.tv_virtue_name == v.getId()){
@@ -129,7 +127,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
         public boolean onLongClick(View v) {
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
-            mClickHandler.onDayLongClick(mCursor.getLong(mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID)),
+            mClickHandler.onDayLongClick(mCursor.getLong(WeekTableFragment.MAIN_PROJECTION_ID_INDEX),
                         (int) v.getTag());
             return true;
         }
@@ -150,10 +148,9 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.VirtuesA
     public void setSelectedId(int selectedId){
         int position = -1;
         if (mCursor != null) {
-            int idIndex = mCursor.getColumnIndex(VirtuesContract.VirtueEntry._ID);
             if (mCursor.moveToFirst()) {
                 do {
-                    if (mCursor.getInt(idIndex) == selectedId) {
+                    if (mCursor.getInt(WeekTableFragment.MAIN_PROJECTION_ID_INDEX) == selectedId) {
                         position = mCursor.getPosition();
                         break;
                     }

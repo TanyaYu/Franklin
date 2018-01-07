@@ -10,7 +10,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
-import com.tanyayuferova.franklin.MainActivity;
+import com.tanyayuferova.franklin.ui.MainActivity;
 import com.tanyayuferova.franklin.R;
 
 /**

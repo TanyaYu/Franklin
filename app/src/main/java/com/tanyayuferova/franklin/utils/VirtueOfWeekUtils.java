@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.tanyayuferova.franklin.R;
 import com.tanyayuferova.franklin.data.VirtuesContract;
 import com.tanyayuferova.franklin.entity.Virtue;
 
@@ -28,39 +29,16 @@ public class VirtueOfWeekUtils {
      * @return
      */
     public static Virtue getVirtueOfWeek(Context context, Date date) {
-        int id = getVirtueIdOfWeek(context, date);
-        Cursor c = context.getContentResolver().query(VirtuesContract.CONTENT_VIRTUES_URI,
-                new String[]{VirtuesContract.VirtueEntry._ID,
-                        VirtuesContract.VirtueEntry.COLUMN_NAME,
-                        VirtuesContract.VirtueEntry.COLUMN_SHORT_NAME,
-                        VirtuesContract.VirtueEntry.COLUMN_DESCRIPTION},
-                VirtuesContract.VirtueEntry._ID + " = ? ",
-                new String[]{ String.valueOf(id)},
-                null);
-        if(c!= null && c.moveToFirst()){
-            Virtue result = new Virtue(c.getInt(0), c.getString(1), c.getString(2),
-                    c.getString(3));
-            c.close();
-            return result;
-        } else {
-            throw new UnsupportedOperationException("Cannot find given virtue id");
-        }
-    }
-
-    /**
-     * Finds virtue id for specific date
-     * @param context
-     * @param date
-     * @return
-     */
-    public static int getVirtueIdOfWeek(Context context, Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int week = calendar.get(Calendar.WEEK_OF_YEAR);
         int year = calendar.get(Calendar.YEAR);
+
+        // This is necessary for the last week of the year, which is the first week of the next year also
         if(week==1 && calendar.get(Calendar.MONTH) == Calendar.DECEMBER)
             year++;
-        return getVirtueIdOfWeek(context, week, year);
+
+        return Virtue.newVirtueById(context, getVirtueIdOfWeek(context, week, year));
     }
 
     /**
@@ -87,7 +65,8 @@ public class VirtueOfWeekUtils {
             next = getPreviousId(context, week, year);
         /* If enable to find previous, try to find first */
         if(next == 0)
-            next = getFirstVirtueId(context);
+            // Take first id
+            next = context.getResources().getIntArray(R.array.virtues_ids)[0];
         if(next == 0)
             throw new UnsupportedOperationException("Unable to find any virtue");
         return next;
@@ -127,10 +106,7 @@ public class VirtueOfWeekUtils {
             /* How many weeks passed after last entry */
             int weeks = (int) ((current.getTime().getTime() - last.getTime().getTime()) / MILLIS_IN_WEEK);
 
-            int virtuesAmount = countVirtues(context);
-            if (virtuesAmount == 0)
-                return 0;
-
+            int virtuesAmount = context.getResources().getIntArray(R.array.virtues_ids).length;
             int newId = (lastId + weeks) % virtuesAmount;
             return newId == 0 ? virtuesAmount : newId;
         }
@@ -171,29 +147,9 @@ public class VirtueOfWeekUtils {
             /* How many weeks passed before first entry */
             int weeks = (int) ((last.getTime().getTime() - current.getTime().getTime()) / MILLIS_IN_WEEK);
 
-            int virtuesAmount = countVirtues(context);
-            if (virtuesAmount == 0)
-                return 0;
-
+            int virtuesAmount = context.getResources().getIntArray(R.array.virtues_ids).length;
             int newId = (lastId - weeks) % virtuesAmount;
             return newId == 0 ? virtuesAmount : newId;
-        }
-        return 0;
-    }
-
-    /**
-     * Finds the first virtue in table
-     * @param context
-     * @return vurtue id or 0 if enable to find
-     */
-    public static int getFirstVirtueId(Context context) {
-        Cursor cursor = context.getContentResolver().query(
-                VirtuesContract.CONTENT_VIRTUES_URI, new String[]{VirtuesContract.VirtueEntry._ID},
-                null, null, VirtuesContract.VirtueEntry._ID + " ASC");
-        if(cursor.moveToFirst()){
-            int result = cursor.getInt(0);
-            cursor.close();
-            return result;
         }
         return 0;
     }
@@ -207,7 +163,14 @@ public class VirtueOfWeekUtils {
     public static void setVirtueOfWeek(Context context, int virtueId, Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        setVirtueOfWeek(context, virtueId, calendar.get(Calendar.WEEK_OF_YEAR), calendar.get(Calendar.YEAR));
+        int week = calendar.get(Calendar.WEEK_OF_YEAR);
+        int year = calendar.get(Calendar.YEAR);
+
+        // This is necessary for the last week of the year, which is the first week of the next year also
+        if(week==1 && calendar.get(Calendar.MONTH) == Calendar.DECEMBER)
+            year++;
+
+        setVirtueOfWeek(context, virtueId, week, year);
     }
 
     /**
@@ -221,25 +184,7 @@ public class VirtueOfWeekUtils {
         Uri uri = VirtuesContract.buildVirtueUriWithWeek(week, year);
         ContentValues values = new ContentValues();
         values.put(VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID, virtueId);
-
         context.getContentResolver().delete(uri, null, null);
         context.getContentResolver().insert(uri, values);
-    }
-
-    /**
-     * Returns amount of virtues in virtues table
-     * @param context
-     * @return
-     */
-    private static int countVirtues(Context context) {
-        Cursor cursor = context.getContentResolver().query(VirtuesContract.CONTENT_VIRTUES_URI,
-                new String[] {"count (*)"}, null, null, null);
-        if(cursor.moveToFirst()) {
-            int result = cursor.getInt(0);
-            cursor.close();
-            return result;
-        }
-
-        return 0;
     }
 }

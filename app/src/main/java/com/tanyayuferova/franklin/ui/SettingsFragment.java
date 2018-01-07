@@ -1,4 +1,4 @@
-package com.tanyayuferova.franklin;
+package com.tanyayuferova.franklin.ui;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 
+import com.tanyayuferova.franklin.R;
 import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 import com.tanyayuferova.franklin.preferences.TimePreference;
 import com.tanyayuferova.franklin.preferences.TimePreferenceDialogFragmentCompat;

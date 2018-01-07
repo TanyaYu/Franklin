@@ -55,14 +55,10 @@ public class VirtuesContract {
     }
 
     /**
-     * Represents just Virtue with name and description
+     * Represents just Virtue with id. Name and descriptions store in resources
      */
     public static final class VirtueEntry implements BaseColumns {
         public static final String TABLE_NAME = "virtue";
-
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_DESCRIPTION = "description";
-        public static final String COLUMN_SHORT_NAME = "short_name";
     }
 
     /**

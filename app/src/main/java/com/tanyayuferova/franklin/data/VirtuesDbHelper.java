@@ -16,7 +16,7 @@ import com.tanyayuferova.franklin.data.VirtuesContract.*;
 public class VirtuesDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "virtues.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private final Context context;
 
     public VirtuesDbHelper(Context context) {
@@ -34,17 +34,21 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // After adding translations for 10 languages, we need to update virtues name in DB.
-        updateDefaultVirtuesValues(db);
+        //We need to drop redundant columns in Virtue table
+        //SQLite does not have drop column syntax, that's why we have to create a copy of Virtue table
+        //without redundant columns and drop old table
+
+        db.execSQL("alter table " + VirtueEntry.TABLE_NAME + " rename to " + VirtueEntry.TABLE_NAME + "_old;");
+        createVirtuesTable(db);
+        db.execSQL("insert into " + VirtueEntry.TABLE_NAME + " (" + VirtueEntry._ID + ") select ("
+                + VirtueEntry._ID + ") from " + VirtueEntry.TABLE_NAME + "_old;");
+        db.execSQL("drop table " + VirtueEntry.TABLE_NAME + "_old;");
     }
 
     private void createVirtuesTable(SQLiteDatabase db) {
         final String SQL_CREATE_VIRTUES_TABLE =
                 "CREATE TABLE " + VirtueEntry.TABLE_NAME + " (" +
-                        VirtueEntry._ID + " INTEGER PRIMARY KEY, " +
-                        VirtueEntry.COLUMN_NAME + " varchar(50) NOT NULL, " +
-                        VirtueEntry.COLUMN_DESCRIPTION + " text NOT NULL," +
-                        VirtueEntry.COLUMN_SHORT_NAME + " varchar(5) NOT NULL); ";
+                        VirtueEntry._ID + " INTEGER PRIMARY KEY); ";
 
 
         db.execSQL(SQL_CREATE_VIRTUES_TABLE);
@@ -76,41 +80,15 @@ public class VirtuesDbHelper extends SQLiteOpenHelper {
     private void insertDefaultVirtuesValues(SQLiteDatabase db) {
         Resources resources = context.getResources();
         int[] ids = resources.getIntArray(R.array.virtues_ids);
-        String[] names = resources.getStringArray(R.array.virtues_names);
-        String[] shortNames = resources.getStringArray(R.array.virtues_short_names);
-        String[] descriptions = resources.getStringArray(R.array.virtues_descriptions);
 
-        for(int id = 0; id < ids.length; id++) {
-            insertDefaultVirtueValue(db, ids[id], names[id], shortNames[id], descriptions[id]);
+        for (int id = 0; id < ids.length; id++) {
+            insertDefaultVirtueValue(db, ids[id]);
         }
     }
 
-    public void updateDefaultVirtuesValues(SQLiteDatabase db) {
-        Resources resources = context.getResources();
-        int[] ids = resources.getIntArray(R.array.virtues_ids);
-        String[] names = resources.getStringArray(R.array.virtues_names);
-        String[] shortNames = resources.getStringArray(R.array.virtues_short_names);
-        String[] descriptions = resources.getStringArray(R.array.virtues_descriptions);
-
-        for(int id = 0; id < ids.length; id++) {
-            updateDefaultVirtueValue(db, ids[id], names[id], shortNames[id], descriptions[id]);
-        }
-    }
-
-    private long insertDefaultVirtueValue(SQLiteDatabase db, long id, String name, String shortName, String description) {
+    private long insertDefaultVirtueValue(SQLiteDatabase db, long id) {
         ContentValues values = new ContentValues();
         values.put(VirtueEntry._ID, id);
-        values.put(VirtueEntry.COLUMN_NAME, name);
-        values.put(VirtueEntry.COLUMN_SHORT_NAME, shortName);
-        values.put(VirtueEntry.COLUMN_DESCRIPTION, description);
         return db.insert(VirtueEntry.TABLE_NAME, null, values);
-    }
-
-    private long updateDefaultVirtueValue(SQLiteDatabase db, long id, String name, String shortName, String description) {
-        ContentValues values = new ContentValues();
-        values.put(VirtueEntry.COLUMN_NAME, name);
-        values.put(VirtueEntry.COLUMN_SHORT_NAME, shortName);
-        values.put(VirtueEntry.COLUMN_DESCRIPTION, description);
-        return db.update(VirtueEntry.TABLE_NAME, values, VirtueEntry._ID + " = ? ", new String[] {String.valueOf(id)});
     }
 }

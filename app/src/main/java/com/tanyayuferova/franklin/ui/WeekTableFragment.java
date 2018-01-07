@@ -1,8 +1,7 @@
-package com.tanyayuferova.franklin;
+package com.tanyayuferova.franklin.ui;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tanyayuferova.franklin.R;
 import com.tanyayuferova.franklin.data.VirtuesContract;
 import com.tanyayuferova.franklin.databinding.FragmentWeekTableBinding;
 import com.tanyayuferova.franklin.entity.Virtue;
@@ -52,9 +52,6 @@ public class WeekTableFragment extends Fragment implements
 
     public static String[] MAIN_PROJECTION = new String[DAYS_COUNT + 4];
     public static final int MAIN_PROJECTION_ID_INDEX = DAYS_COUNT;
-    public static final int MAIN_PROJECTION_SHORT_NAME_INDEX = DAYS_COUNT + 1;
-    public static final int MAIN_PROJECTION_NAME_INDEX = DAYS_COUNT + 2;
-    public static final int MAIN_PROJECTION_DESCRIPTION_INDEX = DAYS_COUNT + 3;
 
     public static String DAY_CODE = "day";
 
@@ -104,9 +101,6 @@ public class WeekTableFragment extends Fragment implements
             MAIN_PROJECTION[i] = createSelectString(DAY_CODE + i, date, i);
         }
         MAIN_PROJECTION[MAIN_PROJECTION_ID_INDEX] = VirtuesContract.VirtueEntry._ID;
-        MAIN_PROJECTION[MAIN_PROJECTION_SHORT_NAME_INDEX] = VirtuesContract.VirtueEntry.COLUMN_SHORT_NAME;
-        MAIN_PROJECTION[MAIN_PROJECTION_NAME_INDEX] = VirtuesContract.VirtueEntry.COLUMN_NAME;
-        MAIN_PROJECTION[MAIN_PROJECTION_DESCRIPTION_INDEX] = VirtuesContract.VirtueEntry.COLUMN_DESCRIPTION;
     }
 
     protected void initRecyclerView() {

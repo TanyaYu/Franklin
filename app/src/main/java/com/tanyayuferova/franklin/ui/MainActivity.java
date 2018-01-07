@@ -1,4 +1,4 @@
-package com.tanyayuferova.franklin;
+package com.tanyayuferova.franklin.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.tanyayuferova.franklin.R;
 import com.tanyayuferova.franklin.entity.Virtue;
 import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 import com.tanyayuferova.franklin.utils.DateUtils;
