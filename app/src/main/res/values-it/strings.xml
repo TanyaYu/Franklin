@@ -73,4 +73,13 @@
     <string name="pref_time_label">Ora delle notifiche giornaliere</string>
     <string name="preferences_time_title">Tempo di notifica</string>
     <!-- #end Preferences -->
+
+    <string name="info_description_3">Questa app è progettata per essere utilizzata come un libro dei record per i tuoi voti. In bocca al lupo!</string>
+    <string name="info_description_2">Si è assegnato una settimana per acquisire ogni nuova virtù. E per vedere i suoi progressi, ha fatto un libretto di dischi e si è dato un segno nero ogni volta che non è riuscito a mostrare una virtù su cui stava lavorando.</string>
+    <string name="info_description_1">All\'età di 21 anni, Benjamin Franklin decise di raggiungere la perfezione morale. Decise che 13 virtù erano o necessarie o desiderabili, disposte in modo che il primo acquisito potesse aiutare ad assimilare il secondo, e così via.</string>
+
+    <string name="about_this_app">Informazioni sull\'app</string>
+    <string name="image_example">Esempio di tabella</string>
+    <string name="image_franklin">Benjamin Franklin</string>
+    <string name="image_close">Vicino</string>
 </resources>

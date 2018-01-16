@@ -73,4 +73,13 @@
     <string name="pref_time_label">Heure des notifications quotidiennes</string>
     <string name="preferences_time_title">Temps de notification</string>
     <!-- #end Preferences -->
+
+    <string name="image_close">Fermer</string>
+    <string name="image_franklin">Benjamin Franklin</string>
+    <string name="image_example">Exemple de tableau</string>
+    <string name="about_this_app">À propos de l\'application</string>
+
+    <string name="info_description_1">À l\'âge de 21 ans, Benjamin Franklin a décidé d\'atteindre la perfection morale. Il décida que 13 vertus étaient soit nécessaires, soit désirables, les arrangea pour que la première acquise puisse aider à assimiler la seconde, et ainsi de suite.</string>
+    <string name="info_description_2">Il s\'est attribué une semaine pour acquérir chaque nouvelle vertu. Et afin de voir ses progrès, il a fait un livre de records et s\'est donné une marque noire chaque fois qu\'il a manqué d\'exhiber une vertu sur laquelle il travaillait.</string>
+    <string name="info_description_3">Cette application est conçue pour être utilisée comme un livre de records pour vos marques. Bonne chance!</string>
 </resources>

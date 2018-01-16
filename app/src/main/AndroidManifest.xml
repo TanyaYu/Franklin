@@ -28,6 +28,10 @@
                 android:value=".ui.MainActivity" />
         </activity>
 
+
+        <activity android:name=".ui.InfoActivity"
+            android:launchMode="singleTop"/>
+
         <provider
             android:name=".data.VirtuesProvider"
             android:authorities="@string/content_authority"
@@ -40,7 +44,6 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
-
         <service
             android:name=".services.StartReminderFirebaseJobService"
             android:exported="false">
@@ -48,15 +51,14 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
-
         <service android:name=".services.TimeChangeIntentService" />
 
-        <receiver android:name=".receivers.TimeChangedReceiver" >
+        <receiver android:name=".receivers.TimeChangedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.TIME_SET" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
         </receiver>
-
     </application>
+
 </manifest>

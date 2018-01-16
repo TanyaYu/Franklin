@@ -1,5 +1,6 @@
 package com.tanyayuferova.franklin.ui;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -48,7 +49,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(getString(R.string.pref_time_key)).setVisible(PreferencesUtils.getNotificationEnabled(getContext()));
     }
 
-
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         // Figure out which preference was changed
@@ -90,6 +90,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             findPreference(getString(R.string.pref_time_key)).setVisible((boolean) newValue);
         }
         return true;
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference != null && preference.getKey().equals(getString(R.string.pref_info_shown_key))) {
+            // Show information activity
+            startActivity(new Intent(getActivity(), InfoActivity.class));
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 
     @Override

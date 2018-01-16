@@ -1,5 +1,6 @@
 package com.tanyayuferova.franklin.ui;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -35,10 +36,16 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setPageTransformer(false, new ParallaxPageTransformer());
         viewPager.setCurrentItem(START_PAGE_INDEX);
 
+        // Notifications
         if (PreferencesUtils.getNotificationEnabled(this))
             EveryDayReminderUtils.scheduleStartReminderJob(this);
         else {
             EveryDayReminderUtils.cancelEveryDayReminder(this);
+        }
+
+        // Info activity
+        if(!PreferencesUtils.getHasInfoBeenShown(this)) {
+            startActivity(new Intent(this, InfoActivity.class));
         }
     }
 

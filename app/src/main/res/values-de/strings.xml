@@ -73,4 +73,13 @@
     <string name="pref_time_label">Tägliche Benachrichtigungszeit</string>
     <string name="preferences_time_title">Benachrichtigungszeit</string>
     <!-- #end Preferences -->
+
+    <string name="image_close">Schließen</string>
+    <string name="image_franklin">Benjamin Franklin</string>
+    <string name="image_example">Tabellenbeispiel</string>
+    <string name="about_this_app">Über die App</string>
+
+    <string name="info_description_1">Im Alter von 21 Jahren entschied sich Benjamin Franklin für moralische Perfektion. Er entschied, dass 13 Tugenden entweder notwendig oder wünschenswert waren, arrangierte sie so, dass die erste erworbene Hilfe helfen konnte, die zweite zu assimilieren, und so weiter.</string>
+    <string name="info_description_2">Er gab sich selbst eine Woche, um jede neue Tugend zu erwerben. Und um seine Fortschritte zu sehen, machte er ein Rekordbuch und gab sich jedes Mal eine schwarze Markierung, wenn er keine Tugend zeigte, an der er arbeitete.</string>
+    <string name="info_description_3">Diese App wurde entwickelt, um als ein Rekordbuch für Ihre Marken zu dienen. Viel Glück!</string>
 </resources>

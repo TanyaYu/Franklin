@@ -76,5 +76,17 @@
     <string name="pref_time_key" translatable="false">preference_time</string>
     <string name="pref_time_label">Daily notifications time</string>
     <string name="preferences_time_title">Notification time</string>
+
+    <string name="pref_info_shown_key" translatable="false">preference_info_shown</string>
     <!-- #end Preferences -->
+
+    <string name="image_close">Close</string>
+    <string name="image_franklin">Benjamin Franklin</string>
+    <string name="image_example">Table example</string>
+
+    <string name="about_this_app">About the app</string>
+
+    <string name="info_description_1">At the age of 21, Benjamin Franklin decided to achieve moral perfection. He decided that 13 virtues were either necessary or desirable, arranged them so that the first acquired could help in assimilating the second, and so on.</string>
+    <string name="info_description_2">He allotted himself one week to acquire each new virtue. And in order to see his progress, he made a record book and gave himself a black mark each time he failed to exhibit a virtue on which he was working.</string>
+    <string name="info_description_3">This app is designed to be served as a record book for your marks. Good luck!</string>
 </resources>

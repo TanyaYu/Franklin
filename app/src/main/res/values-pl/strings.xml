@@ -73,4 +73,13 @@
     <string name="pref_time_label">Dzienny czas powiadomień</string>
     <string name="preferences_time_title">Czas powiadomienia</string>
     <!-- #end Preferences -->
+
+    <string name="info_description_3">Ta aplikacja ma służyć jako książka rekordów dla twoich znaków. Powodzenia!</string>
+    <string name="info_description_2">Przeznaczył sobie tydzień na zdobycie każdej nowej cnoty. Aby zobaczyć jego postępy, zrobił księgę i dał sobie czarny znak za każdym razem, gdy nie wykazywał cnoty, nad którą pracował.</string>
+    <string name="info_description_1">W wieku 21 lat Benjamin Franklin postanowił osiągnąć moralną doskonałość. Uznał, że 13 cnót było albo koniecznych, albo pożądanych, ułożył je tak, aby pierwszy nabytek mógł pomóc w przyswojeniu drugiego, i tak dalej.</string>
+
+    <string name="about_this_app">O aplikacji</string>
+    <string name="image_example">Przykład tabeli</string>
+    <string name="image_franklin">Benjamin Franklin</string>
+    <string name="image_close">Blisko</string>
 </resources>

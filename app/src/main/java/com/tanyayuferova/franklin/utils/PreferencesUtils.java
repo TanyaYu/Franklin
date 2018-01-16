@@ -13,7 +13,7 @@ import com.tanyayuferova.franklin.R;
 public class PreferencesUtils {
 
     /**
-     * Get notification enabled preference value
+     * Gets notification enabled preference value
      * @param context
      * @return
      */
@@ -24,7 +24,7 @@ public class PreferencesUtils {
     }
 
     /**
-     * Get notification preference time value
+     * Gets notification preference time value
      * @param context
      * @return
      */
@@ -34,4 +34,26 @@ public class PreferencesUtils {
                 context.getResources().getInteger(R.integer.pref_notification_time));
     }
 
+    /**
+     * Gets if info has been shown
+     * @param context
+     * @return
+     */
+    public static boolean getHasInfoBeenShown(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean(context.getString(R.string.pref_info_shown_key),
+                context.getResources().getBoolean(R.bool.pref_info_shown_default));
+    }
+
+    /**
+     * Sets if info has been shown
+     * @param context
+     * @param value
+     */
+    public static void setHasInfoBeenShown(Context context, boolean value) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(context.getString(R.string.pref_info_shown_key), value);
+        editor.apply();
+    }
 }

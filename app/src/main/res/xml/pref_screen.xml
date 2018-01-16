@@ -15,4 +15,8 @@
         android:key="@string/pref_time_key"
         android:title="@string/preferences_time_title" />
 
+    <Preference
+        android:key="@string/pref_info_shown_key"
+        android:title="@string/about_this_app"/>
+
 </PreferenceScreen>

@@ -73,4 +73,13 @@
     <string name="pref_time_label">每日通知时间</string>
     <string name="preferences_time_title">通知时间</string>
     <!-- #end Preferences -->
+
+    <string name="image_close">关</string>
+    <string name="image_franklin">本杰明·富兰克林</string>
+    <string name="image_example">表格示例</string>
+    <string name="about_this_app">关于应用程序</string>
+
+    <string name="info_description_1">本杰明·富兰克林21岁时就决定实现道德完美。 他认为，十三个美德是必要的或可取的，安排他们，使第一个获得的可以帮助吸收第二个，等等。</string>
+    <string name="info_description_2">他分配了一个星期来获得每一个新的美德。 为了看到他的进步，他创造了一个记录簿，每次没有表现出他所从事的美德时，他就给自己留下了黑色的印记。</string>
+    <string name="info_description_3">这个应用程序被设计为作为您的商标记录本。 祝你好运！</string>
 </resources>

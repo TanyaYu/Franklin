@@ -73,4 +73,13 @@
     <string name="pref_time_label">दैनिक सूचनाएं समय</string>
     <string name="preferences_time_title">अधिसूचना का समय</string>
     <!-- #end Preferences -->
+
+    <string name="image_close">बंद करे</string>
+    <string name="image_franklin">बेंजामिन फ्रैंकलिन</string>
+    <string name="image_example">टेबल उदाहरण</string>
+    <string name="about_this_app">एप के बारे में</string>
+
+    <string name="info_description_1">21 वर्ष की उम्र में, बेंजामिन फ्रैंकलिन ने नैतिक पूर्णता प्राप्त करने का फैसला किया। उन्होंने निर्णय लिया कि 13 गुण या तो जरूरी या वांछनीय थे, उन्हें व्यवस्थित किया गया ताकि पहले अधिग्रहित किया जा सके, दूसरे को आत्मसात करने में, और इसी तरह।</string>
+    <string name="info_description_2">उन्होंने खुद को एक हफ्ते आवंटित किया कि वह हर नए गुण को प्राप्त करे। और उनकी प्रगति देखने के लिए, उन्होंने एक रिकॉर्ड बुक किया और खुद को एक बार फिर से एक काला चिह्न दिया, जब वह उस गुण को प्रदर्शित करने में नाकाम रहे, जिस पर वह काम कर रहा था।</string>
+    <string name="info_description_3">यह ऐप आपके अंक के लिए एक रिकॉर्ड बुक के रूप में पेश करने के लिए डिज़ाइन किया गया है। सौभाग्य!</string>
 </resources>

@@ -73,4 +73,13 @@
     <string name="pref_time_label">Hora de notificaciones diarias</string>
     <string name="preferences_time_title">Tiempo de notificación</string>
     <!-- #end Preferences -->
+
+    <string name="info_description_3">Esta aplicación está diseñada para servir como un libro de registro para sus marcas. ¡Buena suerte!</string>
+    <string name="info_description_2">Se asignó a sí mismo una semana para adquirir cada virtud nueva. Y para ver su progreso, hizo un libro de registro y se dio una marca negra cada vez que no demostró una virtud en la que estaba trabajando.</string>
+    <string name="info_description_1">A la edad de 21 años, Benjamin Franklin decidió alcanzar la perfección moral. Decidió que las 13 virtudes eran necesarias o deseables, las arregló para que la primera adquirida pudiera ayudar a asimilar la segunda, y así sucesivamente.</string>
+
+    <string name="image_example">Ejemplo de tabla</string>
+    <string name="about_this_app">Acerca de la aplicación</string>
+    <string name="image_franklin">Benjamin Franklin</string>
+    <string name="image_close">Cerca</string>
 </resources>
