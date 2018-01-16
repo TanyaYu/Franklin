@@ -61,6 +61,7 @@
     <!-- #end Menu -->
 
     <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">अनुस्मारक</string>
     <string name="reminder_notification_title">@string/app_name</string>
     <string name="reminder_notification_body">आपने आज क्या महान किया है? अपनी प्रगति का ट्रैक रखने के लिए मत भूलना.</string>
     <!-- #end Notifications -->

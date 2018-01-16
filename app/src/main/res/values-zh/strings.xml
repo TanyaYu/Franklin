@@ -61,6 +61,7 @@
     <!-- #end Menu -->
 
     <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">提醒</string>
     <string name="reminder_notification_title">@string/app_name</string>
     <string name="reminder_notification_body">你今天做了什么好事？ 不要忘记跟踪你的进度。</string>
     <!-- #end Notifications -->

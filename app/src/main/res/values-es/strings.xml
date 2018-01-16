@@ -61,6 +61,7 @@
     <!-- #end Menu -->
 
     <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">Recordatorios</string>
     <string name="reminder_notification_title">@string/app_name</string>
     <string name="reminder_notification_body">¿Qué has hecho hoy? No olvide hacer un seguimiento de su progreso.</string>
     <!-- #end Notifications -->

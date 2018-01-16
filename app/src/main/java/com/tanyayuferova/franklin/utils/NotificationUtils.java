@@ -1,12 +1,15 @@
 package com.tanyayuferova.franklin.utils;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -27,8 +30,11 @@ public class NotificationUtils {
      * @param context
      */
     public static void remindUserToEnterData(Context context) {
-        // FIXME new NotificationCompat.Builder(context) is deprecated. Issue #12
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createReminderChannel(context);
+        }
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, context.getString(R.string.notification_reminder_channel_id))
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setLargeIcon(largeIcon(context, R.drawable.ic_notification_icon))
@@ -41,9 +47,19 @@ public class NotificationUtils {
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setAutoCancel(true);
 
-        NotificationManager notificationManager = (NotificationManager)
-                context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(REMINDER_NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private static void createReminderChannel(Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel(context.getString(R.string.notification_reminder_channel_id),
+                context.getString(R.string.notification_reminder_channel_title), notificationManager.IMPORTANCE_DEFAULT);
+        channel.enableLights(false);
+        channel.enableVibration(true);
+        channel.setShowBadge(true);
+        notificationManager.createNotificationChannel(channel);
     }
 
     /**

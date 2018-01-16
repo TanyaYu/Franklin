@@ -61,6 +61,7 @@
     <!-- #end Menu -->
 
     <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">Erinnerungen</string>
     <string name="reminder_notification_title">@string/app_name</string>
     <string name="reminder_notification_body">Was hast du heute großartig gemacht? Vergiss nicht, deinen Fortschritt zu verfolgen.</string>
     <!-- #end Notifications -->
