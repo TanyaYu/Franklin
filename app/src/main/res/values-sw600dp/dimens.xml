@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_info_border_width">20dp</dimen>
+    <dimen name="activity_info_text_size">20sp</dimen>
+    <dimen name="activity_info_content_horizontal_margin">65dp</dimen>
+    <dimen name="activity_info_content_vertical_margin">20dp</dimen>
+</resources>
