@@ -205,6 +205,7 @@ public class WeekTableFragment extends Fragment implements
     @Override
     public void onVirtueNameClick(Virtue virtue) {
         //Set new virtue of the week
+        getArguments().putParcelable(ARGUMENT_VIRTUE_OF_WEEK, virtue);
         binding.setVirtue(virtue);
         selectVirtueInTable(virtue);
         VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtue.getId(), startDate);
