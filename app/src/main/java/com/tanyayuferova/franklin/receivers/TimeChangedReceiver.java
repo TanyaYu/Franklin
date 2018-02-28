@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tanyayuferova.franklin.services.TimeChangeIntentService;
+import com.tanyayuferova.franklin.utils.EveryDayReminderUtils;
 
 /**
  * Receives time and time zone device change
@@ -18,7 +18,7 @@ public class TimeChangedReceiver extends BroadcastReceiver {
         if(Intent.ACTION_TIME_CHANGED.equals(intent.getAction()) ||
                 Intent.ACTION_TIMEZONE_CHANGED.equals(intent.getAction())) {
             //We need to update virtues values in the data base according to current device localization
-            context.startService(new Intent(context, TimeChangeIntentService.class));
+            EveryDayReminderUtils.scheduleStartReminderJob(context);
         }
     }
 }
