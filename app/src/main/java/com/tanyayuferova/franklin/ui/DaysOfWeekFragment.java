@@ -38,16 +38,16 @@ public class DaysOfWeekFragment extends Fragment {
         if (!getArguments().containsKey(FIRST_DATE))
             throw new UnsupportedOperationException("DaysOfWeekFragment must have first date in the arguments");
 
-        if(!(getActivity() instanceof DaySelectorWidget.OnDayClickedListener))
+        if(!(getParentFragment() instanceof DaySelectorWidget.OnDayClickedListener))
             throw new UnsupportedOperationException("Activity must implement OnDayClickedListener");
 
         binding = FragmentDaysOfWeekBinding.inflate(inflater, container, false);
         binding.daysWidget.setFirstDate(new Date(getArguments().getLong(FIRST_DATE)));
-        binding.daysWidget.setOnDayClickedListener((DaySelectorWidget.OnDayClickedListener) getActivity());
+        binding.daysWidget.setOnDayClickedListener((DaySelectorWidget.OnDayClickedListener) getParentFragment());
 
         //fixme
-        if(getActivity() instanceof MainActivity) {
-            Date date = ((MainActivity) getActivity()).getCurrentDate();
+        if(getParentFragment() instanceof VirtuesFragment) {
+            Date date = ((VirtuesFragment) getParentFragment()).getCurrentDate();
             binding.daysWidget.selectDate(date);
         }
 

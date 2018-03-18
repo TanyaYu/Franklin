@@ -15,7 +15,7 @@ import com.tanyayuferova.franklin.entity.Virtue;
 import com.tanyayuferova.franklin.entity.viewModel.VirtueDayInfo;
 
 import static android.provider.BaseColumns._ID;
-import static com.tanyayuferova.franklin.ui.MainActivity.DAY_CODE;
+import static com.tanyayuferova.franklin.ui.VirtuesFragment.DAY_CODE;
 
 /**
  * Created by Tanya Yuferova on 10/4/2017.

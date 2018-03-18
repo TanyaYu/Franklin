@@ -68,6 +68,7 @@ public class NotificationUtils {
      * @return
      */
     private static PendingIntent contentIntent(Context context) {
+        //todo test me navigation
         Intent startActivityIntent = new Intent(context, MainActivity.class);
         return PendingIntent.getActivity(
                 context,
