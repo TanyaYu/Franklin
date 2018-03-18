@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DaySelectorWidget">
+        <attr name="daysCount" format="integer"/>
+        <attr name="dateFormat" format="string"/>
+    </declare-styleable>
+</resources>

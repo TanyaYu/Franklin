@@ -1,4 +1,4 @@
-package com.tanyayuferova.franklin.data;
+package com.tanyayuferova.franklin.database;
 
 
 import android.content.ContentProvider;
@@ -8,13 +8,13 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.Nullable;
-import com.tanyayuferova.franklin.data.VirtuesContract.*;
+import com.tanyayuferova.franklin.database.VirtuesContract.*;
 
-import static com.tanyayuferova.franklin.data.VirtuesContract.BASE_CONTENT_URI;
-import static com.tanyayuferova.franklin.data.VirtuesContract.CONTENT_VIRTUES_URI;
-import static com.tanyayuferova.franklin.data.VirtuesContract.PATH_POINTS;
-import static com.tanyayuferova.franklin.data.VirtuesContract.PATH_VIRTUES;
-import static com.tanyayuferova.franklin.data.VirtuesContract.PATH_WEEKS;
+import static com.tanyayuferova.franklin.database.VirtuesContract.BASE_CONTENT_URI;
+import static com.tanyayuferova.franklin.database.VirtuesContract.CONTENT_VIRTUES_URI;
+import static com.tanyayuferova.franklin.database.VirtuesContract.PATH_POINTS;
+import static com.tanyayuferova.franklin.database.VirtuesContract.PATH_VIRTUES;
+import static com.tanyayuferova.franklin.database.VirtuesContract.PATH_WEEKS;
 
 /**
  * Created by Tanya Yuferova on 10/4/2017.

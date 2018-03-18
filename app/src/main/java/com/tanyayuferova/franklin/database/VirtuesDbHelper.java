@@ -1,4 +1,4 @@
-package com.tanyayuferova.franklin.data;
+package com.tanyayuferova.franklin.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tanyayuferova.franklin.R;
-import com.tanyayuferova.franklin.data.VirtuesContract.*;
+import com.tanyayuferova.franklin.database.VirtuesContract.*;
 
 /**
  * Created by Tanya Yuferova on 10/4/2017.

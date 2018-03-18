@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import com.tanyayuferova.franklin.R;
-import com.tanyayuferova.franklin.data.VirtuesContract;
+import com.tanyayuferova.franklin.database.VirtuesContract;
 import com.tanyayuferova.franklin.entity.Virtue;
 
 import java.util.Calendar;
@@ -29,6 +29,16 @@ public class VirtueOfWeekUtils {
      * @return
      */
     public static Virtue getVirtueOfWeek(Context context, Date date) {
+        return Virtue.newVirtueById(context, getVirtueIdOfWeek(context, date));
+    }
+
+    /**
+     * Finds virtue's id for specific date
+     * @param context
+     * @param date
+     * @return
+     */
+    public static int getVirtueIdOfWeek(Context context, Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int week = calendar.get(Calendar.WEEK_OF_YEAR);
@@ -38,7 +48,7 @@ public class VirtueOfWeekUtils {
         if(week==1 && calendar.get(Calendar.MONTH) == Calendar.DECEMBER)
             year++;
 
-        return Virtue.newVirtueById(context, getVirtueIdOfWeek(context, week, year));
+        return getVirtueIdOfWeek(context, week, year);
     }
 
     /**
@@ -48,7 +58,7 @@ public class VirtueOfWeekUtils {
      * @param year
      * @return
      */
-    public static int getVirtueIdOfWeek(Context context, int week, int year) {
+    private static int getVirtueIdOfWeek(Context context, int week, int year) {
         /* Try to find virtue for current week and year */
         Uri uri = VirtuesContract.buildVirtueUriWithWeek(week, year);
         Cursor cursor = context.getContentResolver().query(uri, new String[] {VirtuesContract.WeekEntry.COLUMN_VIRTUE_ID},

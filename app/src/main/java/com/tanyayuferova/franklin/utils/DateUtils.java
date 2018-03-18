@@ -47,4 +47,22 @@ public class DateUtils {
                 && today.get(Calendar.MONTH) == calendar.get(Calendar.MONTH)
                 && today.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH);
     }
+
+    /**
+     * Checks if first date is the same day as the second date
+     * @param first
+     * @param second
+     * @return true if both date are the same day
+     */
+    public static boolean isTheSameDay(Date first, Date second) {
+        Calendar _first = Calendar.getInstance();
+        Calendar _second = Calendar.getInstance();
+
+        _first.setTime(first);
+        _second.setTime(second);
+
+        return _first.get(Calendar.YEAR) == _second.get(Calendar.YEAR)
+                && _first.get(Calendar.MONTH) == _second.get(Calendar.MONTH)
+                && _first.get(Calendar.DAY_OF_MONTH) == _second.get(Calendar.DAY_OF_MONTH);
+    }
 }

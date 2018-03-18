@@ -12,7 +12,7 @@
     <dimen name="activity_info_content_horizontal_margin">15dp</dimen>
     <dimen name="activity_info_content_vertical_margin">15dp</dimen>
 
-    <dimen name="day_text_view_width">19dp</dimen>
+    <dimen name="day_text_view_width">20dp</dimen>
     <dimen name="day_value_text_size">30sp</dimen>
-    <dimen name="day_of_week_text_size">15sp</dimen>
+    <dimen name="day_of_week_text_size">14sp</dimen>
 </resources>

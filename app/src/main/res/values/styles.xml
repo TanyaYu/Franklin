@@ -1,37 +1,14 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorPrimaryText</item>
-        <item name="android:windowBackground">@color/colorBackgroundLight</item>
-        <item name="android:colorBackground">@color/colorBackgroundLight</item>
         <item name="android:textColorPrimary">@color/colorPrimaryText</item>
         <item name="android:textColorPrimaryInverse">@color/colorTextPrimaryInverse</item>
         <item name="android:textColorSecondary">@color/colorSecondaryText</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-    </style>
-
-    <style name="DayTextView">
-        <item name="android:width">@dimen/day_text_view_width</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:textAlignment">center</item>
-    </style>
-
-    <style name="DayValueTextView" parent="DayTextView">
-        <item name="android:textSize">@dimen/day_value_text_size</item>
-    </style>
-
-    <style name="VirtueNameTextView" parent="DayValueTextView">
-        <item name="android:textAlignment">textStart</item>
-    </style>
-
-    <style name="DayOfWeekTextView" parent="DayTextView">
-        <item name="android:textSize">@dimen/day_of_week_text_size</item>
     </style>
 
     <style name="AppPreference">
@@ -42,4 +19,5 @@
         <item name="positiveButtonText">@android:string/ok</item>
         <item name="negativeButtonText">@android:string/cancel</item>
     </style>
+
 </resources>

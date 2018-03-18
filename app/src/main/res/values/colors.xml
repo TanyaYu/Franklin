@@ -4,9 +4,10 @@
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorPrimaryLight">#CFD8DC</color>
     <color name="colorAccent">#FF5252</color>
+    <color name="colorAccentRipple">#50FF5252</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
 
     <color name="colorTextPrimaryInverse">#FFFFFF</color>
-    <color name="colorBackgroundLight">@android:color/background_light</color>
+    <color name="colorBackground">?android:colorBackground</color>
 </resources>

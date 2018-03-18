@@ -1,4 +1,4 @@
-package com.tanyayuferova.franklin.data;
+package com.tanyayuferova.franklin.database;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
