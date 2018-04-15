@@ -18,6 +18,7 @@ import com.tanyayuferova.franklin.utils.DateUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
@@ -78,7 +79,7 @@ public class DaySelectorWidget extends LinearLayout {
             final Date date = DateUtils.addDaysToDate(firstDate, i);
             String text = dateFormat.format(date);
             boolean isToday = DateUtils.isToday(date);
-            int textColor = getResources().getColor(isToday ? R.color.colorAccent : R.color.colorPrimaryText);
+            int textColor = getResources().getColor(isToday ? R.color.accent : R.color.text_primary);
 
             view.setText(text);
             view.setTextColor(textColor);
@@ -89,7 +90,7 @@ public class DaySelectorWidget extends LinearLayout {
                 }
             });
 
-            addView(view, i, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1));
+            addView(view, i, new LinearLayout.LayoutParams(WRAP_CONTENT, MATCH_PARENT, 1));
         }
     }
 

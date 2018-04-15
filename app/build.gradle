@@ -55,6 +55,7 @@ ext {
     cicerine_version = '3.0.0'
     jobdispatcher_version = '0.8.4'
     ads_version = '11.8.0'
+    constraint_layout = '1.1.0'
 }
 
 dependencies {
@@ -64,7 +65,7 @@ dependencies {
     implementation "com.android.support:preference-v7:$support_version"
     implementation "com.android.support:preference-v14:$support_version"
     implementation "com.firebase:firebase-jobdispatcher:$jobdispatcher_version"
-    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
     implementation "com.android.support:design:$support_version"
     implementation "ru.terrakok.cicerone:cicerone:$cicerine_version"
     freeImplementation "com.google.android.gms:play-services-ads:$ads_version"

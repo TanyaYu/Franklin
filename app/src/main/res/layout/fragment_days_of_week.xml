@@ -5,7 +5,7 @@
     <com.tanyayuferova.franklin.ui.DaySelectorWidget
         android:id="@+id/daysWidget"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:dateFormat="dd.MM\nE"
         app:daysCount="7" />
 </layout>

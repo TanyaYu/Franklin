@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/action_settings"
-        app:titleTextColor="@color/colorTextPrimaryInverse" />
+        app:titleTextColor="?android:textColorPrimaryInverse" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_settings"

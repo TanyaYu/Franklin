@@ -35,7 +35,7 @@ public class NotificationUtils {
         }
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, context.getString(R.string.notification_reminder_channel_id))
-                .setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+                .setColor(ContextCompat.getColor(context, R.color.primary_dark))
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setLargeIcon(largeIcon(context, R.drawable.ic_notification_icon))
                 .setContentTitle(context.getString(R.string.reminder_notification_title))

@@ -14,7 +14,7 @@ public class VirtueDayInfo {
     private int id;
     private String name;
     private String description;
-    private String dotsDescription;
+    private String marks;
 
     public VirtueDayInfo() {}
 
@@ -26,7 +26,7 @@ public class VirtueDayInfo {
 
     public VirtueDayInfo(Virtue virtue, int dotsCount, Context context) {
         this(virtue);
-        dotsDescription = dotsDescription(context, dotsCount);
+        marks = dotsDescription(context, dotsCount);
     }
 
     private String dotsDescription(Context context, int dotsCount) {
@@ -68,11 +68,11 @@ public class VirtueDayInfo {
         this.description = description;
     }
 
-    public String getDotsDescription() {
-        return dotsDescription;
+    public String getMarks() {
+        return marks;
     }
 
-    public void setDotsDescription(String dotsDescription) {
-        this.dotsDescription = dotsDescription;
+    public void setMarks(String marks) {
+        this.marks = marks;
     }
 }

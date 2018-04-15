@@ -34,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
         protected void exit() {
             finish();
         }
-
-        @Override
-        public void applyCommands(Command[] commands) {
-            super.applyCommands(commands);
-            getSupportFragmentManager().executePendingTransactions();
-        }
     };
 
     @Override
