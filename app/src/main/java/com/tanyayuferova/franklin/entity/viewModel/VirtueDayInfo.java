@@ -11,17 +11,13 @@ import com.tanyayuferova.franklin.entity.Virtue;
 
 public class VirtueDayInfo {
 
-    private int id;
-    private String name;
-    private String description;
+    private Virtue virtue;
     private String marks;
 
     public VirtueDayInfo() {}
 
     public VirtueDayInfo(Virtue virtue) {
-        id = virtue.getId();
-        name = virtue.getName();
-        description = virtue.getDescription();
+        this.virtue = virtue;
     }
 
     public VirtueDayInfo(Virtue virtue, int dotsCount, Context context) {
@@ -44,28 +40,12 @@ public class VirtueDayInfo {
         return text;
     }
 
-    public int getId() {
-        return id;
+    public Virtue getVirtue() {
+        return virtue;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setVirtue(Virtue virtue) {
+        this.virtue = virtue;
     }
 
     public String getMarks() {

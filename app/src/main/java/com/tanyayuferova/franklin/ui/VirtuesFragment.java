@@ -172,12 +172,14 @@ public class VirtuesFragment extends Fragment implements
     @Override
     public void onDayClick(View view, int virtueId) {
         //Add mark
+        //fixme can cause CursorIndexOutOfBoundsException
         getContext().getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, currentDate), null);
     }
 
     @Override
     public boolean onDayLongClick(int virtueId) {
         //Remove mark
+        //fixme can cause CursorIndexOutOfBoundsException
         getContext().getContentResolver().delete(VirtuesContract.buildPointsUriWithDate(virtueId, currentDate), null, null);
         return true;
     }
@@ -189,6 +191,7 @@ public class VirtuesFragment extends Fragment implements
     @Override
     public void onVirtueNameClick(int virtueId) {
         //Set new virtue of the week
+        //fixme can cause CursorIndexOutOfBoundsException
         selectVirtueInTable(virtueId);
         VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtueId, currentDate);
     }

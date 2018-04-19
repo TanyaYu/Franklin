@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.DrawableRes;
 
 import com.tanyayuferova.franklin.R;
 
@@ -19,12 +20,14 @@ public class Virtue implements Parcelable {
     private String name;
     private String shortName;
     private String description;
+    private @DrawableRes int iconRes;
 
-    public Virtue(int id, String name, String shortName, String description) {
+    public Virtue(int id, String name, String shortName, String description, @DrawableRes int iconRes) {
         this.id = id;
         this.name = name;
         this.shortName = shortName;
         this.description = description;
+        this.iconRes = iconRes;
     }
 
     public Virtue(int id) {
@@ -75,6 +78,14 @@ public class Virtue implements Parcelable {
         this.id = id;
     }
 
+    public int getIconRes() {
+        return iconRes;
+    }
+
+    public void setIconRes(int iconRes) {
+        this.iconRes = iconRes;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -83,12 +94,10 @@ public class Virtue implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeInt(id);
-
-        String[] array = new String[3];
-        array[0] = name;
-        array[1] = shortName;
-        array[2] = description;
-        parcel.writeStringArray(array);
+        parcel.writeInt(iconRes);
+        parcel.writeString(name);
+        parcel.writeString(shortName);
+        parcel.writeString(description);
     }
     public static final Parcelable.Creator<Virtue> CREATOR = new Parcelable.Creator<Virtue>() {
         public Virtue createFromParcel(Parcel in) {
@@ -102,12 +111,10 @@ public class Virtue implements Parcelable {
 
     private Virtue(Parcel parcel) {
         id = parcel.readInt();
-
-        String[] array = new String[3];
-        parcel.readStringArray(array);
-        name = array[0];
-        shortName = array[1];
-        description = array[2];
+        iconRes = parcel.readInt();
+        name = parcel.readString();
+        shortName = parcel.readString();
+        description = parcel.readString();
     }
 
     /**
@@ -127,7 +134,13 @@ public class Virtue implements Parcelable {
         //Finding index of element in int array. Probably needs refactoring.
         for(int index = 0; index < ids.length; index++) {
             if(ids[index] == id)
-                return new Virtue(id, names[index], shortNames[index], descriptions[index]);
+                return new Virtue(
+                        id,
+                        names[index],
+                        shortNames[index],
+                        descriptions[index],
+                        R.drawable.ic_arrow_back //Fixme needs icons list
+                );
         }
         throw new UnsupportedOperationException("Invalid id = " + id);
     }

@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initNotifications();
         router.navigateTo(VirtuesFragment.SCREEN_KEY);
-        //todo test me
         if (!PreferencesUtils.getHasInfoBeenShown(this)) {
             router.navigateTo(InfoFragment.SCREEN_KEY);
+            PreferencesUtils.setHasInfoBeenShown(this, true);
         }
     }
 
