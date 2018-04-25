@@ -26,7 +26,7 @@
             android:id="@+id/days_of_week_pager"
             android:layout_width="0dp"
             android:layout_height="@dimen/days_widget_size"
-            android:background="?android:colorBackground"
+            android:background="@color/item_day_background"
             android:elevation="@dimen/toolbar_elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

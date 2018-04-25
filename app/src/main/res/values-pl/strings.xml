@@ -10,49 +10,49 @@
     <string name="sil_short">M</string>
     <string name="sil_desc"> Mów tylko to, co może przynieść pożytek innym lub tobie, unikaj błahych rozmów.</string>
 
-    <string name="o_name">Ład </string>
-    <string name="o_short">Ł</string>
-    <string name="o_desc">Niech wszystkie twoje rzeczy mają swoje miejsce, niech wszystkie twoje sprawy mają swój czas.</string>
+    <string name="ord_name">Ład </string>
+    <string name="ord_short">Ł</string>
+    <string name="ord_desc">Niech wszystkie twoje rzeczy mają swoje miejsce, niech wszystkie twoje sprawy mają swój czas.</string>
 
-    <string name="r_name">Postanowienie </string>
-    <string name="r_short">P</string>
-    <string name="r_desc"> Postanów czynić to, co powinieneś; czyń bezbłędnie to, co postanowiłeś.</string>
+    <string name="res_name">Postanowienie </string>
+    <string name="res_short">P</string>
+    <string name="res_desc"> Postanów czynić to, co powinieneś; czyń bezbłędnie to, co postanowiłeś.</string>
 
-    <string name="f_name">Oszczędność </string>
-    <string name="f_short">O</string>
-    <string name="f_desc">Nie czyń wydatków poza dobrymi dla innych lub ciebie; to znaczy nic nie marnotraw.</string>
+    <string name="fru_name">Oszczędność </string>
+    <string name="fru_short">O</string>
+    <string name="fru_desc">Nie czyń wydatków poza dobrymi dla innych lub ciebie; to znaczy nic nie marnotraw.</string>
 
-    <string name="i_name">Pracowitość </string>
-    <string name="i_short">P</string>
-    <string name="i_desc">Nie trać nigdy czasu; bądź zawsze zajęty czymś pożytecznym; unikaj wszelkich niepotrzebnych działań.</string>
+    <string name="ind_name">Pracowitość </string>
+    <string name="ind_short">P</string>
+    <string name="ind_desc">Nie trać nigdy czasu; bądź zawsze zajęty czymś pożytecznym; unikaj wszelkich niepotrzebnych działań.</string>
 
     <string name="sin_name">Szczerość </string>
     <string name="sin_short">S</string>
     <string name="sin_desc">Nie stosuj krzywdzącego oszustwa; myśl niewinnie i sprawiedliwie, a kiedy mówisz, mów podobnie.</string>
 
-    <string name="j_name">Sprawiedliwość </string>
-    <string name="j_short">S</string>
-    <string name="j_desc"> Nie krzywdź nikogo wyrządzając zło lub pomijając korzyści, które są twoim obowiązkiem.</string>
+    <string name="jus_name">Sprawiedliwość </string>
+    <string name="jus_short">S</string>
+    <string name="jus_desc"> Nie krzywdź nikogo wyrządzając zło lub pomijając korzyści, które są twoim obowiązkiem.</string>
 
-    <string name="m_name">Powściągliwość </string>
-    <string name="m_short">P</string>
-    <string name="m_desc">Unikaj krańcowości; zaniechaj urazy w tym stopniu, jak twoim zdaniem na to zasługują.</string>
+    <string name="mod_name">Powściągliwość </string>
+    <string name="mod_short">P</string>
+    <string name="mod_desc">Unikaj krańcowości; zaniechaj urazy w tym stopniu, jak twoim zdaniem na to zasługują.</string>
 
-    <string name="cl_name">Czystość</string>
-    <string name="cl_short">C</string>
-    <string name="cl_desc"> Nie pozwalaj na żadną nieczystość ciała, ubrania czy mieszkania.</string>
+    <string name="cle_name">Czystość</string>
+    <string name="cle_short">C</string>
+    <string name="cle_desc"> Nie pozwalaj na żadną nieczystość ciała, ubrania czy mieszkania.</string>
 
     <string name="tra_name">Spokój </string>
     <string name="tra_short">S</string>
     <string name="tra_desc">Nie przejmuj się drobnostkami oraz zdarzeniami pospolitymi lub nieuniknionymi.</string>
 
-    <string name="ch_name">Surowość cielesna </string>
-    <string name="ch_short">S</string>
-    <string name="ch_desc">Rzadko używaj spraw płci (w oryg. venery), tylko dla zdrowia albo potomstwa, nigdy do otępienia, osłabienia lub szkody w twoim czy cudzym spokoju i reputacji.</string>
+    <string name="cha_name">Surowość cielesna </string>
+    <string name="cha_short">S</string>
+    <string name="cha_desc">Rzadko używaj spraw płci (w oryg. venery), tylko dla zdrowia albo potomstwa, nigdy do otępienia, osłabienia lub szkody w twoim czy cudzym spokoju i reputacji.</string>
 
-    <string name="h_name">Pokora </string>
-    <string name="h_short">P</string>
-    <string name="h_desc">Naśladuj Jezusa i Sokratesa.</string>
+    <string name="hum_name">Pokora </string>
+    <string name="hum_short">P</string>
+    <string name="hum_desc">Naśladuj Jezusa i Sokratesa.</string>
 
     <!-- #end Virtues data -->
 

@@ -10,5 +10,5 @@
         android:top="@dimen/activity_info_border_width" />
 
     <corners android:radius="@dimen/activity_info_border_width" />
-    <solid android:color="@color/background" />
+    <solid android:color="@color/window_background" />
 </shape>

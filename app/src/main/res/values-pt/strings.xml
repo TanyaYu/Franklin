@@ -10,49 +10,49 @@
     <string name="sil_short">S</string>
     <string name="sil_desc">Falar tão somente o que pode beneficiar os outros ou a si mesmo. Evite conversa banal.</string>
 
-    <string name="o_name">Ordem</string>
-    <string name="o_short">O</string>
-    <string name="o_desc">Deixe todas as coisas (assuntos) terem seu lugar. Que cada parte dos seus assuntos tenha seu tempo.</string>
+    <string name="ord_name">Ordem</string>
+    <string name="ord_short">O</string>
+    <string name="ord_desc">Deixe todas as coisas (assuntos) terem seu lugar. Que cada parte dos seus assuntos tenha seu tempo.</string>
 
-    <string name="r_name">Resolução</string>
-    <string name="r_short">R</string>
-    <string name="r_desc">Resolver realizar o que se deve; executar sem falhas que você se pode resolver.</string>
+    <string name="res_name">Resolução</string>
+    <string name="res_short">R</string>
+    <string name="res_desc">Resolver realizar o que se deve; executar sem falhas que você se pode resolver.</string>
 
-    <string name="f_name">Frugalidade</string>
-    <string name="f_short">F</string>
-    <string name="f_desc">Não fazer gastos, mas fazer o bem a outros e a si ou: não gaste nada.</string>
+    <string name="fru_name">Frugalidade</string>
+    <string name="fru_short">F</string>
+    <string name="fru_desc">Não fazer gastos, mas fazer o bem a outros e a si ou: não gaste nada.</string>
 
-    <string name="i_name">Indústria</string>
-    <string name="i_short">I</string>
-    <string name="i_desc">Não perca tempo. Trabalhar sempre em algo útil. Corte todas as desnecessidades.</string>
+    <string name="ind_name">Indústria</string>
+    <string name="ind_short">I</string>
+    <string name="ind_desc">Não perca tempo. Trabalhar sempre em algo útil. Corte todas as desnecessidades.</string>
 
     <string name="sin_name">Sinceridade</string>
     <string name="sin_short">S</string>
     <string name="sin_desc">Não seja ofensivo; pense inocentemente e com justiça e, se falar, fale concordando.</string>
 
-    <string name="j_name">Justiça</string>
-    <string name="j_short">J</string>
-    <string name="j_desc">É errado causar dor por nada, ou omitir algum benefício que seja seu dever divulgar.</string>
+    <string name="jus_name">Justiça</string>
+    <string name="jus_short">J</string>
+    <string name="jus_desc">É errado causar dor por nada, ou omitir algum benefício que seja seu dever divulgar.</string>
 
-    <string name="m_name">Moderação</string>
-    <string name="m_short">M</string>
-    <string name="m_desc">Evite extremismos; causar lesões pode ressentir tanto quanto você acha que eles merecem.</string>
+    <string name="mod_name">Moderação</string>
+    <string name="mod_short">M</string>
+    <string name="mod_desc">Evite extremismos; causar lesões pode ressentir tanto quanto você acha que eles merecem.</string>
 
-    <string name="cl_name">Limpeza</string>
-    <string name="cl_short">L</string>
-    <string name="cl_desc">Não tolerar nenhuma impureza no corpo, no vestuário ou na moradia.</string>
+    <string name="cle_name">Limpeza</string>
+    <string name="cle_short">L</string>
+    <string name="cle_desc">Não tolerar nenhuma impureza no corpo, no vestuário ou na moradia.</string>
 
     <string name="tra_name">Tranquilidade</string>
     <string name="tra_short">T</string>
     <string name="tra_desc">Não ser perturbado por bobagens, ou em situações (acidentes) comuns ou inevitáveis.</string>
 
-    <string name="ch_name">Castidade</string>
-    <string name="ch_short">C</string>
-    <string name="ch_desc">Raramente se dê ao luxo, e nunca por estupidez, fraqueza, ou prejuízo próprio ou de outro.</string>
+    <string name="cha_name">Castidade</string>
+    <string name="cha_short">C</string>
+    <string name="cha_desc">Raramente se dê ao luxo, e nunca por estupidez, fraqueza, ou prejuízo próprio ou de outro.</string>
 
-    <string name="h_name">Humildade</string>
-    <string name="h_short">H</string>
-    <string name="h_desc">Imite Jesus e Sócrates.</string>
+    <string name="hum_name">Humildade</string>
+    <string name="hum_short">H</string>
+    <string name="hum_desc">Imite Jesus e Sócrates.</string>
 
     <!-- #end Virtues data -->
 

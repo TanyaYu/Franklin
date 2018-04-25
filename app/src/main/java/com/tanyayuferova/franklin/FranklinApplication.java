@@ -1,6 +1,7 @@
 package com.tanyayuferova.franklin;
 
 import android.app.Application;
+import android.support.v7.app.AppCompatDelegate;
 
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
@@ -19,6 +20,7 @@ public class FranklinApplication extends Application {
         super.onCreate();
         INSTANCE = this;
         initCicerone();
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
     private void initCicerone() {

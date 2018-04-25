@@ -10,49 +10,49 @@
     <string name="sil_short">S</string>
     <string name="sil_desc">Non parlare se non per recar beneficio a te stesso o ad altri. Evita i discorsi futili.</string>
 
-    <string name="o_name">Ordine</string>
-    <string name="o_short">O</string>
-    <string name="o_desc">Ogni tua cosa abbia il suo posto, a ciascuna delle tue attività dedica il giusto tempo.</string>
+    <string name="ord_name">Ordine</string>
+    <string name="ord_short">O</string>
+    <string name="ord_desc">Ogni tua cosa abbia il suo posto, a ciascuna delle tue attività dedica il giusto tempo.</string>
 
-    <string name="r_name">Determinazione</string>
-    <string name="r_short">D</string>
-    <string name="r_desc">Stabilisci di fare ciò che devi fare. Esegui senza esitazione quanto hai deciso.</string>
+    <string name="res_name">Determinazione</string>
+    <string name="res_short">D</string>
+    <string name="res_desc">Stabilisci di fare ciò che devi fare. Esegui senza esitazione quanto hai deciso.</string>
 
-    <string name="f_name">Parsimonia</string>
-    <string name="f_short">P</string>
-    <string name="f_desc">Non spendere se non per far del bene a te stesso o ad altri, vale a dire non sprecare niente.</string>
+    <string name="fru_name">Parsimonia</string>
+    <string name="fru_short">P</string>
+    <string name="fru_desc">Non spendere se non per far del bene a te stesso o ad altri, vale a dire non sprecare niente.</string>
 
-    <string name="i_name">Operosità</string>
-    <string name="i_short">O</string>
-    <string name="i_desc">Non perdere tempo. Sii sempre impegnato in qualcosa di utile. Evita ogni azione superflua.</string>
+    <string name="ind_name">Operosità</string>
+    <string name="ind_short">O</string>
+    <string name="ind_desc">Non perdere tempo. Sii sempre impegnato in qualcosa di utile. Evita ogni azione superflua.</string>
 
     <string name="sin_name">Sincerità</string>
     <string name="sin_short">S</string>
     <string name="sin_desc">Non ricorrere a sotterfugi che possono causare danno. I tuoi pensieri siano innocenti e giusti e tali rimangano quando decidi di esprimerli.</string>
 
-    <string name="j_name">Giustizia</string>
-    <string name="j_short">G</string>
-    <string name="j_desc">Non offendere nessuno, facendogli un torto o trascurando il dovere di fargli del bene.</string>
+    <string name="jus_name">Giustizia</string>
+    <string name="jus_short">G</string>
+    <string name="jus_desc">Non offendere nessuno, facendogli un torto o trascurando il dovere di fargli del bene.</string>
 
-    <string name="m_name">Moderazione</string>
-    <string name="m_short">M</string>
-    <string name="m_desc">Evita gli estremi. Trattieniti dal risentirti dei torti per come pensi che meriterebbero.</string>
+    <string name="mod_name">Moderazione</string>
+    <string name="mod_short">M</string>
+    <string name="mod_desc">Evita gli estremi. Trattieniti dal risentirti dei torti per come pensi che meriterebbero.</string>
 
-    <string name="cl_name">Pulizia</string>
-    <string name="cl_short">P</string>
-    <string name="cl_desc">Non tollerare alcuna sporcizia nel corpo, negli abiti o in casa.</string>
+    <string name="cle_name">Pulizia</string>
+    <string name="cle_short">P</string>
+    <string name="cle_desc">Non tollerare alcuna sporcizia nel corpo, negli abiti o in casa.</string>
 
     <string name="tra_name">Tranquillità</string>
     <string name="tra_short">T</string>
     <string name="tra_desc">Non agitarti per le inezie o per gli accidenti comuni e inevitabili.</string>
 
-    <string name="ch_name">Castità</string>
-    <string name="ch_short">C</string>
-    <string name="ch_desc">Di Venere usa raramente, solo per mantenere la salute o procreare, mai fino a saziarti, a infiacchirti o a pregiudicare la tua o l’altrui pace o reputazione.</string>
+    <string name="cha_name">Castità</string>
+    <string name="cha_short">C</string>
+    <string name="cha_desc">Di Venere usa raramente, solo per mantenere la salute o procreare, mai fino a saziarti, a infiacchirti o a pregiudicare la tua o l’altrui pace o reputazione.</string>
 
-    <string name="h_name">Umiltà</string>
-    <string name="h_short">U</string>
-    <string name="h_desc">Imita Gesù e Socrate.</string>
+    <string name="hum_name">Umiltà</string>
+    <string name="hum_short">U</string>
+    <string name="hum_desc">Imita Gesù e Socrate.</string>
 
     <!-- #end Virtues data -->
 

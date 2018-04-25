@@ -20,48 +20,64 @@
     <string-array name="virtues_short_names">
         <item>@string/tem_short</item>
         <item>@string/sil_short</item>
-        <item>@string/o_short</item>
-        <item>@string/r_short</item>
-        <item>@string/f_short</item>
-        <item>@string/i_short</item>
+        <item>@string/ord_short</item>
+        <item>@string/res_short</item>
+        <item>@string/fru_short</item>
+        <item>@string/ind_short</item>
         <item>@string/sin_short</item>
-        <item>@string/j_short</item>
-        <item>@string/m_short</item>
-        <item>@string/cl_short</item>
+        <item>@string/jus_short</item>
+        <item>@string/mod_short</item>
+        <item>@string/cle_short</item>
         <item>@string/tra_short</item>
-        <item>@string/ch_short</item>
-        <item>@string/h_short</item>
+        <item>@string/cha_short</item>
+        <item>@string/hum_short</item>
     </string-array>
 
     <string-array name="virtues_names">
         <item>@string/tem_name</item>
         <item>@string/sil_name</item>
-        <item>@string/o_name</item>
-        <item>@string/r_name</item>
-        <item>@string/f_name</item>
-        <item>@string/i_name</item>
+        <item>@string/ord_name</item>
+        <item>@string/res_name</item>
+        <item>@string/fru_name</item>
+        <item>@string/ind_name</item>
         <item>@string/sin_name</item>
-        <item>@string/j_name</item>
-        <item>@string/m_name</item>
-        <item>@string/cl_name</item>
+        <item>@string/jus_name</item>
+        <item>@string/mod_name</item>
+        <item>@string/cle_name</item>
         <item>@string/tra_name</item>
-        <item>@string/ch_name</item>
-        <item>@string/h_name</item>
+        <item>@string/cha_name</item>
+        <item>@string/hum_name</item>
     </string-array>
 
     <string-array name="virtues_descriptions">
         <item>@string/tem_desc</item>
         <item>@string/sil_desc</item>
-        <item>@string/o_desc</item>
-        <item>@string/r_desc</item>
-        <item>@string/f_desc</item>
-        <item>@string/i_desc</item>
+        <item>@string/ord_desc</item>
+        <item>@string/res_desc</item>
+        <item>@string/fru_desc</item>
+        <item>@string/ind_desc</item>
         <item>@string/sin_desc</item>
-        <item>@string/j_desc</item>
-        <item>@string/m_desc</item>
-        <item>@string/cl_desc</item>
+        <item>@string/jus_desc</item>
+        <item>@string/mod_desc</item>
+        <item>@string/cle_desc</item>
         <item>@string/tra_desc</item>
-        <item>@string/ch_desc</item>
-        <item>@string/h_desc</item>
+        <item>@string/cha_desc</item>
+        <item>@string/hum_desc</item>
     </string-array>
+
+    <integer-array name="virtues_icons">
+        <item>@drawable/tem_icon</item>
+        <item>@drawable/sil_icon</item>
+        <item>@drawable/ord_icon</item>
+        <item>@drawable/res_icon</item>
+        <item>@drawable/fru_icon</item>
+        <item>@drawable/ind_icon</item>
+        <item>@drawable/sin_icon</item>
+        <item>@drawable/jus_icon</item>
+        <item>@drawable/mod_icon</item>
+        <item>@drawable/cle_icon</item>
+        <item>@drawable/tra_icon</item>
+        <item>@drawable/cha_icon</item>
+        <item>@drawable/hum_icon</item>
+    </integer-array>
 </resources>

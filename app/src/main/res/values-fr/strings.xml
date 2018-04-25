@@ -10,49 +10,49 @@
     <string name="sil_short">S</string>
     <string name="sil_desc">Ne parlez que de ce qui peut être utile aux autres ou à vous-même, évitez toute futile conversation.</string>
 
-    <string name="o_name">Ordre</string>
-    <string name="o_short">O</string>
-    <string name="o_desc">Que chaque chose chez vous ait sa place, que chacune de vos affaires ait son temps.</string>
+    <string name="ord_name">Ordre</string>
+    <string name="ord_short">O</string>
+    <string name="ord_desc">Que chaque chose chez vous ait sa place, que chacune de vos affaires ait son temps.</string>
 
-    <string name="r_name">Résolution</string>
-    <string name="r_short">R</string>
-    <string name="r_desc">Prenez la résolution de faire ce que vous devez, et exécutez ce que vous avez résolu.</string>
+    <string name="res_name">Résolution</string>
+    <string name="res_short">R</string>
+    <string name="res_desc">Prenez la résolution de faire ce que vous devez, et exécutez ce que vous avez résolu.</string>
 
-    <string name="f_name">Économie</string>
-    <string name="f_short">E</string>
-    <string name="f_desc">Ne faites aucune dépense que pour le bien des autres ou pour le vôtre, c’est-à-dire ne gaspillez rien.</string>
+    <string name="fru_name">Économie</string>
+    <string name="fru_short">E</string>
+    <string name="fru_desc">Ne faites aucune dépense que pour le bien des autres ou pour le vôtre, c’est-à-dire ne gaspillez rien.</string>
 
-    <string name="i_name">Travail</string>
-    <string name="i_short">T</string>
-    <string name="i_desc">Ne perdez pas de temps, soyez toujours occupé à quelque chose d’utile. Supprimez tout ce qui n’est pas nécessaire. </string>
+    <string name="ind_name">Travail</string>
+    <string name="ind_short">T</string>
+    <string name="ind_desc">Ne perdez pas de temps, soyez toujours occupé à quelque chose d’utile. Supprimez tout ce qui n’est pas nécessaire. </string>
 
     <string name="sin_name">Sincérité</string>
     <string name="sin_short">S</string>
     <string name="sin_desc">Ne trompez jamais personne ; que vos pensées soient pures et justes, et parlez selon vos pensées.</string>
 
-    <string name="j_name">Justice</string>
-    <string name="j_short">J</string>
-    <string name="j_desc">Ne faites jamais de mal à autrui, soit en causant une perte réelle, soit en privant d’un gain légitime.</string>
+    <string name="jus_name">Justice</string>
+    <string name="jus_short">J</string>
+    <string name="jus_desc">Ne faites jamais de mal à autrui, soit en causant une perte réelle, soit en privant d’un gain légitime.</string>
 
-    <string name="m_name">Modération</string>
-    <string name="m_short">M</string>
-    <string name="m_desc">Évitez les extrêmes, pardonnez les injures, autant que vous pensez qu’elles méritent le pardon.</string>
+    <string name="mod_name">Modération</string>
+    <string name="mod_short">M</string>
+    <string name="mod_desc">Évitez les extrêmes, pardonnez les injures, autant que vous pensez qu’elles méritent le pardon.</string>
 
-    <string name="cl_name">Propreté</string>
-    <string name="cl_short">P</string>
-    <string name="cl_desc">Ne souffrez rien de malpropre sur votre corps, vos habits ou dans votre habitation.</string>
+    <string name="cle_name">Propreté</string>
+    <string name="cle_short">P</string>
+    <string name="cle_desc">Ne souffrez rien de malpropre sur votre corps, vos habits ou dans votre habitation.</string>
 
     <string name="tra_name">Tranquillité</string>
     <string name="tra_short">T</string>
     <string name="tra_desc">Ne vous laissez pas abattre par des bagatelles, ou par les accidents ordinaires et inévitables de la vie.</string>
 
-    <string name="ch_name">Chasteté</string>
-    <string name="ch_short">C</string>
-    <string name="ch_desc">Livrez-vous rarement aux plaisirs de l’amour, n’en usez que pour votre santé, ou pour avoir des descendants, jamais au point de vous abrutir ou de perdre vos forces, et jusqu’à nuire au repos et à la réputation de vous ou des autres.</string>
+    <string name="cha_name">Chasteté</string>
+    <string name="cha_short">C</string>
+    <string name="cha_desc">Livrez-vous rarement aux plaisirs de l’amour, n’en usez que pour votre santé, ou pour avoir des descendants, jamais au point de vous abrutir ou de perdre vos forces, et jusqu’à nuire au repos et à la réputation de vous ou des autres.</string>
 
-    <string name="h_name">Humilité</string>
-    <string name="h_short">H</string>
-    <string name="h_desc">Imitez Jésus et Socrate.</string>
+    <string name="hum_name">Humilité</string>
+    <string name="hum_short">H</string>
+    <string name="hum_desc">Imitez Jésus et Socrate.</string>
 
     <!-- #end Virtues data -->
 

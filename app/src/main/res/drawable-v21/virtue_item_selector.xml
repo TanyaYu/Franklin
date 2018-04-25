@@ -1,0 +1,10 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ripple">
+    <item>
+        <selector>
+            <item
+                android:drawable="@color/row_selected_background"
+                android:state_selected="true" />
+        </selector>
+    </item>
+</ripple>

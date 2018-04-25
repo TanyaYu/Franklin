@@ -39,7 +39,7 @@
             android:onClick="@{() -> listener.onVirtueNameClick(item.virtue.id)}"
             android:tint="?colorPrimaryDark"
             app:src="@{item.virtue.iconRes}"
-            tools:srcCompat="@drawable/ic_arrow_back" />
+            tools:srcCompat="@drawable/cha_icon" />
 
         <TextView
             android:id="@+id/tv_virtue_name"
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:maxLines="1"
             android:text="@{item.virtue.name}"
-            tools:text="@string/m_name" />
+            tools:text="@string/mod_name" />
 
         <TextView
             android:id="@+id/tv_dots"

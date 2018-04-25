@@ -44,13 +44,8 @@ public class DaySelectorWidget extends LinearLayout {
     }
 
     public DaySelectorWidget(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs, defStyleAttr, 0);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public DaySelectorWidget(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(attrs, defStyleAttr, defStyleRes);
+        super(context, attrs, defStyleAttr);
+        init(attrs, defStyleAttr, 0);
     }
 
     private void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {

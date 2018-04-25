@@ -17,7 +17,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:background="@color/row_selected_background"
+        android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:longClickable="true"
@@ -43,7 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:src="@{item.virtue.iconRes}"
-            tools:srcCompat="@drawable/ic_arrow_back" />
+            tools:srcCompat="@drawable/cha_icon" />
 
         <TextView
             android:id="@+id/tv_virtue_name"
@@ -55,7 +56,7 @@
             app:layout_constraintEnd_toStartOf="@id/tv_dots"
             app:layout_constraintStart_toEndOf="@id/icon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/m_name" />
+            tools:text="@string/mod_name" />
 
         <TextView
             android:id="@+id/tv_virtue_description"
@@ -66,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="@id/tv_virtue_name"
             app:layout_constraintStart_toStartOf="@id/tv_virtue_name"
             app:layout_constraintTop_toBottomOf="@id/tv_virtue_name"
-            tools:text="@string/m_desc" />
+            tools:text="@string/mod_desc" />
 
         <TextView
             android:id="@+id/tv_dots"

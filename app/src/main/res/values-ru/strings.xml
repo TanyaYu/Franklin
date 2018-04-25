@@ -10,49 +10,49 @@
     <string name="sil_short">М</string>
     <string name="sil_desc">Говорить только то, что может принести пользу мне или другому; избегать пустых разговоров.</string>
 
-    <string name="o_name">Порядок</string>
-    <string name="o_short">П</string>
-    <string name="o_desc">Держать все свои вещи на местах; для каждого занятия есть свое время.</string>
+    <string name="ord_name">Порядок</string>
+    <string name="ord_short">П</string>
+    <string name="ord_desc">Держать все свои вещи на местах; для каждого занятия есть свое время.</string>
 
-    <string name="r_name">Решительность</string>
-    <string name="r_short">Р</string>
-    <string name="r_desc">Решаться выполнять то, что должны сделать; неукоснительно выполнять то, что решено.</string>
+    <string name="res_name">Решительность</string>
+    <string name="res_short">Р</string>
+    <string name="res_desc">Решаться выполнять то, что должны сделать; неукоснительно выполнять то, что решено.</string>
 
-    <string name="f_name">Бережливость</string>
-    <string name="f_short">Б</string>
-    <string name="f_desc">Тратить деньги только на то, что приносит благо мне или другим, то есть ничего не расточать.</string>
+    <string name="fru_name">Бережливость</string>
+    <string name="fru_short">Б</string>
+    <string name="fru_desc">Тратить деньги только на то, что приносит благо мне или другим, то есть ничего не расточать.</string>
 
-    <string name="i_name">Трудолюбие</string>
-    <string name="i_short">Т</string>
-    <string name="i_desc">Не терять времени попусту; быть всегда занятым чем-либо полезным, отказываться от всех ненужных действий.</string>
+    <string name="ind_name">Трудолюбие</string>
+    <string name="ind_short">Т</string>
+    <string name="ind_desc">Не терять времени попусту; быть всегда занятым чем-либо полезным, отказываться от всех ненужных действий.</string>
 
     <string name="sin_name">Искренность</string>
     <string name="sin_short">И</string>
     <string name="sin_desc">Не причинять вредного обмана, иметь чистые и справедливые мысли; в разговоре также придерживаться этого правила.</string>
 
-    <string name="j_name">Справедливость</string>
-    <string name="j_short">С</string>
-    <string name="j_desc">Не причинять никому вреда, не совершать несправедливостей и не опускать добрых дел, которые входят в число твоих обязанностей.</string>
+    <string name="jus_name">Справедливость</string>
+    <string name="jus_short">С</string>
+    <string name="jus_desc">Не причинять никому вреда, не совершать несправедливостей и не опускать добрых дел, которые входят в число твоих обязанностей.</string>
 
-    <string name="m_name">Умеренность</string>
-    <string name="m_short">У</string>
-    <string name="m_desc">Избегать крайностей; сдерживать, насколько ты считаешь это уместным, чувство обиды от несправедливостей.</string>
+    <string name="mod_name">Умеренность</string>
+    <string name="mod_short">У</string>
+    <string name="mod_desc">Избегать крайностей; сдерживать, насколько ты считаешь это уместным, чувство обиды от несправедливостей.</string>
 
-    <string name="cl_name">Чистота</string>
-    <string name="cl_short">Ч</string>
-    <string name="cl_desc">Не допускать телесной нечистоты; соблюдать опрятность в одежде и жилище.</string>
+    <string name="cle_name">Чистота</string>
+    <string name="cle_short">Ч</string>
+    <string name="cle_desc">Не допускать телесной нечистоты; соблюдать опрятность в одежде и жилище.</string>
 
     <string name="tra_name">Спокойствие</string>
     <string name="tra_short">С</string>
     <string name="tra_desc">Не волноваться по пустякам и по поводу обычных или неизбежных случаев.</string>
 
-    <string name="ch_name">Целомудрие</string>
-    <string name="ch_short">Ц</string>
-    <string name="ch_desc">Предаваться любовным утехам не часто, только ради здоровья или произведения потомства, никогда не делать этого до отупения, истощения, а также в ущерб своей или чужой репутации.</string>
+    <string name="cha_name">Целомудрие</string>
+    <string name="cha_short">Ц</string>
+    <string name="cha_desc">Предаваться любовным утехам не часто, только ради здоровья или произведения потомства, никогда не делать этого до отупения, истощения, а также в ущерб своей или чужой репутации.</string>
 
-    <string name="h_name">Смирение</string>
-    <string name="h_short">С</string>
-    <string name="h_desc">Подражать Иисусу и Сократу.</string>
+    <string name="hum_name">Смирение</string>
+    <string name="hum_short">С</string>
+    <string name="hum_desc">Подражать Иисусу и Сократу.</string>
 
     <!-- #end Virtues data -->
 

@@ -2,13 +2,12 @@ package com.tanyayuferova.franklin.entity;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 
 import com.tanyayuferova.franklin.R;
-
-import java.util.Arrays;
 
 /**
  * Virtue entity
@@ -131,6 +130,15 @@ public class Virtue implements Parcelable {
         String[] shortNames = res.getStringArray(R.array.virtues_short_names);
         String[] descriptions = res.getStringArray(R.array.virtues_descriptions);
 
+        //todo refactor
+        TypedArray tArray = res.obtainTypedArray(R.array.virtues_icons);
+        int[] icons = new int[tArray.length()];
+        for (int i = 0; i < icons.length; i++) {
+            icons[i] = tArray.getResourceId(i, 0);
+        }
+        tArray.recycle();
+
+        //todo refactor
         //Finding index of element in int array. Probably needs refactoring.
         for(int index = 0; index < ids.length; index++) {
             if(ids[index] == id)
@@ -139,9 +147,30 @@ public class Virtue implements Parcelable {
                         names[index],
                         shortNames[index],
                         descriptions[index],
-                        R.drawable.ic_arrow_back //Fixme needs icons list
+                        icons[index]
                 );
         }
         throw new UnsupportedOperationException("Invalid id = " + id);
     }
+
+    public final static int[] IDS = new int[]{ 1,2,3,4,5,6,7,8,9,10,11,12,13 };
+    private final static int[] NAMES = new int[]{
+            R.string.tem_name,
+            R.string.sil_name,
+            R.string.ord_name,
+            R.string.res_name,
+            R.string.fru_name,
+            R.string.ind_name,
+            R.string.sin_name,
+            R.string.jus_name,
+            R.string.mod_name,
+            R.string.cle_name,
+            R.string.tra_name,
+            R.string.cha_name,
+            R.string.hum_name
+    };
+    private final static int[] SHORT_NAMES = new int[]{  };
+    private final static int[] DESCRIPTIONS = new int[]{  };
+    private final static int[] ICONS_RES = new int[]{  };
+
 }
