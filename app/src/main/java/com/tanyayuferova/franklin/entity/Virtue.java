@@ -122,7 +122,7 @@ public class Virtue implements Parcelable {
      * @param id
      * @return
      */
-    public static Virtue newVirtueById(Context context, int id) {
+    public static Virtue fromId(Context context, int id) {
         Resources res  = context.getResources();
 
         int[] ids = res.getIntArray(R.array.virtues_ids);

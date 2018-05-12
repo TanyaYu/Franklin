@@ -55,7 +55,7 @@ public class VirtuesAdapter extends RecyclerView.Adapter<VirtuesAdapter.BaseVirt
     @Override
     public void onBindViewHolder(BaseVirtueViewHolder holder, int position) {
         mCursor.moveToPosition(position);
-        Virtue virtue = Virtue.newVirtueById(context, mCursor.getInt(mCursor.getColumnIndex(_ID)));
+        Virtue virtue = Virtue.fromId(context, mCursor.getInt(mCursor.getColumnIndex(_ID)));
         int dotsCount = mCursor.getInt(mCursor.getColumnIndex(DAY_CODE));
 
         holder.bind(new VirtueDayInfo(virtue, dotsCount, context));

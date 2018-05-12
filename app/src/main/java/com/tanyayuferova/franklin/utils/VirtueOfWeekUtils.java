@@ -29,7 +29,7 @@ public class VirtueOfWeekUtils {
      * @return
      */
     public static Virtue getVirtueOfWeek(Context context, Date date) {
-        return Virtue.newVirtueById(context, getVirtueIdOfWeek(context, date));
+        return Virtue.fromId(context, getVirtueIdOfWeek(context, date));
     }
 
     /**

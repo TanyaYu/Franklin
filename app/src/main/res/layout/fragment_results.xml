@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/toolbar_elevation"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="@string/action_results"
+            app:titleTextColor="?android:textColorPrimaryInverse"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        <LinearLayout
+            android:elevation="@dimen/toolbar_elevation"
+            android:background="@color/white"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m"
+            android:paddingLeft="@dimen/spacing_h"
+            android:paddingRight="@dimen/spacing_h"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:tint="@color/text_primary"
+                android:id="@+id/previous_week_btn"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_width="@dimen/icon_size_h"
+                android:layout_height="@dimen/icon_size_h"
+                app:srcCompat="@drawable/ic_arrow_left" />
+
+            <TextView
+                android:id="@+id/week_title_text"
+                style="@style/Title"
+                android:elevation="@dimen/toolbar_elevation"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="05.05 - 12.05" />
+
+            <ImageView
+                android:tint="@color/text_primary"
+                android:id="@+id/nect_week_btn"
+                android:layout_width="@dimen/icon_size_h"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_height="@dimen/icon_size_h"
+                app:srcCompat="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/other_results"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/spacing_m"
+            tools:listitem="@layout/item_virtue_result" />
+    </LinearLayout>
+</layout>

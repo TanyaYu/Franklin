@@ -51,7 +51,7 @@ public class VirtuesFragment extends Fragment implements
     private VirtuesAdapter virtuesAdapter;
     private WeekTablePagerAdapter pagerAdapter;
     private Date currentDate;
-    private int LOADER_ID = 1;
+    private int LOADER_ID = 11;
 
     public static final int PAGES_COUNT = 100;
     // Start page in the middle
@@ -97,6 +97,10 @@ public class VirtuesFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             router.navigateTo(SettingsFragment.SCREEN_KEY);
+            return true;
+        }
+        if(item.getItemId() == R.id.action_results) {
+            router.navigateTo(ResultsFragment.SCREEN_KEY);
             return true;
         }
         return super.onOptionsItemSelected(item);

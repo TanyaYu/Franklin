@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/tv_virtue_name"
-            style="@style/Title"
+            style="@style/Subhead"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:maxLines="1"
