@@ -27,11 +27,16 @@ public class DateUtils {
      * @return date
      */
     public static Date getFirstDayOfWeek() {
-        Calendar today = Calendar.getInstance();
-        while (today.get(Calendar.DAY_OF_WEEK) != today.getFirstDayOfWeek()) {
-            today.add(Calendar.DAY_OF_MONTH, -1);
+        return getFirstDayOfWeek(Calendar.getInstance().getTime());
+    }
+
+    public static Date getFirstDayOfWeek(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        while (calendar.get(Calendar.DAY_OF_WEEK) != calendar.getFirstDayOfWeek()) {
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
         }
-        return today.getTime();
+        return calendar.getTime();
     }
 
     /**

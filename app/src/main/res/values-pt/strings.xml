@@ -83,4 +83,7 @@
     <string name="info_description_1">Aos 21 anos, Benjamin Franklin decidiu alcançar a perfeição moral. Ele decidiu que 13 virtudes eram necessárias ou desejáveis, organizadas para que as primeiras adquiridas pudessem ajudar a assimilar o segundo e assim por diante.</string>
     <string name="info_description_2">Ele concedeu uma semana para adquirir cada nova virtude. E para ver seu progresso, ele fez um livro recorde e deu a si mesmo uma marca negra cada vez que ele não exibia uma virtude sobre a qual ele estava trabalhando.</string>
     <string name="info_description_3">Este aplicativo foi projetado para ser servido como um livro de registro para suas marcas. Boa sorte!</string>
+    <string name="action_results">Resultados</string>
+    <string name="virtue_of_the_week">Virtude da semana</string>
+    <string name="other_virtues">Outras virtudes</string>
 </resources>

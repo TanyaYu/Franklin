@@ -83,4 +83,7 @@
     <string name="about_this_app">Acerca de la aplicación</string>
     <string name="image_franklin">Benjamin Franklin</string>
     <string name="image_close">Cerca</string>
+    <string name="other_virtues">Otras virtudes</string>
+    <string name="virtue_of_the_week">Virtud de la semana</string>
+    <string name="action_results">Resultados</string>
 </resources>

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,6 +31,7 @@ import com.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import ru.terrakok.cicerone.Router;
 
@@ -50,14 +52,14 @@ public class VirtuesFragment extends Fragment implements
     private FragmentVirtuesBinding binding;
     private VirtuesAdapter virtuesAdapter;
     private WeekTablePagerAdapter pagerAdapter;
-    private Date currentDate;
     private int LOADER_ID = 11;
 
     public static final int PAGES_COUNT = 100;
     // Start page in the middle
     public static final int START_PAGE_INDEX = PAGES_COUNT / 2;
     public static String DAY_CODE = "day";
-    public static final String STATE_CURRENT_DATE = "state.current_date";
+
+    private Date firstDate = DateUtils.getFirstDayOfWeek();
 
     public static VirtuesFragment newInstance(Object data) {
         VirtuesFragment fragment = new VirtuesFragment();
@@ -73,16 +75,11 @@ public class VirtuesFragment extends Fragment implements
 
         binding = FragmentVirtuesBinding.inflate(inflater, container, false);
 
-        if (savedInstanceState == null) {
-            currentDate = Calendar.getInstance().getTime();
-        } else {
-            currentDate = new Date(savedInstanceState.getLong(STATE_CURRENT_DATE));
-        }
-
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
 
         initRecyclerView();
         initDaysOfWeekPager();
+        updateTitle(DateUtils.getFirstDayOfWeek(FranklinApplication.INSTANCE.getSelectedDate()));
 
         getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
         return binding.getRoot();
@@ -99,8 +96,8 @@ public class VirtuesFragment extends Fragment implements
             router.navigateTo(SettingsFragment.SCREEN_KEY);
             return true;
         }
-        if(item.getItemId() == R.id.action_results) {
-            router.navigateTo(ResultsFragment.SCREEN_KEY);
+        if (item.getItemId() == R.id.action_results) {
+            router.navigateTo(ResultsFragment.SCREEN_KEY, firstDate);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -121,11 +118,38 @@ public class VirtuesFragment extends Fragment implements
         pagerAdapter = new WeekTablePagerAdapter(getChildFragmentManager());
         binding.daysOfWeekPager.setAdapter(pagerAdapter);
         binding.daysOfWeekPager.setCurrentItem(START_PAGE_INDEX);
+        binding.daysOfWeekPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                Date newStartDate = getStartDateForPage(position);
+                updateTitle(newStartDate);
+                setResultsActionVisible(Calendar.getInstance().getTime().getTime() >= newStartDate.getTime());
+            }
+        });
+    }
+
+    private void updateTitle(Date startDate) {
+        firstDate = startDate;
+        Date endDate = DateUtils.addDaysToDate(startDate, 7);
+        Calendar start = Calendar.getInstance();
+        start.setTime(startDate);
+        Calendar end = Calendar.getInstance();
+        end.setTime(endDate);
+        SimpleDateFormat withYear = new SimpleDateFormat("LLLL, yyyy");
+        SimpleDateFormat onlyMonth = new SimpleDateFormat("LLLL");
+
+        String title = start.get(Calendar.YEAR) != end.get(Calendar.YEAR) ?
+                withYear.format(startDate) + " - " + withYear.format(endDate) :
+                start.get(Calendar.MONTH) != end.get(Calendar.MONTH) ?
+                        onlyMonth.format(startDate) + " - " + withYear.format(endDate) :
+                        withYear.format(startDate);
+        binding.toolbar.setTitle(title);
+
     }
 
     //fixme
     private String[] getMainProjection() {
-        String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(currentDate);
+        String formattedDateString = new SimpleDateFormat("yyyyMMdd").format(FranklinApplication.INSTANCE.getSelectedDate());
 
         String[] result = new String[2];
         result[0] = VirtuesContract.VirtueEntry._ID;
@@ -135,14 +159,6 @@ public class VirtuesFragment extends Fragment implements
                 " and " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_DATE +
                 "='" + formattedDateString + "') as '" + DAY_CODE + "' ";
         return result;
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        if (outState == null)
-            outState = new Bundle();
-        outState.putLong(STATE_CURRENT_DATE, currentDate.getTime());
-        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -161,7 +177,7 @@ public class VirtuesFragment extends Fragment implements
         virtuesAdapter.swapCursor(data);
 
         //fixme async task
-        int selectedVirtueId = VirtueOfWeekUtils.getVirtueIdOfWeek(getContext(), currentDate);
+        int selectedVirtueId = VirtueOfWeekUtils.getVirtueIdOfWeek(getContext(), FranklinApplication.INSTANCE.getSelectedDate());
         //todo insert new value
         selectVirtueInTable(selectedVirtueId);
     }
@@ -177,14 +193,14 @@ public class VirtuesFragment extends Fragment implements
     public void onDayClick(View view, int virtueId) {
         //Add mark
         //fixme can cause CursorIndexOutOfBoundsException
-        getContext().getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, currentDate), null);
+        getContext().getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, FranklinApplication.INSTANCE.getSelectedDate()), null);
     }
 
     @Override
     public boolean onDayLongClick(int virtueId) {
         //Remove mark
         //fixme can cause CursorIndexOutOfBoundsException
-        getContext().getContentResolver().delete(VirtuesContract.buildPointsUriWithDate(virtueId, currentDate), null, null);
+        getContext().getContentResolver().delete(VirtuesContract.buildPointsUriWithDate(virtueId, FranklinApplication.INSTANCE.getSelectedDate()), null, null);
         return true;
     }
 
@@ -197,15 +213,23 @@ public class VirtuesFragment extends Fragment implements
         //Set new virtue of the week
         //fixme can cause CursorIndexOutOfBoundsException
         selectVirtueInTable(virtueId);
-        VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtueId, currentDate);
+        VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtueId, FranklinApplication.INSTANCE.getSelectedDate());
     }
 
     @Override
     public void onDateClicked(Date date) {
-        currentDate = date;
+        FranklinApplication.INSTANCE.setSelectedDate(date);
         getActivity().getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
 
         removeSelections();
+// fixme depends on selected week
+//     binding.toolbar.getMenu().findItem(R.id.action_results).setVisible(Calendar.getInstance().getTime().getTime() - date.getTime() > 0);
+    }
+
+    private void setResultsActionVisible(boolean visible) {
+//todo fix
+        if (binding.toolbar.getMenu().findItem(R.id.action_results) != null)
+            binding.toolbar.getMenu().findItem(R.id.action_results).setVisible(visible);
     }
 
     @Override
@@ -214,12 +238,9 @@ public class VirtuesFragment extends Fragment implements
         return true;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
-    }
-
     //fixme
     private void removeSelections() {
+        Date currentDate = FranklinApplication.INSTANCE.getSelectedDate();
         for (int i = 0; i < binding.daysOfWeekPager.getChildCount(); i++) {
             DaySelectorWidget f = (DaySelectorWidget) binding.daysOfWeekPager.getChildAt(i);
             f.selectDate(currentDate);

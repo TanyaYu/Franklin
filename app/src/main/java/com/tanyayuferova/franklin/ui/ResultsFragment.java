@@ -1,7 +1,11 @@
 package com.tanyayuferova.franklin.ui;
 
 import android.animation.Animator;
+import android.content.res.TypedArray;
 import android.database.Cursor;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,25 +15,33 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.tanyayuferova.franklin.FranklinApplication;
+import com.tanyayuferova.franklin.R;
 import com.tanyayuferova.franklin.database.VirtuesContract;
 import com.tanyayuferova.franklin.databinding.FragmentResultsBinding;
 import com.tanyayuferova.franklin.entity.Result;
 import com.tanyayuferova.franklin.entity.Virtue;
 import com.tanyayuferova.franklin.entity.VirtueResult;
 import com.tanyayuferova.franklin.utils.DateUtils;
+import com.tanyayuferova.franklin.utils.VirtueOfWeekUtils;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import ru.terrakok.cicerone.Router;
 
+import static android.support.v7.widget.RecyclerView.VERTICAL;
 import static com.tanyayuferova.franklin.database.VirtuesContract.CONTENT_VIRTUES_URI;
 
 /**
@@ -42,13 +54,16 @@ public class ResultsFragment extends Fragment implements
     private Router router = FranklinApplication.INSTANCE.getRouter();
     private FragmentResultsBinding binding;
     private VirtueResultsAdapter adapter;
-    private Date firstDate = DateUtils.getFirstDayOfWeek();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM");
+    private Date currentDate;
+    private DateFormat dateFormat = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
+    public static final String STATE_CURRENT_DATE = "state.current_date";
+    public static final String ARG_CURRENT_DATE = "arg.current_date";
     private int LOADER_ID = 12;
 
     public static ResultsFragment newInstance(Object data) {
         ResultsFragment fragment = new ResultsFragment();
         Bundle args = new Bundle();
+        args.putLong(ARG_CURRENT_DATE, ((Date) data).getTime());
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,6 +73,13 @@ public class ResultsFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentResultsBinding.inflate(inflater, container, false);
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
+
+        if (savedInstanceState != null) {
+            currentDate = new Date(savedInstanceState.getLong(STATE_CURRENT_DATE));
+        } else {
+            currentDate = new Date(getArguments().getLong(ARG_CURRENT_DATE));
+        }
+
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,23 +91,33 @@ public class ResultsFragment extends Fragment implements
         binding.previousWeekBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstDate = DateUtils.addDaysToDate(firstDate, -7);
-                animateWeekTitle(true);
+                currentDate = DateUtils.addDaysToDate(currentDate, -7);
+                updateData();
+                updateWeekTitle();
+                enableNextButton();
             }
         });
         binding.nectWeekBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstDate = DateUtils.addDaysToDate(firstDate, 7);
-                animateWeekTitle(false);
+                currentDate = DateUtils.addDaysToDate(currentDate, 7);
+                updateData();
+                updateWeekTitle();
+                enableNextButton();
             }
         });
         getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        enableNextButton();
+        updateData();
         return binding.getRoot();
     }
 
+    private void enableNextButton() {
+        binding.nectWeekBtn.setEnabled(Calendar.getInstance().getTime().getTime() - currentDate.getTime() > TimeUnit.DAYS.toMillis(7));
+    }
+
     private void updateWeekTitle() {
-        binding.weekTitleText.setText(dateFormat.format(firstDate) + " - " + dateFormat.format(DateUtils.addDaysToDate(firstDate, 6)));
+        binding.weekTitleText.setText(dateFormat.format(currentDate) + " - " + dateFormat.format(DateUtils.addDaysToDate(currentDate, 6)));
     }
 
     private void animateWeekTitle(boolean slideRight) {
@@ -124,6 +156,42 @@ public class ResultsFragment extends Fragment implements
         adapter = new VirtueResultsAdapter();
         adapter.setHasStableIds(true);
         binding.otherResults.setAdapter(adapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), layoutManager.getOrientation()) {
+
+            private final int[] ATTRS = new int[]{android.R.attr.listDivider};
+            private Drawable mDivider;
+            private final Rect mBounds = new Rect();
+
+            @Override
+            public void onDraw(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
+                final TypedArray a = parent.getContext().obtainStyledAttributes(ATTRS);
+                mDivider = a.getDrawable(0);
+                canvas.save();
+                final int left;
+                final int right;
+                //noinspection AndroidLintNewApi - NewApi lint fails to handle overrides.
+                if (parent.getClipToPadding()) {
+                    left = parent.getPaddingLeft();
+                    right = parent.getWidth() - parent.getPaddingRight();
+                    canvas.clipRect(left, parent.getPaddingTop(), right,
+                            parent.getHeight() - parent.getPaddingBottom());
+                } else {
+                    left = 0;
+                    right = parent.getWidth();
+                }
+
+                RecyclerView.ViewHolder child = parent.findViewHolderForAdapterPosition(1);
+                if (child != null) {
+                    parent.getDecoratedBoundsWithMargins(child.itemView, mBounds);
+                    final int bottom = mBounds.bottom + Math.round(child.itemView.getTranslationY());
+                    final int top = bottom - mDivider.getIntrinsicHeight();
+                    mDivider.setBounds(left, top, right, bottom);
+                    mDivider.draw(canvas);
+                }
+                canvas.restore();
+            }
+        };
+        binding.otherResults.addItemDecoration(dividerItemDecoration);
     }
 
     private void updateData() {
@@ -142,13 +210,13 @@ public class ResultsFragment extends Fragment implements
                                 " where " + VirtuesContract.VirtueEntry.TABLE_NAME + "." + VirtuesContract.VirtueEntry._ID +
                                 " = " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_VIRTUE_ID +
                                 " and " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_DATE +
-                                " between '" + dateFormat.format(firstDate) + "' and '" + dateFormat.format(DateUtils.addDaysToDate(firstDate, 6))
+                                " between '" + dateFormat.format(currentDate) + "' and '" + dateFormat.format(DateUtils.addDaysToDate(currentDate, 6))
                                 + "') as 'current_week'",
                         " (select count(*) from " + VirtuesContract.PointEntry.TABLE_NAME +
                                 " where " + VirtuesContract.VirtueEntry.TABLE_NAME + "." + VirtuesContract.VirtueEntry._ID +
                                 " = " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_VIRTUE_ID +
                                 " and " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_DATE +
-                                " between '" + dateFormat.format(DateUtils.addDaysToDate(firstDate, -7)) + "' and '" + dateFormat.format(DateUtils.addDaysToDate(firstDate, -1))
+                                " between '" + dateFormat.format(DateUtils.addDaysToDate(currentDate, -7)) + "' and '" + dateFormat.format(DateUtils.addDaysToDate(currentDate, -1))
                                 + "') as 'prev_week'"
                 },
                 null,
@@ -161,24 +229,42 @@ public class ResultsFragment extends Fragment implements
         if (getContext() == null)
             return; //fixme
 
-        List<VirtueResult> results = new ArrayList<>();
+        List<Object> results = new ArrayList<>();
+        int indexCurrent = 0;
+        int virtueOfTheWeekId = VirtueOfWeekUtils.getVirtueIdOfWeek(getContext(), currentDate);
         for (int i = 0; i < data.getCount(); i++) {
             data.moveToPosition(i);
+            int id = data.getInt(data.getColumnIndex(VirtuesContract.VirtueEntry._ID));
             int current = data.getInt(data.getColumnIndex("current_week"));
             int previous = data.getInt(data.getColumnIndex("prev_week"));
             int result = current - previous;
             results.add(new VirtueResult(
-                    Virtue.fromId(getContext(), data.getInt(data.getColumnIndex(VirtuesContract.VirtueEntry._ID))),
+                    Virtue.fromId(getContext(), id),
                     current,
                     result > 0 ? Result.NEGATIVE : result < 0 ? Result.POSITIVE : Result.NEUTRAL,
                     result > 0 ? Result.NEGATIVE : result < 0 ? Result.POSITIVE : Result.NEUTRAL
             ));
+            if (id == virtueOfTheWeekId) {
+                indexCurrent = i;
+            }
         }
+        results.add(0, results.get(indexCurrent));
+        results.remove(indexCurrent + 1);
+        results.add(0, getString(R.string.virtue_of_the_week));
+        results.add(2, getString(R.string.other_virtues));
         adapter.setData(results);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         adapter.setData(null);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (outState == null)
+            outState = new Bundle();
+        outState.putLong(STATE_CURRENT_DATE, currentDate.getTime());
+        super.onSaveInstanceState(outState);
     }
 }

@@ -8,4 +8,4 @@
     android:clickable="true"
     android:focusable="true"
     android:gravity="center"
-    tools:text="01.05\nMON" />
+    tools:text="01\nMON" />

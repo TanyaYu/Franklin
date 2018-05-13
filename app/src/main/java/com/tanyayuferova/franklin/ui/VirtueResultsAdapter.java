@@ -1,12 +1,14 @@
 package com.tanyayuferova.franklin.ui;
 
 import android.content.Context;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.tanyayuferova.franklin.BR;
 import com.tanyayuferova.franklin.R;
+import com.tanyayuferova.franklin.databinding.ItemSubtitleBinding;
 import com.tanyayuferova.franklin.databinding.ItemVirtueResultBinding;
 import com.tanyayuferova.franklin.entity.Result;
 import com.tanyayuferova.franklin.entity.Virtue;
@@ -21,18 +23,37 @@ import java.util.Random;
 
 public class VirtueResultsAdapter extends RecyclerView.Adapter<VirtueResultsAdapter.ViewHolder>  {
 
-    private List<VirtueResult> data;
+    private List<Object> data;
+    private int SUBTITLE_ITEM_TYPE = 1;
+    private int VIRTUE_ITEM_TYPE = 2;
 
     public VirtueResultsAdapter() {
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(viewType == SUBTITLE_ITEM_TYPE)
+            return new VirtueResultsAdapter.ViewHolder(ItemSubtitleBinding.inflate(
+                    LayoutInflater.from(parent.getContext()),
+                    parent,
+                    false
+            ));
+        if(viewType == VIRTUE_ITEM_TYPE)
         return new VirtueResultsAdapter.ViewHolder(ItemVirtueResultBinding.inflate(
                 LayoutInflater.from(parent.getContext()),
                 parent,
                 false
         ));
+        else throw new UnsupportedOperationException("Unknown type");
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(data.get(position) instanceof String)
+            return SUBTITLE_ITEM_TYPE;
+        if (data.get(position) instanceof VirtueResult)
+            return VIRTUE_ITEM_TYPE;
+        else throw new UnsupportedOperationException("Unknown type");
     }
 
     @Override
@@ -47,24 +68,24 @@ public class VirtueResultsAdapter extends RecyclerView.Adapter<VirtueResultsAdap
 
     @Override
     public long getItemId(int position) {
-        return data.get(position).getVirtue().getId();
+        return position;
     }
 
-    public void setData(List<VirtueResult> data) {
+    public void setData(List<Object> data) {
         this.data = data;
         notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ItemVirtueResultBinding binding;
+        ViewDataBinding binding;
 
-        public ViewHolder(ItemVirtueResultBinding binding) {
+        public ViewHolder(ViewDataBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void bind(VirtueResult item) {
-            binding.setItem(item);
+        public void bind(Object item) {
+            binding.setVariable(BR.item, item);
         }
     }
 }

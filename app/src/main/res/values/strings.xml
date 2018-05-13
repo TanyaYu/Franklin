@@ -2,6 +2,7 @@
     <string name="app_name">Perfection plan</string>
     <string name="content_authority" translatable="false">com.tanyayuferova.franklin</string>
     <string name="dot" translatable="false">•</string>
+    <string name="item_day_format" translatable="false">dd\nE</string>
 
     <!-- #start Virtues data -->
     <string name="tem_name">Temperance</string>
@@ -92,4 +93,7 @@
     <string name="info_description_1">At the age of 21, Benjamin Franklin decided to achieve moral perfection. He decided that 13 virtues were either necessary or desirable, arranged them so that the first acquired could help in assimilating the second, and so on.</string>
     <string name="info_description_2">He allotted himself one week to acquire each new virtue. And in order to see his progress, he made a record book and gave himself a black mark each time he failed to exhibit a virtue on which he was working.</string>
     <string name="info_description_3">This app is designed to be served as a record book for your marks. Good luck!</string>
+
+    <string name="virtue_of_the_week">Virtue of the week</string>
+    <string name="other_virtues">Other virtues</string>
 </resources>

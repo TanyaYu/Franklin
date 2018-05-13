@@ -3,6 +3,9 @@ package com.tanyayuferova.franklin;
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
@@ -14,6 +17,7 @@ import ru.terrakok.cicerone.Router;
 public class FranklinApplication extends Application {
     public static FranklinApplication INSTANCE;
     private Cicerone<Router> cicerone;
+    private Date selectedDate = Calendar.getInstance().getTime();
 
     @Override
     public void onCreate() {
@@ -33,5 +37,13 @@ public class FranklinApplication extends Application {
 
     public Router getRouter() {
         return cicerone.getRouter();
+    }
+
+    public Date getSelectedDate() {
+        return selectedDate;
+    }
+
+    public void setSelectedDate(Date selectedDate) {
+        this.selectedDate = selectedDate;
     }
 }

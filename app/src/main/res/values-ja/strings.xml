@@ -83,4 +83,7 @@
     <string name="info_description_1">21歳で、ベンジャミンフランクリンは道徳的な完璧を達成することを決めました。 彼は、13の美徳が必要であるか望ましいかを決定し、最初に獲得したものが第2のものに同化するのを助けるように配置しました。</string>
     <string name="info_description_2">彼は新しい徳を得るために一週間を割いた。 彼の進歩を見るために、彼は彼が働いていた美徳を見せなかったたびに記録的な本を作って自分に黒い印を付けました。</string>
     <string name="info_description_3">このアプリは、あなたのマークのレコードブックとして提供されるように設計されています。 がんばろう！</string>
+    <string name="action_results">結果</string>
+    <string name="virtue_of_the_week">今週の徳</string>
+    <string name="other_virtues">その他の美徳</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tanyayuferova.franklin.FranklinApplication;
 import com.tanyayuferova.franklin.databinding.FragmentDaysOfWeekBinding;
 
 import java.util.Date;
@@ -38,18 +39,14 @@ public class DaysOfWeekFragment extends Fragment {
         if (!getArguments().containsKey(FIRST_DATE))
             throw new UnsupportedOperationException("DaysOfWeekFragment must have first date in the arguments");
 
-        if(!(getParentFragment() instanceof DaySelectorWidget.OnDayClickedListener))
+        if (!(getParentFragment() instanceof DaySelectorWidget.OnDayClickedListener))
             throw new UnsupportedOperationException("Activity must implement OnDayClickedListener");
 
         binding = FragmentDaysOfWeekBinding.inflate(inflater, container, false);
         binding.daysWidget.setFirstDate(new Date(getArguments().getLong(FIRST_DATE)));
         binding.daysWidget.setOnDayClickedListener((DaySelectorWidget.OnDayClickedListener) getParentFragment());
 
-        //fixme
-        if(getParentFragment() instanceof VirtuesFragment) {
-            Date date = ((VirtuesFragment) getParentFragment()).getCurrentDate();
-            binding.daysWidget.selectDate(date);
-        }
+        binding.daysWidget.selectDate(FranklinApplication.INSTANCE.getSelectedDate());
 
         return binding.getRoot();
     }

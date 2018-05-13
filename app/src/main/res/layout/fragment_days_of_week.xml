@@ -6,6 +6,6 @@
         android:id="@+id/daysWidget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:dateFormat="dd.MM\nE"
+        app:dateFormat="@string/item_day_format"
         app:daysCount="7" />
 </layout>

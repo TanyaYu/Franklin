@@ -83,4 +83,7 @@
     <string name="image_example">Esempio di tabella</string>
     <string name="image_franklin">Benjamin Franklin</string>
     <string name="image_close">Vicino</string>
+    <string name="action_results">risultati</string>
+    <string name="virtue_of_the_week">Virtù della settimana</string>
+    <string name="other_virtues">Altre virtù</string>
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="String" />
+    </data>
+
+    <TextView
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_size_single_line"
+        android:ellipsize="marquee"
+        android:paddingLeft="@dimen/spacing_h"
+        android:paddingRight="@dimen/spacing_h"
+        android:singleLine="true"
+        android:text="@{item}"
+        android:textAppearance="@style/Subhead2"
+        android:textColor="@color/text_secondary"
+        tools:text="Title" />
+</layout>

@@ -83,4 +83,7 @@
     <string name="image_example">Przykład tabeli</string>
     <string name="image_franklin">Benjamin Franklin</string>
     <string name="image_close">Blisko</string>
+    <string name="other_virtues">Inne cnoty</string>
+    <string name="virtue_of_the_week">Cnota tygodnia</string>
+    <string name="action_results">Wyniki</string>
 </resources>
