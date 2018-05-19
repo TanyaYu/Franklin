@@ -42,10 +42,10 @@ import static com.tanyayuferova.franklin.database.VirtuesContract.CONTENT_VIRTUE
  */
 
 public class VirtuesFragment extends Fragment implements
-        BackButtonListener,
-        LoaderManager.LoaderCallbacks<Cursor>,
-        VirtuesAdapter.VirtuesAdapterOnClickHandler,
-        DaySelectorWidget.OnDayClickedListener {
+    BackButtonListener,
+    LoaderManager.LoaderCallbacks<Cursor>,
+    VirtuesAdapter.VirtuesAdapterOnClickHandler,
+    DaySelectorWidget.OnDayClickedListener {
 
     final public static String SCREEN_KEY = "VIRTUES_FRAGMENT_SCREEN_KEY";
     private Router router = FranklinApplication.INSTANCE.getRouter();
@@ -94,10 +94,12 @@ public class VirtuesFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             router.navigateTo(SettingsFragment.SCREEN_KEY);
+            FranklinApplication.INSTANCE.mFirebaseAnalytics.logEvent("settings", null);
             return true;
         }
         if (item.getItemId() == R.id.action_results) {
             router.navigateTo(ResultsFragment.SCREEN_KEY, firstDate);
+            FranklinApplication.INSTANCE.mFirebaseAnalytics.logEvent("results", null);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -139,10 +141,10 @@ public class VirtuesFragment extends Fragment implements
         SimpleDateFormat onlyMonth = new SimpleDateFormat("LLLL");
 
         String title = start.get(Calendar.YEAR) != end.get(Calendar.YEAR) ?
-                withYear.format(startDate) + " - " + withYear.format(endDate) :
-                start.get(Calendar.MONTH) != end.get(Calendar.MONTH) ?
-                        onlyMonth.format(startDate) + " - " + withYear.format(endDate) :
-                        withYear.format(startDate);
+            withYear.format(startDate) + " - " + withYear.format(endDate) :
+            start.get(Calendar.MONTH) != end.get(Calendar.MONTH) ?
+                onlyMonth.format(startDate) + " - " + withYear.format(endDate) :
+                withYear.format(startDate);
         binding.toolbar.setTitle(title);
 
     }
@@ -154,10 +156,10 @@ public class VirtuesFragment extends Fragment implements
         String[] result = new String[2];
         result[0] = VirtuesContract.VirtueEntry._ID;
         result[1] = " (select count(*) from " + VirtuesContract.PointEntry.TABLE_NAME +
-                " where " + VirtuesContract.VirtueEntry.TABLE_NAME + "." + VirtuesContract.VirtueEntry._ID +
-                " = " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_VIRTUE_ID +
-                " and " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_DATE +
-                "='" + formattedDateString + "') as '" + DAY_CODE + "' ";
+            " where " + VirtuesContract.VirtueEntry.TABLE_NAME + "." + VirtuesContract.VirtueEntry._ID +
+            " = " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_VIRTUE_ID +
+            " and " + VirtuesContract.PointEntry.TABLE_NAME + "." + VirtuesContract.PointEntry.COLUMN_DATE +
+            "='" + formattedDateString + "') as '" + DAY_CODE + "' ";
         return result;
     }
 
@@ -165,11 +167,11 @@ public class VirtuesFragment extends Fragment implements
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String sortOrder = VirtuesContract.VirtueEntry._ID + " ASC";
         return new CursorLoader(getContext(),
-                CONTENT_VIRTUES_URI,
-                getMainProjection(),
-                null,
-                null,
-                sortOrder);
+            CONTENT_VIRTUES_URI,
+            getMainProjection(),
+            null,
+            null,
+            sortOrder);
     }
 
     @Override
@@ -194,6 +196,8 @@ public class VirtuesFragment extends Fragment implements
         //Add mark
         //fixme can cause CursorIndexOutOfBoundsException
         getContext().getContentResolver().insert(VirtuesContract.buildPointsUriWithDate(virtueId, FranklinApplication.INSTANCE.getSelectedDate()), null);
+
+        FranklinApplication.INSTANCE.mFirebaseAnalytics.logEvent("mark_added", null);
     }
 
     @Override
@@ -201,6 +205,7 @@ public class VirtuesFragment extends Fragment implements
         //Remove mark
         //fixme can cause CursorIndexOutOfBoundsException
         getContext().getContentResolver().delete(VirtuesContract.buildPointsUriWithDate(virtueId, FranklinApplication.INSTANCE.getSelectedDate()), null, null);
+        FranklinApplication.INSTANCE.mFirebaseAnalytics.logEvent("mark_deleted", null);
         return true;
     }
 
@@ -214,6 +219,7 @@ public class VirtuesFragment extends Fragment implements
         //fixme can cause CursorIndexOutOfBoundsException
         selectVirtueInTable(virtueId);
         VirtueOfWeekUtils.setVirtueOfWeek(getContext(), virtueId, FranklinApplication.INSTANCE.getSelectedDate());
+        FranklinApplication.INSTANCE.mFirebaseAnalytics.logEvent("virtue_selected", null);
     }
 
     @Override
@@ -224,6 +230,8 @@ public class VirtuesFragment extends Fragment implements
         removeSelections();
 // fixme depends on selected week
 //     binding.toolbar.getMenu().findItem(R.id.action_results).setVisible(Calendar.getInstance().getTime().getTime() - date.getTime() > 0);
+
+        FranklinApplication.INSTANCE.mFirebaseAnalytics.logEvent("day_selected", null);
     }
 
     private void setResultsActionVisible(boolean visible) {

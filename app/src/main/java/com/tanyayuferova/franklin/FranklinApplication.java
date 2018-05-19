@@ -3,6 +3,8 @@ package com.tanyayuferova.franklin;
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -17,6 +19,7 @@ import ru.terrakok.cicerone.Router;
 public class FranklinApplication extends Application {
     public static FranklinApplication INSTANCE;
     private Cicerone<Router> cicerone;
+    public FirebaseAnalytics mFirebaseAnalytics;
     private Date selectedDate = Calendar.getInstance().getTime();
 
     @Override
@@ -24,6 +27,7 @@ public class FranklinApplication extends Application {
         super.onCreate();
         INSTANCE = this;
         initCicerone();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 

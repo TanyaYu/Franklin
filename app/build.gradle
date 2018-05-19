@@ -18,29 +18,22 @@ android {
         applicationId "com.tanyayuferova.franklin"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 5
-        versionName "2.0"
+        versionCode 6
+        versionName "2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.config
     }
     buildTypes {
-        all {
-            signingConfig signingConfigs.config
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
+            signingConfig signingConfigs.config
         }
     }
     dataBinding.enabled = true
     flavorDimensions 'default'
     productFlavors {
-        all {
-            signingConfig signingConfigs.config
-        }
         free {
             applicationIdSuffix '.free'
         }
@@ -54,8 +47,9 @@ ext {
     support_version = '26.1.0'
     cicerine_version = '3.0.0'
     jobdispatcher_version = '0.8.4'
-    ads_version = '11.8.0'
+    ads_version = '15.0.1'
     constraint_layout = '1.1.0'
+    firebase = '15.0.2'
 }
 
 dependencies {
@@ -69,4 +63,6 @@ dependencies {
     implementation "com.android.support:design:$support_version"
     implementation "ru.terrakok.cicerone:cicerone:$cicerine_version"
     freeImplementation "com.google.android.gms:play-services-ads:$ads_version"
+    implementation "com.google.firebase:firebase-core:$firebase"
 }
+apply plugin: 'com.google.gms.google-services'
