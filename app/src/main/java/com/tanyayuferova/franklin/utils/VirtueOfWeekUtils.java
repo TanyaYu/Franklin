@@ -79,6 +79,8 @@ public class VirtueOfWeekUtils {
             next = context.getResources().getIntArray(R.array.virtues_ids)[0];
         if(next == 0)
             throw new UnsupportedOperationException("Unable to find any virtue");
+
+        setVirtueOfWeek(context, next, week, year);
         return next;
     }
 
