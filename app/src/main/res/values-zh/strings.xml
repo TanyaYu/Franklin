@@ -86,4 +86,6 @@
     <string name="action_results">结果</string>
     <string name="virtue_of_the_week">本周的美德</string>
     <string name="other_virtues">其他美德</string>
+    <string name="action_skip">跳跃</string>
+    <string name="action_next">下面</string>
 </resources>

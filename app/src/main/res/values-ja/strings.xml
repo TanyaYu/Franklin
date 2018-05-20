@@ -86,4 +86,6 @@
     <string name="action_results">結果</string>
     <string name="virtue_of_the_week">今週の徳</string>
     <string name="other_virtues">その他の美徳</string>
+    <string name="action_skip">スキップ</string>
+    <string name="action_next">次</string>
 </resources>

@@ -14,7 +14,6 @@ import com.tanyayuferova.franklin.utils.PreferencesUtils;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
-import ru.terrakok.cicerone.commands.Command;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         initNotifications();
         router.navigateTo(VirtuesFragment.SCREEN_KEY);
         if (!PreferencesUtils.getHasInfoBeenShown(this)) {
-            router.navigateTo(InfoFragment.SCREEN_KEY);
+            router.navigateTo(OnBoardingFragment.SCREEN_KEY);
             PreferencesUtils.setHasInfoBeenShown(this, true);
         }
     }

@@ -86,4 +86,6 @@
     <string name="other_virtues">Inne cnoty</string>
     <string name="virtue_of_the_week">Cnota tygodnia</string>
     <string name="action_results">Wyniki</string>
+    <string name="action_skip">Pominąć</string>
+    <string name="action_next">"Kolejny "</string>
 </resources>

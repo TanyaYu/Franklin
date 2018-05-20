@@ -86,4 +86,6 @@
     <string name="other_virtues">अन्य गुण</string>
     <string name="virtue_of_the_week">सप्ताह का गुण</string>
     <string name="action_results">परिणाम</string>
+    <string name="action_skip">छोड़ें</string>
+    <string name="action_next">"आगामी "</string>
 </resources>

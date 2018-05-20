@@ -86,4 +86,6 @@
     <string name="other_virtues">D\'autres vertus</string>
     <string name="virtue_of_the_week">La vertu de la semaine</string>
     <string name="action_results">Résultats</string>
+    <string name="action_next">Prochain</string>
+    <string name="action_skip">passer</string>
 </resources>

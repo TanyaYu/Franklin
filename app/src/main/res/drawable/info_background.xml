@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke
-        android:width="@dimen/activity_info_border_width"
-        android:color="@color/primary_dark" />
-    <padding
-        android:bottom="@dimen/activity_info_border_width"
-        android:left="@dimen/activity_info_border_width"
-        android:right="@dimen/activity_info_border_width"
-        android:top="@dimen/activity_info_border_width" />
-
-    <corners android:radius="@dimen/activity_info_border_width" />
+    <corners android:radius="8dp" />
     <solid android:color="@color/window_background" />
 </shape>

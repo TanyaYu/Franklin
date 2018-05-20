@@ -2,7 +2,7 @@ package com.tanyayuferova.franklin.utils;
 
 import android.support.v4.app.Fragment;
 
-import com.tanyayuferova.franklin.ui.InfoFragment;
+import com.tanyayuferova.franklin.ui.OnBoardingFragment;
 import com.tanyayuferova.franklin.ui.ResultsFragment;
 import com.tanyayuferova.franklin.ui.SettingsFragment;
 import com.tanyayuferova.franklin.ui.VirtuesFragment;
@@ -19,8 +19,8 @@ public class FragmentFactory {
                 return VirtuesFragment.newInstance(data);
             case SettingsFragment.SCREEN_KEY:
                 return SettingsFragment.newInstance(data);
-            case InfoFragment.SCREEN_KEY:
-                return InfoFragment.newInstance(data);
+            case OnBoardingFragment.SCREEN_KEY:
+                return OnBoardingFragment.newInstance(data);
             case ResultsFragment.SCREEN_KEY:
                 return ResultsFragment.newInstance(data);
             default:

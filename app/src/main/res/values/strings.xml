@@ -96,4 +96,6 @@
 
     <string name="virtue_of_the_week">Virtue of the week</string>
     <string name="other_virtues">Other virtues</string>
+    <string name="action_skip">Skip</string>
+    <string name="action_next">Next</string>
 </resources>

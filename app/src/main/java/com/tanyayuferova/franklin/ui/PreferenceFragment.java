@@ -100,7 +100,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements
     public boolean onPreferenceTreeClick(Preference preference) {
         if (preference != null && preference.getKey().equals(getString(R.string.pref_info_shown_key))) {
             // Show information activity
-            router.navigateTo(InfoFragment.SCREEN_KEY);
+            router.navigateTo(OnBoardingFragment.SCREEN_KEY);
         }
         return super.onPreferenceTreeClick(preference);
     }

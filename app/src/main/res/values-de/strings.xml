@@ -86,4 +86,6 @@
     <string name="action_results">Ergebnisse</string>
     <string name="virtue_of_the_week">Tugend der Woche</string>
     <string name="other_virtues">Andere Tugenden</string>
+    <string name="action_skip">Überspringen</string>
+    <string name="action_next">Nächster</string>
 </resources>

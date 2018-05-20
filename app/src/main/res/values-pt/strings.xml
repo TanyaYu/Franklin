@@ -86,4 +86,6 @@
     <string name="action_results">Resultados</string>
     <string name="virtue_of_the_week">Virtude da semana</string>
     <string name="other_virtues">Outras virtudes</string>
+    <string name="action_skip">Pular</string>
+    <string name="action_next">Próximo</string>
 </resources>

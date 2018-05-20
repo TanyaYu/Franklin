@@ -86,5 +86,7 @@
     <string name="action_results">Результаты</string>
     <string name="virtue_of_the_week">Добродетель недели</string>
     <string name="other_virtues">Другие добродетели</string>
+    <string name="action_skip">Пропустить</string>
+    <string name="action_next">Далее</string>
 
 </resources>
