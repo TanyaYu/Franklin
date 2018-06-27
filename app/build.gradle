@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(rootProject.file('keystore.properties')))
@@ -12,14 +14,13 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.tanyayuferova.franklin"
         minSdkVersion 17
-        targetSdkVersion 26
-        versionCode 6
-        versionName "2.1"
+        targetSdkVersion 27
+        versionCode 7
+        versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.config
@@ -44,12 +45,14 @@ android {
 }
 
 ext {
-    support_version = '26.1.0'
+    support_version = '27.1.1'
     cicerine_version = '3.0.0'
     jobdispatcher_version = '0.8.4'
     ads_version = '15.0.1'
-    constraint_layout = '1.1.0'
-    firebase = '15.0.2'
+    constraint_layout = '1.1.2'
+    firebase = '16.0.1'
+    dagger_version = '2.14.1'
+    data_binding = '3.1.3'
 }
 
 dependencies {
@@ -62,7 +65,19 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
     implementation "com.android.support:design:$support_version"
     implementation "ru.terrakok.cicerone:cicerone:$cicerine_version"
-    freeImplementation "com.google.android.gms:play-services-ads:$ads_version"
     implementation "com.google.firebase:firebase-core:$firebase"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.android.databinding:compiler:$data_binding"
+
+    freeImplementation "com.google.android.gms:play-services-ads:$ads_version"
 }
-apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}
+//apply plugin: 'com.google.gms.google-services' todo need fix
