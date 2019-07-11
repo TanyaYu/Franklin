@@ -1,101 +1,11 @@
 <resources>
-    <string name="app_name">Perfection plan</string>
-    <string name="content_authority" translatable="false">com.tanyayuferova.franklin</string>
-    <string name="dot" translatable="false">•</string>
-    <string name="item_day_format" translatable="false">dd\nE</string>
+    <string name="app_name">Franklin</string>
+    <string name="settings">Settings</string>
+    <string name="statistics">Statistics</string>
 
-    <!-- #start Virtues data -->
-    <string name="tem_name">Temperance</string>
-    <string name="tem_short">T</string>
-    <string name="tem_desc">Eat not dulness; drink not elevation.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_main_fragment">Hello main fragment</string>
 
-    <string name="sil_name">Silence</string>
-    <string name="sil_short">S</string>
-    <string name="sil_desc">Speak not but what may benefit others or yourself; avoid trifling conversation.</string>
-
-    <string name="ord_name">Order</string>
-    <string name="ord_short">O</string>
-    <string name="ord_desc">Let all your things have their places; let each part of your business have its time.</string>
-
-    <string name="res_name">Resolution</string>
-    <string name="res_short">R</string>
-    <string name="res_desc">Resolve to perform what you ought; perform without fail what you resolve.</string>
-
-    <string name="fru_name">Frugality</string>
-    <string name="fru_short">F</string>
-    <string name="fru_desc">Make no expense but to do good to others or yourself; i.e., waste nothing.</string>
-
-    <string name="ind_name">Industry</string>
-    <string name="ind_short">I</string>
-    <string name="ind_desc">Lose no time; be always employed in something useful; cut off all unnecessary actions.</string>
-
-    <string name="sin_name">Sincerity</string>
-    <string name="sin_short">S</string>
-    <string name="sin_desc">Use no hurtful deceit; think innocently and justly; and, if you speak, speak accordingly.</string>
-
-    <string name="jus_name">Justice</string>
-    <string name="jus_short">J</string>
-    <string name="jus_desc">Wrong none by doing injuries, or omitting the benefits that are your duty.</string>
-
-    <string name="mod_name">Moderation</string>
-    <string name="mod_short">M</string>
-    <string name="mod_desc">Avoid extremes; forbear resenting injuries so much as you think they deserve.</string>
-
-    <string name="cle_name">Cleanliness</string>
-    <string name="cle_short">C</string>
-    <string name="cle_desc">Tolerate no uncleanliness in body, cloaths, or habitation.</string>
-
-    <string name="tra_name">Tranquility</string>
-    <string name="tra_short">T</string>
-    <string name="tra_desc">Be not disturbed at trifles, or at accidents common or unavoidable.</string>
-
-    <string name="cha_name">Chastity</string>
-    <string name="cha_short">C</string>
-    <string name="cha_desc">Rarely use venery but for health or offspring, never to dullness, weakness, or the injury of your own or another’s peace or reputation.</string>
-
-    <string name="hum_name">Humility</string>
-    <string name="hum_short">H</string>
-    <string name="hum_desc">Imitate Jesus and Socrates.</string>
-
-    <!-- #end Virtues data -->
-
-    <!-- #start Menu -->
-    <string name="action_settings">Settings</string>
-    <!-- #end Menu -->
-
-    <!-- #start Notifications -->
-    <string name="notification_reminder_channel_id" translatable="false">reminder_channel</string>
-    <string name="notification_reminder_channel_title">Reminders</string>
-    <string name="reminder_notification_title">@string/app_name</string>
-    <string name="reminder_notification_body">What great have you done today? Don\'t forget to keep track of your progress.</string>
-    <!-- #end Notifications -->
-
-    <!-- #start Preferences -->
-    <string name="pref_notifications_key" translatable="false">preference_notifications</string>
-    <string name="pref_notifications_enable_false">Off</string>
-    <string name="pref_notifications_enable_true">On</string>
-    <string name="pref_notifications_label">Daily notifications</string>
-
-    <string name="pref_time_key" translatable="false">preference_time</string>
-    <string name="pref_time_label">Daily notifications time</string>
-    <string name="preferences_time_title">Notification time</string>
-
-    <string name="pref_info_shown_key" translatable="false">preference_info_shown</string>
-    <!-- #end Preferences -->
-
-    <string name="image_close">Close</string>
-    <string name="image_franklin">Benjamin Franklin</string>
-    <string name="image_example">Table example</string>
-
-    <string name="about_this_app">About the app</string>
-    <string name="action_results">Results</string>
-
-    <string name="info_description_1">At the age of 21, Benjamin Franklin decided to achieve moral perfection. He decided that 13 virtues were either necessary or desirable, arranged them so that the first acquired could help in assimilating the second, and so on.</string>
-    <string name="info_description_2">He allotted himself one week to acquire each new virtue. And in order to see his progress, he made a record book and gave himself a black mark each time he failed to exhibit a virtue on which he was working.</string>
-    <string name="info_description_3">This app is designed to be served as a record book for your marks. Good luck!</string>
-
-    <string name="virtue_of_the_week">Virtue of the week</string>
-    <string name="other_virtues">Other virtues</string>
-    <string name="action_skip">Skip</string>
-    <string name="action_next">Next</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_settings_fragment">Hello settings fragment</string>
 </resources>
