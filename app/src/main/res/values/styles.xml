@@ -1,76 +1,11 @@
 <resources>
 
+    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:textColorPrimary">@color/text_primary</item>
-        <item name="android:textColorPrimaryInverse">@color/text_primary_inverse</item>
-        <item name="android:textColorSecondary">@color/text_secondary</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-        <item name="android:actionBarSize">@dimen/toolbar_size</item>
-    </style>
-
-    <!--FIXME preference styles-->
-    <style name="AppPreference" parent="PreferenceThemeOverlay">
-        <item name="android:layout">@layout/preference_material</item>
-    </style>
-
-    <style name="AppPreference.DialogPreference" parent="PreferenceThemeOverlay">
-        <item name="positiveButtonText">@android:string/ok</item>
-        <item name="negativeButtonText">@android:string/cancel</item>
-    </style>
-
-    <style name="Title">
-        <item name="android:textSize">@dimen/text_size_xh</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textStyle">normal</item>
-    </style>
-
-    <style name="Subhead">
-        <item name="android:textSize">@dimen/text_size_h</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <style name="Subhead2">
-        <item name="android:textSize">@dimen/text_size_m</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="Body">
-        <item name="android:textSize">@dimen/text_size_m</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <style name="Caption">
-        <item name="android:textSize">@dimen/text_size_m</item>
-        <item name="android:textColor">?android:textColorSecondary</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <style name="Mark">
-        <item name="android:textSize">@dimen/text_size_xxh</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <!--todo check this out-->
-    <!--<style name="Mark">-->
-        <!--<item name="android:textSize">@dimen/text_size_xh</item>-->
-        <!--<item name="android:textColor">?android:textColorPrimary</item>-->
-        <!--<item name="android:fontFamily">sans-serif-medium</item>-->
-    <!--</style>-->
-
-    <style name="DaysWidget">
-        <item name="android:textSize">@dimen/text_size_m</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textAlignment">center</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
 </resources>

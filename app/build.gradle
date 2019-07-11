@@ -1,83 +1,66 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'kotlin-kapt'
 
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(rootProject.file('keystore.properties')))
-
 android {
-    signingConfigs {
-        config {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-        }
-    }
-    compileSdkVersion 27
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
     defaultConfig {
         applicationId "com.tanyayuferova.franklin"
-        minSdkVersion 17
-        targetSdkVersion 27
-        versionCode 7
-        versionName "2.2"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
-        signingConfig signingConfigs.config
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.version_code
+        versionName build_versions.version_name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding.enabled = true
-    flavorDimensions 'default'
-    productFlavors {
-        free {
-            applicationIdSuffix '.free'
-        }
-        paid {
-            applicationIdSuffix '.paid'
-        }
+    sourceSets{
+        main.java.srcDirs += 'src/main/kotlin'
     }
-}
-
-ext {
-    support_version = '27.1.1'
-    cicerine_version = '3.0.0'
-    jobdispatcher_version = '0.8.4'
-    ads_version = '15.0.1'
-    constraint_layout = '1.1.2'
-    firebase = '16.0.1'
-    dagger_version = '2.14.1'
-    data_binding = '3.1.3'
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:recyclerview-v7:$support_version"
-    implementation "com.android.support:preference-v7:$support_version"
-    implementation "com.android.support:preference-v14:$support_version"
-    implementation "com.firebase:firebase-jobdispatcher:$jobdispatcher_version"
-    implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
-    implementation "com.android.support:design:$support_version"
-    implementation "ru.terrakok.cicerone:cicerone:$cicerine_version"
-    implementation "com.google.firebase:firebase-core:$firebase"
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.android.databinding:compiler:$data_binding"
+    // Kotlin
+    implementation deps.kotlin.stdlib
+    implementation deps.kotlin.coroutines
 
-    freeImplementation "com.google.android.gms:play-services-ads:$ads_version"
+    // Support
+    implementation deps.support.app_compat
+    implementation deps.support.core_ktx
+    implementation deps.support.v4
+    implementation deps.constraint_layout
+
+    // Navigation
+    implementation deps.navigation.fragment
+    implementation deps.navigation.fragment_ktx
+
+    // Logging
+    implementation deps.timber
+
+    // Architecture Components
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    kapt deps.lifecycle.compiler
+
+    // Room
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
+    //Test
+    testImplementation deps.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.core
 }
+
 repositories {
     mavenCentral()
 }
-//apply plugin: 'com.google.gms.google-services' todo need fix
