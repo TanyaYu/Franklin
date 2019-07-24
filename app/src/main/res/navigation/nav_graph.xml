@@ -3,35 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/main">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.tanyayuferova.franklin.ui.MainFragment"
+        android:id="@+id/main"
+        android:name="com.tanyayuferova.franklin.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_mainFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_main_to_settings"
+            app:destination="@id/settings" />
         <action
-            android:id="@+id/action_mainFragment_to_statisticsFragment"
-            app:destination="@id/statisticsFragment" />
+            android:id="@+id/action_main_to_statistics"
+            app:destination="@id/statistics" />
     </fragment>
 
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.tanyayuferova.franklin.ui.SettingsFragment"
+        android:id="@+id/settings"
+        android:name="com.tanyayuferova.franklin.ui.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settings_to_aboutPlan"
+            app:destination="@id/aboutPlan" />
+    </fragment>
 
     <fragment
-        android:id="@+id/statisticsFragment"
-        android:name="com.tanyayuferova.franklin.ui.StatisticsFragment"
+        android:id="@+id/statistics"
+        android:name="com.tanyayuferova.franklin.ui.statistics.StatisticsFragment"
         android:label="StatisticsFragment"
         tools:layout="@layout/fragment_statistics">
         <argument
             android:name="date"
             app:argType="java.util.Date" />
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutPlan"
+        android:name="com.tanyayuferova.franklin.ui.aboutPlan.AboutPlanFragment"
+        android:label="fragment_about_plan"
+        tools:layout="@layout/fragment_about_plan" />
 
 </navigation>

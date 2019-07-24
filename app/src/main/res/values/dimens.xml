@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_info_close_btn_size">@dimen/icon_size_h</dimen>
+    <dimen name="activity_info_border_width">12dp</dimen>
+    <dimen name="activity_info_text_size">19sp</dimen>
+    <dimen name="activity_info_content_horizontal_margin">15dp</dimen>
+    <dimen name="activity_info_content_vertical_margin">15dp</dimen>
+
+    <dimen name="spacing_l">4dp</dimen>
+    <dimen name="spacing_m">8dp</dimen>
+    <dimen name="spacing_h">16dp</dimen>
+    <dimen name="spacing_xh">24dp</dimen>
+    <dimen name="spacing_xxh">32dp</dimen>
+
+    <dimen name="text_size_l">12sp</dimen>
+    <dimen name="text_size_m">14sp</dimen>
+    <dimen name="text_size_h">16sp</dimen>
+    <dimen name="text_size_xh">20sp</dimen>
+    <dimen name="text_size_xxh">24sp</dimen>
+
+    <dimen name="icon_size_m">24dp</dimen>
+    <dimen name="icon_size_h">36dp</dimen>
+    <dimen name="icon_size_xh">48dp</dimen>
+
+    <dimen name="elevation_l">2dp</dimen>
+    <dimen name="elevation_m">4dp</dimen>
+    <dimen name="elevation_h">6dp</dimen>
+
+    <dimen name="row_size_single_line">48dp</dimen>
+    <dimen name="row_size_double_line">64dp</dimen>
+
+    <dimen name="toolbar_size">56dp</dimen>
+    <dimen name="toolbar_elevation">@dimen/elevation_m</dimen>
+
+</resources>

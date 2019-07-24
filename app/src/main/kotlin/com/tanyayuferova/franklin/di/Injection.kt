@@ -11,6 +11,7 @@ import com.tanyayuferova.franklin.data.virtue.VirtueRepository
 import com.tanyayuferova.franklin.data.week.WeeksRepository
 import com.tanyayuferova.franklin.domain.settings.SettingsViewModelFactory
 import com.tanyayuferova.franklin.domain.statistics.StatisticsViewModelFactory
+import com.tanyayuferova.franklin.utils.DateFormatter
 import java.util.Date
 
 /**
@@ -22,24 +23,29 @@ object Injection {
         return MainViewModelFactory(
             getVirtueRepository(context),
             getPointsRepository(context),
-            getWeekRepository(context)
+            getWeekRepository(context),
+            getResourceManager(context.applicationContext),
+            getDateFormatter(context)
         )
     }
 
     fun provideSettingsViewModelFactory(context: Context): SettingsViewModelFactory {
         return SettingsViewModelFactory(
-            getSettingsRepository(context)
+            getSettingsRepository(context),
+            getDateFormatter(context)
         )
     }
 
     fun provideStatisticsViewModelFactory(context: Context, date: Date): StatisticsViewModelFactory {
         return StatisticsViewModelFactory(
             getVirtueRepository(context),
+            getResourceManager(context.applicationContext),
+            getDateFormatter(context),
             date
         )
     }
 
-    private fun getSettingsRepository(context: Context) : SettingsRepository {
+    private fun getSettingsRepository(context: Context): SettingsRepository {
         return SettingsRepository.getInstance(
             getKeyValueStorage(context.applicationContext)
         )
@@ -48,7 +54,8 @@ object Injection {
     private fun getVirtueRepository(context: Context): VirtueRepository {
         return VirtueRepository.getInstance(
             AppDatabase.getInstance(context.applicationContext).virtueDao(),
-            getWeekRepository(context.applicationContext)
+            getWeekRepository(context.applicationContext),
+            getResourceManager(context.applicationContext)
         )
     }
 
@@ -65,11 +72,19 @@ object Injection {
     }
 
     private fun getKeyValueStorage(context: Context): KeyValueStorage {
-        return KeyValueStorage(
+        return KeyValueStorage.getInstance(
             context.getSharedPreferences(
                 PREFERENCES_NAME,
                 Context.MODE_PRIVATE
             )
         )
+    }
+
+    private fun getResourceManager(context: Context): ResourceManager {
+        return ResourceManager.getInstance(context)
+    }
+
+    private fun getDateFormatter(context: Context): DateFormatter {
+        return DateFormatter(getResourceManager(context.applicationContext))
     }
 }

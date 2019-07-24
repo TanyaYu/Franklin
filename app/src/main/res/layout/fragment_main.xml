@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.MainFragment">
+    tools:context=".ui.main.MainFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        app:title="@string/app_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        tools:title="May, 2018" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/weeksSlider"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_main_fragment" />
+        android:layout_height="@dimen/row_size_single_line"
+        android:background="@color/white"
+        android:elevation="@dimen/toolbar_elevation"
+        tools:targetApi="lollipop" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_m"
+        android:paddingTop="@dimen/spacing_m"
+        tools:itemCount="13"
+        tools:listitem="@layout/item_virtue" />
 
 </LinearLayout>

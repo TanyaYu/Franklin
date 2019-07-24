@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AppTheme">
+        <attr name="daySelectorView" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="DaySelectorView">
+        <attr name="daysCount" format="integer"/>
+        <attr name="dateFormat" format="string"/>
+        <attr name="dayViewStyle" format="reference"/>
+    </declare-styleable>
+</resources>

@@ -18,7 +18,8 @@ fun Calendar.setMinute(minute: Int) = apply { set(MINUTE, minute) }
 fun Calendar.setSecond(second: Int) = apply { set(SECOND, second) }
 fun Calendar.setMilliSecond(millisecond: Int) = apply { set(MILLISECOND, millisecond) }
 fun Calendar.setDayOfWeek(dayOfWeek: Int) = apply { set(DAY_OF_WEEK, dayOfWeek) }
-fun Calendar.setWeek(week: Int) = apply { set(WEEK_OF_YEAR, week) }
+fun Calendar.setWeek(week: Int) = apply { set(WEEK_OF_YEAR, week) }.also { it.get(WEEK_OF_YEAR) }
+//fixme bug
 
 val Calendar.year get() = get(YEAR)
 val Calendar.month get() = get(MONTH)
@@ -45,6 +46,7 @@ fun Date.setUp(
         .time
 }
 
+val now = Date()
 val today = Date().removeTime()
 
 val Date.yearOfWeek: Int
@@ -75,6 +77,13 @@ var Date.totalMinutes: Int
         )
     }
 
+fun Date.setUpTotalMinutes(minutes: Int) = setUp(
+    hour = minutes / 60,
+    minute = minutes % 60,
+    second = 0,
+    millisecond = 0
+)
+
 
 fun Date.toCalendar() = Calendar.getInstance().apply { time = this@toCalendar }
 
@@ -90,15 +99,20 @@ fun Date.removeTime(): Date {
         .time
 }
 
+fun Date.isSameDay(date: Date) = this.removeTime() == date.removeTime()
+fun Date.isToday() = isSameDay(today)
+
 fun getFirstDayOfWeek(date: Date): Date {
     return date.toCalendar().setDayOfWeek(1).time
 }
 
-fun getFirstDayOfWeek(year: Int, week: Int) = Date().toCalendar()
-    .setYear(year)
-    .setWeek(week)
-    .setDayOfWeek(1)
-    .time
+fun getFirstDayOfWeek(year: Int, week: Int): Date {
+    return Calendar.getInstance()
+        .setYear(year)
+        .setWeek(week)
+        .setDayOfWeek(1)
+        .time
+}
 
 val MILLIS_IN_WEEK = TimeUnit.DAYS.toMillis(7)
 

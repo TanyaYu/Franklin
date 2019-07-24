@@ -10,22 +10,23 @@ import com.tanyayuferova.franklin.utils.onInactive
  * Author: Tanya Yuferova
  * Date: 7/7/2019
  */
-class KeyValueStorage(
+class KeyValueStorage private constructor(
     private val sharedPreferences: SharedPreferences
 ) {
 
+    @Suppress("UNCHECKED_CAST")
     fun <T> observe(key: String, default: T): LiveData<T> {
+        lateinit var listener: PreferenceChangeListener<T>
         val liveData = MutableLiveData<T>()
-        val listener = PreferencesChangeListener<T>(key) { newValue ->
-            liveData.value = newValue
-        }
-        liveData
             .onActive {
                 sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
             }
             .onInactive {
                 sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
-            }
+            } as MutableLiveData<T>
+        listener = PreferenceChangeListener(key) { newValue ->
+            liveData.value = newValue
+        }
         val currentValue = sharedPreferences.all[key] ?: default
         liveData.value = currentValue as T
         return liveData
@@ -74,7 +75,8 @@ class KeyValueStorage(
         .apply()
 
 
-    fun getBoolean(key: String, default: Boolean = false): Boolean = sharedPreferences.getBoolean(key, default)
+    fun getBoolean(key: String, default: Boolean = false): Boolean =
+        sharedPreferences.getBoolean(key, default)
 
     fun putFloat(key: String, value: Float) = sharedPreferences
         .edit()
@@ -100,6 +102,21 @@ class KeyValueStorage(
                 editor.remove(it)
             } ?: editor.clear()
         }.apply()
+
+    companion object {
+        @Volatile
+        private var instance: KeyValueStorage? = null
+
+        fun getInstance(
+            sharedPreferences: SharedPreferences
+        ) =
+            instance ?: synchronized(this) {
+                instance
+                    ?: KeyValueStorage(
+                        sharedPreferences
+                    ).also { instance = it }
+            }
+    }
 }
 
 

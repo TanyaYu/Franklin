@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">自己改善計画</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">節制</string>
+    <string name="tem_short">節</string>
+    <string name="tem_desc">飽くほど食うなかれ。酔うまで飲むなかれ。</string>
+
+    <string name="sil_name">沈黙</string>
+    <string name="sil_short">沈</string>
+    <string name="sil_desc">自他に益なきことを語るなかれ。駄弁を弄するなかれ。</string>
+
+    <string name="ord_name">規律</string>
+    <string name="ord_short">規</string>
+    <string name="ord_desc">物はすべて所を定めて置くべし。仕事はすべて時を定めてなすべし。</string>
+
+    <string name="res_name">決断</string>
+    <string name="res_short">決</string>
+    <string name="res_desc">なすべきをなさんと決心すべし。決心したることは必ず実行すべし。</string>
+
+    <string name="fru_name">節約</string>
+    <string name="fru_short">節</string>
+    <string name="fru_desc">自他に益なきことに金銭を費やすなかれ。すなわち、浪費するなかれ。</string>
+
+    <string name="ind_name">勤勉</string>
+    <string name="ind_short">勤</string>
+    <string name="ind_desc">時間を空費するなかれ。つねに何か益あることに従うべし。無用の行いはすべて断つべし。</string>
+
+    <string name="sin_name">誠実</string>
+    <string name="sin_short">誠</string>
+    <string name="sin_desc">詐りを用いて人を害するなかれ。心事は無邪気に公正に保つべし。口に出だすこともまた然るべし。</string>
+
+    <string name="jus_name">正義</string>
+    <string name="jus_short">正</string>
+    <string name="jus_desc">他人の利益を傷つけ、あるいは与うべきを与えずして人に損害を及ぼすべからず。</string>
+
+    <string name="mod_name">中庸</string>
+    <string name="mod_short">中</string>
+    <string name="mod_desc">極端を避くべし。たとえ不法を受け、憤りに値すと思うとも、激怒を慎むべし。</string>
+
+    <string name="cle_name">清潔</string>
+    <string name="cle_short">清</string>
+    <string name="cle_desc">身体、衣服、住居に不潔を黙認すべからず。</string>
+
+    <string name="tra_name">平静</string>
+    <string name="tra_short">平</string>
+    <string name="tra_desc">小事、日常茶飯事、または避けがたき出来事に平静を失うなかれ。</string>
+
+    <string name="cha_name">純潔</string>
+    <string name="cha_short">純</string>
+    <string name="cha_desc">性交はもっぱら健康ないし子孫のためにのみ行い、これにふけりて頭脳を鈍らせ、身体を弱め、または自他の平安ないし信用を傷つけるがごときことあるべからず。</string>
+
+    <string name="hum_name">謙譲</string>
+    <string name="hum_short">謙</string>
+    <string name="hum_desc">イエスおよびソクラテスに見習うべし。</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">設定</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">リマインダ</string>
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">あなたは今日何が素晴らしい？ あなたの進歩を追跡することを忘れないでください。</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">非アクティブ</string>
+    <string name="pref_notifications_enable_true">アクティブ</string>
+    <string name="pref_notifications_label">毎日の通知</string>
+
+    <string name="pref_time_label">毎日の通知時間</string>
+    <string name="preferences_time_title">通知時間</string>
+    <!-- #end Preferences -->
+
+    <string name="content_description_close">閉じる</string>
+    <string name="content_description_franklin">ベンジャミンフランクリン</string>
+    <string name="content_description_example">表の例</string>
+    <string name="about_this_app">アプリについて</string>
+
+    <string name="info_description_1">21歳で、ベンジャミンフランクリンは道徳的な完璧を達成することを決めました。 彼は、13の美徳が必要であるか望ましいかを決定し、最初に獲得したものが第2のものに同化するのを助けるように配置しました。</string>
+    <string name="info_description_2">彼は新しい徳を得るために一週間を割いた。 彼の進歩を見るために、彼は彼が働いていた美徳を見せなかったたびに記録的な本を作って自分に黒い印を付けました。</string>
+    <string name="info_description_3">このアプリは、あなたのマークのレコードブックとして提供されるように設計されています。 がんばろう！</string>
+    <string name="action_results">結果</string>
+    <string name="virtue_of_the_week">今週の徳</string>
+    <string name="other_virtues">その他の美徳</string>
+    <string name="action_skip">スキップ</string>
+    <string name="action_next">次</string>
+</resources>

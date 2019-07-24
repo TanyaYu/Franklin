@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="date_format_month" translatable="false">MMMM, yyyy</string>
+    <string name="period_pattern" translatable="false">%1$s - %2$s</string>
+    <string name="item_day_format" translatable="false">dd\nE</string>
+</resources>

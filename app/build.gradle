@@ -35,6 +35,7 @@ dependencies {
 
     // Support
     implementation deps.support.app_compat
+    implementation deps.google.material
     implementation deps.support.core_ktx
     implementation deps.support.v4
     implementation deps.constraint_layout

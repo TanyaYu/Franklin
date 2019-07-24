@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/row_size_single_line"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@color/row_background"
+    android:longClickable="true"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/spacing_h"
+    android:paddingRight="@dimen/spacing_h">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/icon_size_m"
+        android:layout_height="@dimen/icon_size_m"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/spacing_h"
+        android:layout_marginRight="@dimen/spacing_h"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="?colorPrimaryDark"
+        tools:src="@drawable/cha_icon" />
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/Subhead"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:maxLines="1"
+        tools:text="@string/mod_name" />
+
+    <TextView
+        android:id="@+id/dots"
+        style="@style/Mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:maxLines="1"
+        android:textAlignment="center"
+        tools:text="4"
+        tools:textColor="@color/result_positive" />
+
+    <ImageView
+        android:id="@+id/icon_progress"
+        android:layout_width="@dimen/icon_size_m"
+        android:layout_height="@dimen/icon_size_m"
+        android:layout_gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        tools:src="@drawable/ic_arrow_up"
+        tools:tint="@color/result_positive" />
+
+</LinearLayout>

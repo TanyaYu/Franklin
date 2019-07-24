@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Piano di miglioramento personale</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">Temperanza</string>
+    <string name="tem_short">T</string>
+    <string name="tem_desc">Non mangiare a sazietà e non bere fino a divenire euforico.</string>
+
+    <string name="sil_name">Silenzio</string>
+    <string name="sil_short">S</string>
+    <string name="sil_desc">Non parlare se non per recar beneficio a te stesso o ad altri. Evita i discorsi futili.</string>
+
+    <string name="ord_name">Ordine</string>
+    <string name="ord_short">O</string>
+    <string name="ord_desc">Ogni tua cosa abbia il suo posto, a ciascuna delle tue attività dedica il giusto tempo.</string>
+
+    <string name="res_name">Determinazione</string>
+    <string name="res_short">D</string>
+    <string name="res_desc">Stabilisci di fare ciò che devi fare. Esegui senza esitazione quanto hai deciso.</string>
+
+    <string name="fru_name">Parsimonia</string>
+    <string name="fru_short">P</string>
+    <string name="fru_desc">Non spendere se non per far del bene a te stesso o ad altri, vale a dire non sprecare niente.</string>
+
+    <string name="ind_name">Operosità</string>
+    <string name="ind_short">O</string>
+    <string name="ind_desc">Non perdere tempo. Sii sempre impegnato in qualcosa di utile. Evita ogni azione superflua.</string>
+
+    <string name="sin_name">Sincerità</string>
+    <string name="sin_short">S</string>
+    <string name="sin_desc">Non ricorrere a sotterfugi che possono causare danno. I tuoi pensieri siano innocenti e giusti e tali rimangano quando decidi di esprimerli.</string>
+
+    <string name="jus_name">Giustizia</string>
+    <string name="jus_short">G</string>
+    <string name="jus_desc">Non offendere nessuno, facendogli un torto o trascurando il dovere di fargli del bene.</string>
+
+    <string name="mod_name">Moderazione</string>
+    <string name="mod_short">M</string>
+    <string name="mod_desc">Evita gli estremi. Trattieniti dal risentirti dei torti per come pensi che meriterebbero.</string>
+
+    <string name="cle_name">Pulizia</string>
+    <string name="cle_short">P</string>
+    <string name="cle_desc">Non tollerare alcuna sporcizia nel corpo, negli abiti o in casa.</string>
+
+    <string name="tra_name">Tranquillità</string>
+    <string name="tra_short">T</string>
+    <string name="tra_desc">Non agitarti per le inezie o per gli accidenti comuni e inevitabili.</string>
+
+    <string name="cha_name">Castità</string>
+    <string name="cha_short">C</string>
+    <string name="cha_desc">Di Venere usa raramente, solo per mantenere la salute o procreare, mai fino a saziarti, a infiacchirti o a pregiudicare la tua o l’altrui pace o reputazione.</string>
+
+    <string name="hum_name">Umiltà</string>
+    <string name="hum_short">U</string>
+    <string name="hum_desc">Imita Gesù e Socrate.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">Impostazioni</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">Promemoria</string>
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">Che bello hai fatto oggi? Non dimenticare di tenere traccia dei tuoi progressi.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">Inattivo</string>
+    <string name="pref_notifications_enable_true">Attivo</string>
+    <string name="pref_notifications_label">Notifiche giornaliere</string>
+
+    <string name="pref_time_label">Ora delle notifiche giornaliere</string>
+    <string name="preferences_time_title">Tempo di notifica</string>
+    <!-- #end Preferences -->
+
+    <string name="info_description_3">Questa app è progettata per essere utilizzata come un libro dei record per i tuoi voti. In bocca al lupo!</string>
+    <string name="info_description_2">Si è assegnato una settimana per acquisire ogni nuova virtù. E per vedere i suoi progressi, ha fatto un libretto di dischi e si è dato un segno nero ogni volta che non è riuscito a mostrare una virtù su cui stava lavorando.</string>
+    <string name="info_description_1">All\'età di 21 anni, Benjamin Franklin decise di raggiungere la perfezione morale. Decise che 13 virtù erano o necessarie o desiderabili, disposte in modo che il primo acquisito potesse aiutare ad assimilare il secondo, e così via.</string>
+
+    <string name="about_this_app">Informazioni sull\'app</string>
+    <string name="content_description_example">Esempio di tabella</string>
+    <string name="content_description_franklin">Benjamin Franklin</string>
+    <string name="content_description_close">Vicino</string>
+    <string name="action_results">risultati</string>
+    <string name="virtue_of_the_week">Virtù della settimana</string>
+    <string name="other_virtues">Altre virtù</string>
+    <string name="action_skip">Salta</string>
+    <string name="action_next">"Il prossimo "</string>
+</resources>

@@ -18,10 +18,12 @@ data class VirtueWithPointsEntity(
     fun toVirtue(
         name: String,
         description: String,
+        iconRes: Int,
         isSelected: Boolean
     ) = Virtue(
         id = id,
         name = name,
+        iconRes = iconRes,
         description = description,
         points = pointsCount,
         isSelected = isSelected
@@ -30,12 +32,14 @@ data class VirtueWithPointsEntity(
     fun toVirtueStatistics(
         name: String,
         description: String,
+        iconRes: Int,
         previousPoints: Int,
         isSelected: Boolean
     ) = VirtueStatistics(
         id = id,
         name = name,
         description = description,
+        iconRes = iconRes,
         pointsCount = pointsCount,
         result = StatisticResult.fromProgress(pointsCount - previousPoints),
         isSelected = isSelected
