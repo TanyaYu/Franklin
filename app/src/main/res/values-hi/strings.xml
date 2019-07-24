@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">स्व-सुधार योजना</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">संयम</string>
+    <string name="tem_short">सं</string>
+    <string name="tem_desc">इतना ही खाओ कि आलस्य ना आए इतना ना पियो कि नशा हो जाए.</string>
+
+    <string name="sil_name">मौन</string>
+    <string name="sil_short">मौ</string>
+    <string name="sil_desc">वही बोलो जिससे तुम्हारा या दूसरों का लाभ हो. क्षुद्र बातचीत से बिलकुल बचो.</string>
+
+    <string name="ord_name">व्यवस्था</string>
+    <string name="ord_short">व्य</string>
+    <string name="ord_desc">तुम्हारी सभी चीजों की अपनी जगह होनी चाहिए तुम्हारे हर काम का अपना समय होना चाहिए.</string>
+
+    <string name="res_name">संकल्प</string>
+    <string name="res_short">सं</string>
+    <string name="res_desc">तुम्हारे लिए जो आवश्यक है उसे करने का संकल्प लो, जिसे करने का संकल्प तुमने लिया है उसे बिना असफल हुए तुम करो.</string>
+
+    <string name="fru_name">मितव्ययिता</string>
+    <string name="fru_short">मि</string>
+    <string name="fru_desc">अपने या दूसरों के भले के लिए ही खर्च करो, अर्थात पैसे कभी भी बर्बाद मत करो.</string>
+
+    <string name="ind_name">श्रम</string>
+    <string name="ind_short">श्र</string>
+    <string name="ind_desc">समय नष्ट मत करो, हमेशा किसी न किसी सार्थक काम में लगे रहो, सभी अनावश्यक कार्यों में कटौती करो.</string>
+
+    <string name="sin_name">निष्ठा</string>
+    <string name="sin_short">नि</string>
+    <string name="sin_desc">किसी हानिकारक छल का प्रयोग मत करो. निश्छल और न्यायपूर्ण तरीके से सोचो, और यदि बोलो तो, तदनुसार बोलो.</string>
+
+    <string name="jus_name">न्याय</string>
+    <string name="jus_short">न्य</string>
+    <string name="jus_desc">घायल करके किसी को गलत मत बनाओ, या लाभ देने से मत चूको जो तुम्हारा कर्तव्य है.</string>
+
+    <string name="mod_name">निग्रह</string>
+    <string name="mod_short">नि</string>
+    <string name="mod_desc">अतिवाद से बचो, क्रोध में चोट करने से बचो, उस वक़्त भी जब तुम्हे लगता है कि सामनेवाला इसका हकदार हैं.</string>
+
+    <string name="cle_name">स्वच्छता</string>
+    <string name="cle_short">स्व</string>
+    <string name="cle_desc">शरीर, वस्त्र, या घर में गंदगी बर्दाश्त न करो.</string>
+
+    <string name="tra_name">शांति</string>
+    <string name="tra_short">शां</string>
+    <string name="tra_desc">तुच्छ बातों पर या आम अथवा अपरिहार्य दुर्घटनाओं से परेशान न हो. अपनी अंदरूनी शांति बनाये रखो.</string>
+
+    <string name="cha_name">शुचिता</string>
+    <string name="cha_short">शु</string>
+    <string name="cha_desc">स्वास्थ्य या संतानोत्पति के लिए ही संभोग का विरले प्रयोग करो और नीरसता, कमजोरी या अपने या किसी और की शांति या प्रतिष्ठा के प्रतिकूल इसका प्रयोग कभी भी मत करो.</string>
+
+    <string name="hum_name">विनम्रता</string>
+    <string name="hum_short">वि</string>
+    <string name="hum_desc">प्रभु ईसामसीह और सुकरात का अनुगमन करो. जीवन में विनम्रता बहुत जरुरी होता है.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">सेटिंग्स</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">अनुस्मारक</string>
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">आपने आज क्या महान किया है? अपनी प्रगति का ट्रैक रखने के लिए मत भूलना.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">निष्क्रिय</string>
+    <string name="pref_notifications_enable_true">सक्रिय</string>
+    <string name="pref_notifications_label">दैनिक सूचनाएं</string>
+
+    <string name="pref_time_label">दैनिक सूचनाएं समय</string>
+    <string name="preferences_time_title">अधिसूचना का समय</string>
+    <!-- #end Preferences -->
+
+    <string name="content_description_close">बंद करे</string>
+    <string name="content_description_franklin">बेंजामिन फ्रैंकलिन</string>
+    <string name="content_description_example">टेबल उदाहरण</string>
+    <string name="about_this_app">एप के बारे में</string>
+
+    <string name="info_description_1">21 वर्ष की उम्र में, बेंजामिन फ्रैंकलिन ने नैतिक पूर्णता प्राप्त करने का फैसला किया। उन्होंने निर्णय लिया कि 13 गुण या तो जरूरी या वांछनीय थे, उन्हें व्यवस्थित किया गया ताकि पहले अधिग्रहित किया जा सके, दूसरे को आत्मसात करने में, और इसी तरह।</string>
+    <string name="info_description_2">उन्होंने खुद को एक हफ्ते आवंटित किया कि वह हर नए गुण को प्राप्त करे। और उनकी प्रगति देखने के लिए, उन्होंने एक रिकॉर्ड बुक किया और खुद को एक बार फिर से एक काला चिह्न दिया, जब वह उस गुण को प्रदर्शित करने में नाकाम रहे, जिस पर वह काम कर रहा था।</string>
+    <string name="info_description_3">यह ऐप आपके अंक के लिए एक रिकॉर्ड बुक के रूप में पेश करने के लिए डिज़ाइन किया गया है। सौभाग्य!</string>
+    <string name="other_virtues">अन्य गुण</string>
+    <string name="virtue_of_the_week">सप्ताह का गुण</string>
+    <string name="action_results">परिणाम</string>
+    <string name="action_skip">छोड़ें</string>
+    <string name="action_next">"आगामी "</string>
+</resources>

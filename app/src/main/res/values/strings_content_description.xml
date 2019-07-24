@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_description_close">Close</string>
+    <string name="content_description_franklin">Benjamin Franklin</string>
+    <string name="content_description_example">Table example</string>
+</resources>

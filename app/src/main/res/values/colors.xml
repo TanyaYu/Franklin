@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="primary">#607D8B</color>
+    <color name="primary_dark">#455A64</color>
+    <color name="primary_light">#CFD8DC</color>
+    <color name="accent">#FF5252</color>
+    <color name="accent_ripple">#42FF5252</color>
+    <color name="ripple">@color/ripple_material_light</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="text_primary">#de000000</color>
+    <color name="text_secondary">#8a000000</color>
+    <color name="text_primary_inverse">@color/white</color>
+    <color name="text_accent">@color/accent</color>
+
+    <color name="window_background">#f0f0f0</color>
+    <color name="row_selected_background">@color/primary_light</color>
+    <color name="item_day_background">#ffffff</color>
+    <color name="row_background">@color/white</color>
+
+    <color name="result_positive">#388E3C</color>
+    <color name="result_negative">#D32F2F</color>
+    <color name="result_neutral">@color/primary_dark</color>
+    <color name="divider">#e0e0e0</color>
+    <color name="primary_enabled">#7e9ba9</color>
+    <color name="toolbar_icon">@color/white</color>
+    <color name="ic_launcher_background">#455A64</color>
 </resources>

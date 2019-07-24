@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Selbstverbesserungsplan</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">Mäßigkeit</string>
+    <string name="tem_short">M</string>
+    <string name="tem_desc">Iss nicht bis zum Stumpfsinn, trink nicht bis zur Berauschung.</string>
+
+    <string name="sil_name">Schweigen</string>
+    <string name="sil_short">S</string>
+    <string name="sil_desc">Sprich nur, was anderen oder dir selbst nützen kann; vermeide unbedeutende Unterhaltung.</string>
+
+    <string name="ord_name">Ordnung</string>
+    <string name="ord_short">O</string>
+    <string name="ord_desc">Lass jedes Ding seine Stelle und jeden Teil deines Geschäfts seine Zeit haben.</string>
+
+    <string name="res_name">Entschlossenheit</string>
+    <string name="res_short">E</string>
+    <string name="res_desc">Nimm dir vor, durchzuführen, was du musst; vollführe unfehlbar, was du dir vornimmst.</string>
+
+    <string name="fru_name">Sparsamkeit</string>
+    <string name="fru_short">S</string>
+    <string name="fru_desc">Mache keine Ausgabe, als um anderen oder dir selbst Gutes zu tun; das heißt: vergeude nichts.</string>
+
+    <string name="ind_name">Fleiß</string>
+    <string name="ind_short">F</string>
+    <string name="ind_desc">Verliere keine Zeit; sei immer mit etwas Nützlichem beschäftigt; entsage aller unnützen Tätigkeit.</string>
+
+    <string name="sin_name">Aufrichtigkeit</string>
+    <string name="sin_short">A</string>
+    <string name="sin_desc">Bediene dich keiner schädlichen Täuschung; denke unschuldig und gerecht, und wenn du sprichst, so sprich danach.</string>
+
+    <string name="jus_name">Gerechtigkeit</string>
+    <string name="jus_short">G</string>
+    <string name="jus_desc">Schade niemandem, indem du ihm unrecht tust oder die Wohltaten unterlässt, die deine Pflichten sind.</string>
+
+    <string name="mod_name">Mäßigung</string>
+    <string name="mod_short">M</string>
+    <string name="mod_desc">Vermeide Extreme; hüte dich, Beleidigungen so übel aufzunehmen, wie sie es nach deinem Dafürhalten verdienen.</string>
+
+    <string name="cle_name">Reinlichkeit</string>
+    <string name="cle_short">R</string>
+    <string name="cle_desc">Dulde keine Unsauberkeit am Körper, an Kleidern oder in der Wohnung.</string>
+
+    <string name="tra_name">Gemütsruhe</string>
+    <string name="tra_short">G</string>
+    <string name="tra_desc">Beunruhige dich nicht über Kleinigkeiten oder über gewöhnliche oder unvermeidliche Unglücksfälle.</string>
+
+    <string name="cha_name">Keuschheit</string>
+    <string name="cha_short">K</string>
+    <string name="cha_desc">Übe geschlechtlichen Umgang selten, nur um der Gesundheit oder der Nachkommenschaft willen, niemals bis zur Stumpfheit, Schwäche oder zur Schädigung deines eigenen oder fremden Seelenfriedens oder guten Rufes.</string>
+
+    <string name="hum_name">Demut</string>
+    <string name="hum_short">D</string>
+    <string name="hum_desc">Ahme Jesus und Sokrates nach.</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">Einstellungen</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">Erinnerungen</string>
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">Was hast du heute großartig gemacht? Vergiss nicht, deinen Fortschritt zu verfolgen.</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">Aus</string>
+    <string name="pref_notifications_enable_true">Ein</string>
+    <string name="pref_notifications_label">Tägliche Benachrichtigungen</string>
+
+    <string name="pref_time_label">Tägliche Benachrichtigungszeit</string>
+    <string name="preferences_time_title">Benachrichtigungszeit</string>
+    <!-- #end Preferences -->
+
+    <string name="content_description_close">Schließen</string>
+    <string name="content_description_franklin">Benjamin Franklin</string>
+    <string name="content_description_example">Tabellenbeispiel</string>
+    <string name="about_this_app">Über die App</string>
+
+    <string name="info_description_1">Im Alter von 21 Jahren entschied sich Benjamin Franklin für moralische Perfektion. Er entschied, dass 13 Tugenden entweder notwendig oder wünschenswert waren, arrangierte sie so, dass die erste erworbene Hilfe helfen konnte, die zweite zu assimilieren, und so weiter.</string>
+    <string name="info_description_2">Er gab sich selbst eine Woche, um jede neue Tugend zu erwerben. Und um seine Fortschritte zu sehen, machte er ein Rekordbuch und gab sich jedes Mal eine schwarze Markierung, wenn er keine Tugend zeigte, an der er arbeitete.</string>
+    <string name="info_description_3">Diese App wurde entwickelt, um als ein Rekordbuch für Ihre Marken zu dienen. Viel Glück!</string>
+    <string name="action_results">Ergebnisse</string>
+    <string name="virtue_of_the_week">Tugend der Woche</string>
+    <string name="other_virtues">Andere Tugenden</string>
+    <string name="action_skip">Überspringen</string>
+    <string name="action_next">Nächster</string>
+</resources>

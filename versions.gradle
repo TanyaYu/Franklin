@@ -1,4 +1,11 @@
-ext.deps = [:]
+def build_versions = [:]
+build_versions.min_sdk = 16
+build_versions.target_sdk = 29
+build_versions.build_tools = "29.0.0"
+build_versions.version_name = "3.0.0"
+build_versions.version_code = 1
+ext.build_versions = build_versions
+
 def versions = [:]
 versions.android_gradle_plugin = '3.4.1'
 versions.apache_commons = "2.5"
@@ -16,6 +23,7 @@ versions.kotlin = "1.3.41"
 versions.coroutines = "1.1.1"
 versions.legacy = "1.0.0"
 versions.lifecycle = "2.2.0-alpha01"
+versions.material = "1.1.0-alpha08"
 versions.mockito = "2.25.0"
 versions.mockito_all = "1.10.19"
 versions.mockito_android = "2.25.0"
@@ -26,20 +34,13 @@ versions.timber = "4.5.1"
 versions.work = "2.1.0-alpha01"
 ext.versions = versions
 
-def build_versions = [:]
-build_versions.min_sdk = 16
-build_versions.target_sdk = 29
-build_versions.build_tools = "29.0.0"
-build_versions.version_name = "3.0.0"
-build_versions.version_code = 1
-ext.build_versions = build_versions
+ext.deps = [:]
 
 def support = [:]
 support.annotations = "androidx.annotation:annotation:$versions.support"
 support.app_compat = "androidx.appcompat:appcompat:$versions.support"
 support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
 support.cardview = "androidx.cardview:cardview:$versions.support"
-support.design = "com.google.android.material:material:$versions.support"
 support.v4 = "androidx.legacy:legacy-support-v4:$versions.legacy"
 support.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.legacy"
 support.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
@@ -47,6 +48,10 @@ support.fragment_runtime = "androidx.fragment:fragment:${versions.fragment}"
 support.fragment_runtime_ktx = "androidx.fragment:fragment-ktx:${versions.fragment}"
 support.fragment_testing = "androidx.fragment:fragment-testing:${versions.fragment}"
 deps.support = support
+
+def google = [:]
+google.material = "com.google.android.material:material:$versions.material"
+deps.google = google
 
 def room = [:]
 room.runtime = "androidx.room:room-runtime:$versions.room"
@@ -121,6 +126,5 @@ ext.deps = deps
 def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
-    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 ext.addRepos = this.&addRepos

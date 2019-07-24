@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/about_perfection_plan_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/row_background"
+        android:clipToPadding="false"
+        android:padding="@dimen/spacing_h"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_description_franklin"
+                android:src="@drawable/franklin" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_m" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_description_1"
+                android:textAppearance="@style/Body" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_m" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_description_example"
+                android:src="@drawable/table_example" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_m" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_description_2"
+                android:textAppearance="@style/Body" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_m" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_description_3"
+                android:textAppearance="@style/Body" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

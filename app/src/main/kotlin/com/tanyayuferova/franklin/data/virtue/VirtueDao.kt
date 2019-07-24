@@ -25,7 +25,7 @@ interface VirtueDao {
                 from point 
                 where 
                     point.virtue_id = virtue.id 
-                    and date between :start and :end
+                    and date >= :start and date < :end
             ) as points_count
         FROM virtue
         order by virtue.id asc  """)

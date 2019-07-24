@@ -47,10 +47,6 @@ fun <X> LiveData<X>.onInactive(onInactive: () -> Unit): LiveData<X> {
     }
 }
 
-fun <X> LiveData<X>.hide(): LiveData<X> {
-    return this as LiveData<X>
-}
-
 //fixme copied from androidx.lifecycle.observe.LiveData.kt
 @MainThread
 inline fun <T> LiveData<T>.observe(
@@ -61,5 +57,3 @@ inline fun <T> LiveData<T>.observe(
     observe(owner, wrappedObserver)
     return wrappedObserver
 }
-
-

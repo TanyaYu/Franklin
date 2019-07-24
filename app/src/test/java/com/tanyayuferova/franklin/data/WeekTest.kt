@@ -31,9 +31,14 @@ class WeekTest {
     @Test
     fun weekToDate() {
         val entity = Week(year = 2019, number = 28)
+        println(Week(year = 2019, number = 29).toDate())
         assertEquals(
             Date().setUp(2019, 6, 7, 0, 0, 0, 0),
             entity.toDate().removeTime()
+        )
+        assertEquals(
+            Date().setUp(2019, 6, 14, 0, 0, 0, 0),
+            Week(year = 2019, number = 29).toDate().removeTime()
         )
     }
 

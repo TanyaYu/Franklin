@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tanyayuferova.franklin.R
+import com.tanyayuferova.franklin.data.ResourceManager
 import com.tanyayuferova.franklin.data.point.PointsRepository
 import com.tanyayuferova.franklin.data.virtue.VirtueRepository
 import com.tanyayuferova.franklin.data.week.WeeksRepository
@@ -21,17 +23,24 @@ import java.util.Date
 class MainViewModel(
     private val virtueRepository: VirtueRepository,
     private val pointsRepository: PointsRepository,
-    private val weeksRepository: WeeksRepository
+    private val weeksRepository: WeeksRepository,
+    private val resourceManager: ResourceManager,
+    private val dateFormatter: DateFormatter
 ) : ViewModel() {
 
-    val virtues: LiveData<List<Virtue>>
     private val selectedDateMutable = MutableLiveData(today)
-    val selectedDate = selectedDateMutable.hide().distinctUntilChanged()
+    private val toolbarTitleMutable = MutableLiveData<String>()
+    val virtues: LiveData<List<Virtue>>
+    val selectedDate: LiveData<Date> = selectedDateMutable.distinctUntilChanged()
+    val toolbarTitle: LiveData<String> = toolbarTitleMutable.distinctUntilChanged()
 
     init {
         virtues = selectedDate
             .switchMap { date ->
                 virtueRepository.getVirtuesForDate(date)
+            }
+            .map { list ->
+                list.sortedBy(Virtue::id)
             }
             .distinctUntilChanged()
     }
@@ -55,6 +64,20 @@ class MainViewModel(
     fun onVirtueSelected(id: Int) {
         viewModelScope.launch {
             weeksRepository.setVirtueOfTheWeek(id, selectedDate.requireValue.toWeek())
+        }
+    }
+
+    fun onWeekSliderPageChanged(pageNumber: Int) {
+        val start = getFirstDayOfWeek(today).addDays(7 * pageNumber)
+        val end = start.addDays(7)
+        toolbarTitleMutable.value = if (start.month_ == end.month_) {
+            dateFormatter.formatMonth(start)
+        } else {
+            resourceManager.getString(
+                R.string.period_pattern,
+                dateFormatter.formatMonth(start),
+                dateFormatter.formatMonth(end)
+            )
         }
     }
 

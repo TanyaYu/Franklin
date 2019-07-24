@@ -1,5 +1,6 @@
 package com.tanyayuferova.franklin.data
 
+import com.tanyayuferova.franklin.R
 import com.tanyayuferova.franklin.data.virtue.VirtueWithPointsEntity
 import com.tanyayuferova.franklin.domain.statistics.StatisticResult.*
 import com.tanyayuferova.franklin.domain.statistics.StatisticResult.Companion.fromProgress
@@ -23,11 +24,15 @@ class VirtueStatisticsTest {
             id = 1,
             name = "name",
             description = "description",
+            iconRes = R.drawable.hum_icon,
             pointsCount = 4,
             result = POSITIVE,
             isSelected = true
         )
-        assertEquals(domain, entity.toVirtueStatistics("name", "description", 5, true))
+        assertEquals(domain, entity.toVirtueStatistics(
+            "name", "description",
+            R.drawable.hum_icon, 5, true
+        ))
     }
 
     @Test

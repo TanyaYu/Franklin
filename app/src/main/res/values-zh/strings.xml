@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">自我完善计划</string>
+
+    <!-- #start Virtues data -->
+    <string name="tem_name">节制</string>
+    <string name="tem_short">节</string>
+    <string name="tem_desc">食不过饱，饮不过量。</string>
+
+    <string name="sil_name">缄默</string>
+    <string name="sil_short">缄</string>
+    <string name="sil_desc">言必于人于己有益，避免无益的闲聊。</string>
+
+    <string name="ord_name">秩序</string>
+    <string name="ord_short">秩</string>
+    <string name="ord_desc">何处放何物，何时干何活，都要有条不紊。</string>
+
+    <string name="res_name">决心</string>
+    <string name="res_short">决</string>
+    <string name="res_desc">该做的一定要做，要做的一定做好。</string>
+
+    <string name="fru_name">节俭</string>
+    <string name="fru_short">节</string>
+    <string name="fru_desc">于人于己有利的事方可花费，决不浪费。</string>
+
+    <string name="ind_name">勤奋</string>
+    <string name="ind_short">勤</string>
+    <string name="ind_desc">珍惜一起切时间用于有益之事，不搞无谓之举。</string>
+
+    <string name="sin_name">真诚</string>
+    <string name="sin_short">真</string>
+    <string name="sin_desc">不虚伪骗人，心存良知，为人正直，讲话实在。</string>
+
+    <string name="jus_name">正义</string>
+    <string name="jus_short">正</string>
+    <string name="jus_desc">不损人利己。</string>
+
+    <string name="mod_name">中庸</string>
+    <string name="mod_short">中</string>
+    <string name="mod_desc">不走极端。容忍别人给予的伤害，将此视为应承受之事。</string>
+
+    <string name="cle_name">整洁</string>
+    <string name="cle_short">整</string>
+    <string name="cle_desc">力求身体、衣服和住所整洁。</string>
+
+    <string name="tra_name">宁静</string>
+    <string name="tra_short">宁</string>
+    <string name="tra_desc">不要让区区琐事，或寻常事故，或不可避免的事故而惊慌失措。</string>
+
+    <string name="cha_name">节欲</string>
+    <string name="cha_short">节</string>
+    <string name="cha_desc">少行房事，除非出于健康和延嗣考虑；切忌过度伤体，以免损害自己和他人的安宁与名誉。</string>
+
+    <string name="hum_name">谦逊</string>
+    <string name="hum_short">谦</string>
+    <string name="hum_desc">效法耶酥和苏格拉底。</string>
+
+    <!-- #end Virtues data -->
+
+    <!-- #start Menu -->
+    <string name="action_settings">设置</string>
+    <!-- #end Menu -->
+
+    <!-- #start Notifications -->
+    <string name="notification_reminder_channel_title">提醒</string>
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">你今天做了什么好事？ 不要忘记跟踪你的进度。</string>
+    <!-- #end Notifications -->
+
+    <!-- #start Preferences -->
+    <string name="pref_notifications_enable_false">待用</string>
+    <string name="pref_notifications_enable_true">活性</string>
+    <string name="pref_notifications_label">每日通知</string>
+
+    <string name="pref_time_label">每日通知时间</string>
+    <string name="preferences_time_title">通知时间</string>
+    <!-- #end Preferences -->
+
+    <string name="content_description_close">关</string>
+    <string name="content_description_franklin">本杰明·富兰克林</string>
+    <string name="content_description_example">表格示例</string>
+    <string name="about_this_app">关于应用程序</string>
+
+    <string name="info_description_1">本杰明·富兰克林21岁时就决定实现道德完美。 他认为，十三个美德是必要的或可取的，安排他们，使第一个获得的可以帮助吸收第二个，等等。</string>
+    <string name="info_description_2">他分配了一个星期来获得每一个新的美德。 为了看到他的进步，他创造了一个记录簿，每次没有表现出他所从事的美德时，他就给自己留下了黑色的印记。</string>
+    <string name="info_description_3">这个应用程序被设计为作为您的商标记录本。 祝你好运！</string>
+    <string name="action_results">结果</string>
+    <string name="virtue_of_the_week">本周的美德</string>
+    <string name="other_virtues">其他美德</string>
+    <string name="action_skip">跳跃</string>
+    <string name="action_next">下面</string>
+</resources>

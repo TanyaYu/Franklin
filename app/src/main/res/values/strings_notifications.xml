@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_reminder_channel_title">Reminders</string>
+    <string name="reminder_notification_title">@string/app_name</string>
+    <string name="reminder_notification_body">What great have you done today? Don\'t forget to keep track of your progress.</string>
+</resources>
