@@ -2,8 +2,6 @@ def build_versions = [:]
 build_versions.min_sdk = 16
 build_versions.target_sdk = 29
 build_versions.build_tools = "29.0.0"
-build_versions.version_name = "3.0.0"
-build_versions.version_code = 1
 ext.build_versions = build_versions
 
 def versions = [:]

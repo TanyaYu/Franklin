@@ -11,8 +11,8 @@ android {
         applicationId "com.tanyayuferova.franklin"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode build_versions.version_code
-        versionName build_versions.version_name
+        versionCode = gitVersionCode
+        versionName = gitVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
